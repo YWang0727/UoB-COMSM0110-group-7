@@ -6,34 +6,31 @@
 */
 public class EnemyFactory extends Factory{    
     
+    protected ArrayList<ArrayList<PImage[]>> enemyGifs;
+
     public EnemyFactory(){
-       this.setImgs(new ArrayList());
-       this.setId(0);
-       //this.init(); //<>// //<>// //<>// //<>// //<>// //<>//
+       enemyGifs = new ArrayList(); //<>//
     }
     
-    //private void init(){
-    //   this.addImg(loadImage("imgs/enemy/ghost.png")); //<>// //<>// //<>// //<>// //<>// //<>//
-    //   this.addImg(loadImage("imgs/enemy/worm.png"));
-    //   this.addImg(loadImage("imgs/enemy/gunner.png"));
-    //}
-    
-    //scan a room, add enemy spawn or enemies to this room
-    //enemy can'be generated on blocks without two blocks next to it
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>//
+      for(ArrayList<PImage[]> gif : gifs){
+          enemyGifs.add(gif);      
+      }
+   }
+
     public void addEnemiesToRoom(Room r){
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-            //legalPosition() need w and h of this type of enemy
             Enemy tmp = newEnemy(Type.ENEMY_GUNNER);
             boolean flag = legalPosition(r, tmp, new int[]{i,j});
-            println(flag + ", " + i +"," + j);
             if(flag){
               int rd = (int)random(20);
+              rd = 19;
               if(rd > 15){
                 Enemy e = tmp;
-                e.setX(Type.BOARD_GRIDSIZE * j);
-                e.setY(Type.BOARD_GRIDSIZE * i);
-                r.addEnemy(e);
+                e.location.x = Type.BOARD_GRIDSIZE * j;
+                e.location.y = Type.BOARD_GRIDSIZE * i;
+                r.enemies.add(e);
               }
             }
          }
@@ -48,7 +45,7 @@ public class EnemyFactory extends Factory{
       }
       float s = Type.BOARD_GRIDSIZE;
       float x = pos[1] * s, y = pos[0] * s;
-      float h = o.getHeight(), w = o.getWidth();
+      float h = o.h, w = o.w;
       
       //left/right empty
       int left = (int)(x/s) - 1;
@@ -56,8 +53,10 @@ public class EnemyFactory extends Factory{
       int U = (int)(y/s) ;
       int D = (int)((y+h)/s);
       for(int i = U; i <= D; i++){
-          if(blockEnemyCannotThrough(r.getBlockType(i,left))|| blockEnemyCannotThrough(r.getBlockType(i,right))){
-             return false;
+          for(int j = left; j <= right; j++){
+            if(cantThrough(r.getBlockType(i,j))){
+               return false;
+            }
           }
       }
       //up empty, down not empty
@@ -67,19 +66,19 @@ public class EnemyFactory extends Factory{
       int R = (int)((x+w)/s);
       //all blocks above are !blockCannotThrough(), o can through
       for(int i = L; i <= R && upper >= 0; i++){
-         if(blockEnemyCannotThrough(r.getBlockType(upper,i))){
+         if(cantThrough(r.getBlockType(upper,i))){
             return false;
          }
       }
-      for(int i = L; i <= R && below < Type.BOARD_MAX_HEIGHT; i++){
-         if(!blockEnemyCannotThrough(r.getBlockType(below,i))){
+      for(int i = L - 1; i <= R + 1 && below < Type.BOARD_MAX_HEIGHT; i++){
+         if(!cantThrough(r.getBlockType(below,i))){
             return false;
          }
       }
       return true;
     }
     
-    public boolean blockEnemyCannotThrough(int type){
+    public boolean cantThrough(int type){
      if(type == Type.BLOCK_EMPTY || type == Type.BLOCK_CRATE || type == Type.BLOCK_SPIKE){
        return false;
      }
@@ -88,26 +87,23 @@ public class EnemyFactory extends Factory{
     
     
     public Enemy newEnemy(int type){
-       Enemy e; 
-       if(type == Type.ENEMY_GHOST){
-           e = new Ghost(); //<>// //<>// //<>// //<>//
-       }else if(type == Type.ENEMY_WORM){
-           e = new Worm();
-
-       }else if(type == Type.ENEMY_GUNNER){
-           e = new Gunner();
-       }else{
-           e = new Enemy();
-       } //<>// //<>// //<>// //<>//
-       e.setFall(true);
-       e.setId(this.getId());
-       //e.setImg(this.getImgs().get(type));
-       //e.getImg().resize(e.getWidth(), e.getHeight());
+       //Enemy e; 
+       //if(type == Type.ENEMY_GHOST){
+       //    e = new Ghost(); //<>//
+       //}else if(type == Type.ENEMY_WORM){
+       //    e = new Worm();
+       
+       //}else if(type == Type.ENEMY_GUNNER){
+       //    e = new Gunner();
+       //}else{
+       //    e = new Enemy();
+       //} //<>//
+       Enemy e = new Gunner(25);
+       e.addGifsImgs(this.enemyGifs.get(e.type));
+       e.fall = true;
+       e.id = this.id;
        this.increaseId();
        return e;
     }
-    
-    
-    
     
 }

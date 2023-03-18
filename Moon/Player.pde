@@ -3,59 +3,47 @@
 * Class for player
 * 'useItem()' - change status of player, should be updated
 */
-public class Player extends BasicProp{
+public class Player extends ActionProp{
   
-  //player can only have one weapon at a time
-  private Item weapon;
-  //player can have a lot of items such as potions
-  private ArrayList<Item> items;
-  private Item[] weapons;
+  protected int blinkCount; 
+  
+  protected int bWidthInc, bHeightInc, bSpeed, bDp, bNum;
+    
+  protected ArrayList<Item> items;
+  protected Item[] weapons;
+  protected int currentWeaponIndex;
   private int currentItemIndex;
-  private int currentWeaponIndex = 0;
-  //if needed, we can add some permanent items that can change status forever
-  //private ArrayList<Item> outfit;
+  private boolean isShoot;
   
-  //since there may be more then two gifs
-  //private ArrayList<Gif> gifs;
-
-  private int bulletCd;
+  protected Timer portalTimer;
+  
+  public Player(int w, int h){
+    this.type = Type.PLAYER;    
+    this.location = new PVector(width/2, height/2);
+    this.w = w;
+    this.h = h;
+    this.hp = 100;
+    this.bNum = 0;
+    //Timer and blink effects
+    this.invincibleTimer = new Timer();
+    this.knockBackTimer = new Timer();
+    this.blinkCount = 0;
     
-  public Player(int x, int y, int w, int h){
-    this.setType(Type.PLAYER);
-    this.setTransported(true);
-    this.setX(x);
-    this.setY(y);
-    this.setWidth(w);
-    this.setHeight(h);
-    this.items = new ArrayList();
+    //weapons and items
     this.weapons = new Item[2];
-    this.currentWeaponIndex = 0;
-    //this.gifs = new ArrayList();
-    
-    this.setHp(100);
-    this.setImg(loadImage("imgs/player/hp.png"));
-    this.getImg().resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
-    this.setDpCd(Type.PLAYER_DPCD);
-  };
-  
-  /**
-  * Using img instead of gifs, then use this constructor
-  */
-  public Player(int x, int y, int w, int h, String imgPath){
-    this.setType(Type.PLAYER);
-    this.setTransported(true);
-    this.setX(x);
-    this.setY(y);
-    this.setWidth(w);
-    this.setHeight(h);
-    this.setImg(loadImage(imgPath));
-    this.getImg().resize(w, h); 
-  };
+    this.items = new ArrayList();
 
+    this.transported = true;
+    
+    //img of heart
+    this.img = loadImage("imgs/player/hp.png");
+    this.img.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
+  }
+  
+  //add weapon
   public void addItem(Item t){
-     if(t.getCategory() == Type.ITEM_WEAPON){
+     if(t.category == Type.ITEM_WEAPON){
         weapons[0] = t;
-        this.weapon = t;
      /*
      }else if(t.getCategory() == Type.ITEM_CRYSTAL)(  //for crystal, not put into the store section, but add score or sth directly
         add score or crystal to player
@@ -67,10 +55,11 @@ public class Player extends BasicProp{
   
   public Item getCurrentItem(){
        if(items.size() == 0){
-        return null;
+          return null;
        }
        return items.get(currentItemIndex);
   }
+  
   
   public void changeItem(){
      if(items.size() == 0){
@@ -79,7 +68,6 @@ public class Player extends BasicProp{
      }
      this.currentItemIndex = (this.currentItemIndex + 1) % items.size();
      println("change items: " + currentItemIndex);
-     println(items.size());
   }
   
   public void removeCurrentItem(){
@@ -87,105 +75,141 @@ public class Player extends BasicProp{
      if(currentItemIndex<0) currentItemIndex = 0;
   }
   
-  public void switchToMinergun(){
-     ItemFactory minergun = new ItemFactory();
-     Item m = minergun.newMinergun();
-     weapons[1] = m;
-     if(currentWeaponIndex == 0){
-        this.weapon = weapons[1];
-        currentWeaponIndex = 1;
-        println("switch to minergun");
-     }else{
-        this.weapon = weapons[0];
-        currentWeaponIndex = 0;
-     }
+  public void switchWeapon(){
+     this.currentWeaponIndex = (this.currentWeaponIndex + 1) % 2;
   }
   
-  //public void useItem(){
-  //   if(items.size() == 0){
-  //      println("no items");
-  //      return;
-  //   }
-  //   Item t = items.get(currentItemIndex);
-  //   if(t.getCategory() == Type.ITEM_POTION){
-  //      println("use potion, id: " + t.getId());
-  //   }
-  //   this.items.remove(currentItemIndex--);
-  //   if(currentItemIndex<0) currentItemIndex = 0;
-  //}
-  
-  public Item getWeapon(){
-     return this.weapon;
-  }
-  
-   private int getBulletCd(){
-     return this.bulletCd;
-   }
-   
-   private void setBulletCd(int cd){
-     this.bulletCd = cd;
-   }
-   
-     
-  //public void addGif(Gif gif){
-  //  this.gifs.add(gif);
-  //}
-  
-  //public ArrayList<Gif> getGifs(){
-  //  return this.gifs;
-  //} 
-  
+
   public void move(){
-     this.setX(this.getX() + this.getSpeedX() + this.getSpeedXInc());
-     if(this.getFlyMode()){
-         this.setY(this.getY() + this.getSpeedY());
+     this.location.x += this.velocity.x + this.velocity2.x + velocity3.x;
+     if(this.fly){
+         this.location.y +=  this.velocity.y + this.velocity2.y + velocity3.y;
      }else{
-         if(this.getJump()){
-            this.setY(this.getY() + this.getSpeedY());
-            if(this.getSpeedY() < Type.PLAYER_SPEED_Y) this.setSpeedY(this.getSpeedY() + Type.PLAYER_SPEED_INCREMENT);
+         if(this.jump){
+            this.location.y +=  this.velocity.y + this.velocity2.y + velocity3.y;
+            if(this.velocity.y < Type.PLAYER_SPEED_Y) this.velocity.y += Type.PLAYER_SPEED_INCREMENT;
          }
-         if(this.getSpeedY() == 0){
-           this.setFallDistance(0);
+         if(this.velocity.y == 0){
+           this.fallDist = 0;
          }
-         this.setFallDistance(this.getFallDistance() + this.getSpeedY());
-         if(this.getFallDistance() > 250){
-         this.setHp(this.getHp() - 20);
-         playerHurt.play(2);
-         println("Damage caused by falling: " + 20);
-         this.setFallDistance(0);
+         float tmp = this.velocity.y + this.velocity2.y + velocity3.y;
+         if(tmp > 0){
+            this.fallDist += tmp;
          }
      }
+     
+     if(this.isKnockBack){
+       knockBackTimer.schedule(new TimerTask(){
+          @Override
+          public void run() {
+            isKnockBack = false;
+             velocity3 = new PVector();
+          }
+       }, 100);
+     }
+     
+     
+  }
+  
+  //if Thorn Potion, e.attacked();
+  public void attacked(float dp, ActionProp e){
+    if(!isInvincible){
+      
+       if(e!= null && !e.isAlive){
+          return;
+       }
+       
+       //knockback
+       if(e != null){
+           this.isKnockBack = true;
+           PVector direction = PVector.sub(this.location, e.location);
+           direction.normalize();
+           PVector knockback = direction.mult(10);
+           this.velocity3 = knockback;
+           playerHurt.play(2);
+       }
+       
+       
+        super.attacked(dp);
+        
+       //twinkle
+       isInvincible = true;
+       invincibleTimer.schedule(new TimerTask(){
+          @Override
+          public void run() {
+            isInvincible = false;
+          }
+       }, 1000);
+    }
   }
   
   public void display(){
-      
-     // left = odd, right = even
-      
-     int i;
-     int offset = this.getLeft() ? 0 : 1;
-     //if(p.getRun()){
-     i = Type.GIF_RUN_L + offset;
-     PImage[] imgs = this.getGifsImgs().get(i);
-     image(imgs[(int)this.getGifsImgsCount()[i]], this.getX(), this.getY());
-     this.getGifsImgsCount()[i] = (this.getGifsImgsCount()[i]+Type.GIF_PLAY_SPEED) % (float)imgs.length;
-     //}
-     //if(p.getKnockBack()){
-     //i = Type.GIF_KONCKBACK_L + offset;
-     //PImage[] imgs = this.getGifsImgs().get(i);
-     //image(imgs[(int)this.getGifsImgsCount()[i]], this.getX(), this.getY());
-     //this.getGifsImgsCount()[i] = (this.getGifsImgsCount()[i]+Type.GIF_PLAY_SPEED) % (float)imgs.length;
-     //}
-     
-     //draw weapon
-     Item w = this.getWeapon();
-     int wOffset = offset == 1 ? 0 : 1;
-     image(w.getImgs()[offset],  this.getX() - w.getWidth() * wOffset + this.getWidth()/2, this.getY() + this.getHeight()/3);
-    
-     //draw Hp
-     for(int j = 0; j <= this.getHp(); j += Type.PLAYER_HEART){
-         image(this.getImg(), Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
-      }
+    if (isInvincible) {
+      if (blinkCount < 2) {
+        if (frameCount % 6 == 0) {
+          tint(255, 50);
+          drawPlayerAndWeapon();
+          noTint();
+          blinkCount++;
+        }
+      } else {
+        drawPlayerAndWeapon();
 
+        blinkCount = 0;
+      }
+    } else {
+          drawPlayerAndWeapon();
+
+    }
+    drawHp();
+  }
+  
+  
+  public void drawWeapon(){
+     Item w = weapons[currentWeaponIndex];
+     int offset = this.left ? 1 : 0;
+     image(w.imgs[1 - offset], this.location.x - w.w * offset + this.w/2, this.location.y + this.h/3);
+  }
+ 
+  
+  
+  public void drawHp(){
+     translate(0, 0);
+     for(int j = 0; j <= this.hp; j += Type.PLAYER_HEART){
+         image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
+      }
+  }
+  
+  public void drawPlayerAndWeapon(){
+
+    pushMatrix();   
+    drawGif();
+    popMatrix(); 
+    Item w = weapons[currentWeaponIndex];
+     w.display(this);
+
+  }
+  
+  public float getAngle() {
+    float dx = mouseX - (location.x + w/2);
+    float dy = mouseY - (location.y + h/2);
+    return atan2(dy, dx);
+  }
+  
+  public PVector getBulletLocation() {
+    float r = 10 + this.weapons[currentWeaponIndex].w;
+    PVector pivot = new PVector(location.x + w /2, location.y + h * 1/4);
+    float x = pivot.x + r * cos(getAngle());
+    float y = pivot.y + r * sin(getAngle());
+    return new PVector(x, y);
+  }
+  
+  public void drawGif(){
+       int offset = this.left ? 0 : 1;
+       int gifType = Type.GIF_RUN_L + offset;
+       PImage[] imgs = this.gifsImgs.get(gifType);
+       image(imgs[(int)this.gifsImgsCount[gifType]], location.x,location.y);
+       this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
   }
   
 }

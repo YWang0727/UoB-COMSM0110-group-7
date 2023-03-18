@@ -29,13 +29,13 @@ public class RoomFactory extends Factory{
     public Room newRoom(int type){
         Room r;
         if(type == Type.ROOM_START){
-           r =  generateStart(this.getId());
+           r =  generateStart(this.id);
         }else if(type == Type.ROOM_UP){
-           r =  generateUp(this.getId());
+           r =  generateUp(this.id);
         }else if(type == Type.ROOM_DOWN){
-           r =  generateDown(this.getId());
+           r =  generateDown(this.id);
         }else{
-           r =  generateLR(this.getId());
+           r =  generateLR(this.id);
         }
         this.increaseId();
         return r;

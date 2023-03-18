@@ -15,7 +15,7 @@ public class ItemFactory extends Factory{
     //private ArrayList<PImage> outfitImgs;
 
     public ItemFactory(){
-       this.setId(0);
+       this.id = 0;
        this.weaponImgs = new ArrayList();
        this.potionImgs = new ArrayList();
        //this.coinImgs = new ArrayList();
@@ -29,13 +29,22 @@ public class ItemFactory extends Factory{
        // imgs of weapons
        weaponImgs.add(loadImage("imgs/items/weapon/0_1.png")); 
        weaponImgs.add(loadImage("imgs/items/weapon/0_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/0_3.png")); 
+
        weaponImgs.add(loadImage("imgs/items/weapon/1_1.png")); 
        weaponImgs.add(loadImage("imgs/items/weapon/1_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/1_3.png")); 
+
+   
        weaponImgs.add(loadImage("imgs/items/weapon/2_1.png")); 
        weaponImgs.add(loadImage("imgs/items/weapon/2_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/2_3.png")); 
+
+       
        weaponImgs.add(loadImage("imgs/items/weapon/3_1.png")); 
        weaponImgs.add(loadImage("imgs/items/weapon/3_2.png")); 
-       
+       //weaponImgs.add(loadImage("imgs/items/weapon/3_3.png")); 
+
        // imgs of consumables
        potionImgs.add(loadImage("imgs/items/potion/0.png"));
        potionImgs.add(loadImage("imgs/items/potion/1.png"));
@@ -52,13 +61,13 @@ public class ItemFactory extends Factory{
             return;
          }
          
-         if(t.getCategory() == Type.ITEM_POTION){
-            if(t.getType() == Type.POTION_HP){
-                p.setHp(p.getHp() + 10);
-                println("use potion, id: " + t.getId() + ", playerHp: " + p.getHp());
+         if(t.category == Type.ITEM_POTION){
+            if(t.type == Type.POTION_HP){
+                p.hp += Type.POTION_HP_EFFECT;
+                println("use potion, id: " + t.id + ", playerHp: " + p.hp);
             }else{
                 //speed increment to be added...
-                println("use potion, id: " + t.getId());
+                println("use potion, id: " + t.id);
             }
          }
          p.removeCurrentItem();
@@ -67,6 +76,7 @@ public class ItemFactory extends Factory{
     public Item newItem(int[] pos){
        int r = (int)random(10);
        Item t = null; 
+       r = 2;
        if(r >= 0 && r <= 3){   
            t = newWeapon();
        }else if(r > 3 && r <= 6){  
@@ -81,10 +91,51 @@ public class ItemFactory extends Factory{
        //}
        
        if(t != null){
-         t.setPos(pos);
-         t.setId(this.getId());
+         //t.pos = pos;
+         t.location = new PVector(pos[1] * Type.BOARD_GRIDSIZE, pos[0] * Type.BOARD_GRIDSIZE);
+         println(t.location);
+         t.id = this.id;
          this.increaseId();
        }
+       return t;
+    }
+    
+    //new-hand weapon
+    public Item weaponPistol(){
+       //overload shot method
+       //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 3, 1, 500, Type.BULLET_TYPE_CIRCLE);
+       //set category and type
+       t.category = Type.ITEM_WEAPON;
+       t.type = Type.WEAPON_PISTOL;
+       
+       //remember to set width and height
+       t.w = Type.BOARD_GRIDSIZE/2;
+       t.h = Type.BOARD_GRIDSIZE/2;
+       //set PImage and resize them
+       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+
+       //setId
+       t.id = this.id;
+       this.increaseId();
+       
+       return t;
+    }
+    
+    //new-hand weapon
+    public Item weaponMinergun(){  //Player comes with own miner gun initially
+       //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 500, Type.BULLET_TYPE_MINER);
+       t.category = Type.ITEM_WEAPON;
+       t.type = Type.WEAPON_MINER;
+
+       //Type must be set
+       //get PImage and resize them
+       t.w = Type.BOARD_GRIDSIZE * 3/2;
+       t.h = Type.BOARD_GRIDSIZE/2;
+       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+       t.id = this.id;
+       this.increaseId();
        return t;
     }
     
@@ -94,6 +145,7 @@ public class ItemFactory extends Factory{
        int r = (int)random(10);
        
        Item t = null;
+       r = 2;
        if(r >=0 && r <= 5){     
           t =  weaponShotgun();
        }else{
@@ -102,157 +154,34 @@ public class ItemFactory extends Factory{
        //each wapon may have different size, so this part of code can be moved to their generation function
        
        //set category
-       t.setCategory(Type.ITEM_WEAPON);
+       t.category = Type.ITEM_WEAPON;
        return t;
     }
     
-    //new-hand weapon
-    public Item weaponPistol(){
-       //overload shot method
-       Item t = new Item(){
-            public void shot(Room r, float x, float y){
-            Bullet b = new Bullet(x, y, Type.BULLET_SPEED_SLOW, 0);
-            //dp of bullet must be set
-            b.setDp(5);
 
-            r.getBullets().add(b);
-          }
-       };
-       
-       //Cd must be set
-       t.setBulletCd(Type.BULLET_CD_NORMAL);
-       //Type must be set
-       t.setType(Type.WEAPON_PISTOL);
-       //get PImage and resize them
-       t.setImgs(new PImage[]{
-          weaponImgs.get(t.getType() * 2),
-          weaponImgs.get(t.getType() * 2 + 1)
-       });
-       t.getImgs()[0].resize(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
-       t.getImgs()[1].resize(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
-       
-       //remember to set width and height
-       t.setWidth(Type.BOARD_GRIDSIZE/2);
-       t.setHeight(Type.BOARD_GRIDSIZE/2);
-       
-       //these two lines are here because this methoed is called when game started,
-       //and they are not needed in other weapon*() methods;
-       t.setId(this.getId());
-       this.increaseId();
-       
-       return t;
-    }
-    
     public Item weaponShotgun(){
-       //overload shot method
-       Item t = new Item(){
-            public void shot(Room r, float x, float y){
-            
-            Bullet b1 = new Bullet(x, y, Type.BULLET_SPEED_NORMAL, 1);
-            Bullet b2 = new Bullet(x, y, Type.BULLET_SPEED_NORMAL, 0);
-            Bullet b3 = new Bullet(x, y, Type.BULLET_SPEED_NORMAL, -1);
-            
-            b1.setDp(5);
-            b2.setDp(5);
-            b3.setDp(5);
-            
-            r.getBullets().add(b1);
-            r.getBullets().add(b2);
-            r.getBullets().add(b3);
-          }
-       };
-       
-       t.setBulletCd(Type.BULLET_CD_LONG);
-       t.setType(Type.WEAPON_SHOTGUN);
-       
-       //get PImage and resize them
-       t.setImgs(new PImage[]{
-          weaponImgs.get(t.getType() * 2),
-          weaponImgs.get(t.getType() * 2 + 1)
-       });
-       t.getImgs()[0].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.getImgs()[1].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.setWidth(Type.BOARD_GRIDSIZE * 3/2);
-       t.setHeight(Type.BOARD_GRIDSIZE/2);
+       //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 2, 750, Type.BULLET_TYPE_CIRCLE);
+       t.type = Type.WEAPON_SHOTGUN;
+       t.w = Type.BOARD_GRIDSIZE;
+       t.h = Type.BOARD_GRIDSIZE/3;
+       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+
        return t;
     }
     
     public Item weaponLaser(){
-       //overload shot method
-       Item t = new Item(){
-            public void shot(Room r, float x, float y){
-            Bullet b = new Bullet(x, y, Type.BULLET_SPEED_FAST,0){
-                //overload paint();
-                public void paint(){
-                   //default
-                   stroke(255);
-                   strokeWeight(3);
-                   line(this.getX(), this.getY(), this.getX() + this.getSpeedX() * 3, this.getY() + this.getSpeedY() * 3);
-                   noStroke();
-                }
-            };
-            b.setType(Type.BULLET_TYPE_LINE);
-            b.setDp(10);
-            r.getBullets().add(b);
+       //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 300, Type.BULLET_TYPE_LINE);
+       t.type = Type.WEAPON_LASER;
 
-          }
-       };
-       
-       t.setBulletCd(Type.BULLET_CD_SHORT);
-       t.setType(Type.WEAPON_LASER);
+       t.w = Type.BOARD_GRIDSIZE * 3/2;
+       t.h = Type.BOARD_GRIDSIZE/2;
 
        //get PImage and resize them
-       t.setImgs(new PImage[]{
-          weaponImgs.get(t.getType() * 2),
-          weaponImgs.get(t.getType() * 2 + 1)
-       });
-       t.getImgs()[0].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.getImgs()[1].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.setWidth(Type.BOARD_GRIDSIZE * 3/2);
-       t.setHeight(Type.BOARD_GRIDSIZE/2);
-       return t;
-    }
-    
-    public Item newMinergun(){
-       Item t = weaponMinergun();
-       t.setCategory(Type.ITEM_WEAPON);
-       return t;
-    }
-    
-    public Item weaponMinergun(){  //Player comes with own miner gun initially
-       Item t = new Item(){
-            public void shot(Room r, float x, float y){
-            Bullet b = new Bullet(x, y, Type.BULLET_SPEED_FAST,0){
-                //overload paint();
-                public void paint(){
-                   //default
-                   stroke(100);
-                   strokeWeight(5);
-                   line(this.getX(), this.getY(), this.getX() + this.getSpeedX() * 3, this.getY() + this.getSpeedY() * 3);
-                   noStroke();
-                }
-            };
-            b.setType(Type.BULLET_TYPE_MINER);
-            b.setDp(0);  //Minergun cannot do damage to enemies ?
+       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
 
-            r.getBullets().add(b);
-          }
-       };
-       
-       //Cd must be set
-       t.setBulletCd(Type.BULLET_CD_NORMAL);
-       //Type must be set
-       t.setType(Type.WEAPON_MINER);
-       //get PImage and resize them
-       t.setImgs(new PImage[]{
-          weaponImgs.get(t.getType() * 2),
-          weaponImgs.get(t.getType() * 2 + 1)
-       });
-       t.getImgs()[0].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.getImgs()[1].resize(Type.BOARD_GRIDSIZE * 3/2, Type.BOARD_GRIDSIZE/2);
-       t.setWidth(Type.BOARD_GRIDSIZE * 3/2);
-       t.setHeight(Type.BOARD_GRIDSIZE/2);
-       
+
        return t;
     }
     
@@ -267,47 +196,38 @@ public class ItemFactory extends Factory{
        } 
        
        //set category
-       t.setCategory(Type.ITEM_POTION);
+       t.category = Type.ITEM_POTION;
        return t; 
     }
     
     public Item potionHp(){
         Item t = new Item();
-        t.setType(Type.POTION_HP);
-        //process size and PImage
-        t.setCategory(Type.ITEM_POTION);
-        PImage img = potionImgs.get(t.getType());
-        t.setImgs(new PImage[]{img, null});
-        t.getImgs()[0].resize(Type.BOARD_GRIDSIZE * 2/3, Type.BOARD_GRIDSIZE);
-        t.setWidth(Type.BOARD_GRIDSIZE * 2/3);
-        t.setHeight(Type.BOARD_GRIDSIZE);
+        t.type = Type.POTION_HP;
+        t.w = Type.BOARD_GRIDSIZE * 2/3;
+        t.h = Type.BOARD_GRIDSIZE;
+        t.setImgs(potionImgs.get(t.type));
+
         return t;
     }
     
     public Item potionSp(){
         Item t = new Item();
-        t.setType(Type.POTION_SP);
-        //process size and PImage
-        t.setCategory(Type.ITEM_POTION);
-        PImage img = potionImgs.get(t.getType());
-        t.setImgs(new PImage[]{img, null});
-        t.getImgs()[0].resize(Type.BOARD_GRIDSIZE * 2/3, Type.BOARD_GRIDSIZE);
-        t.setWidth(Type.BOARD_GRIDSIZE * 2/3);
-        t.setHeight(Type.BOARD_GRIDSIZE);
+        t.type = Type.POTION_SP;
+        t.w = Type.BOARD_GRIDSIZE * 2/3;
+        t.h = Type.BOARD_GRIDSIZE;
+        t.setImgs(potionImgs.get(t.type));
         return t;
     }
     
     //randomly generate a new crystal
     public Item newCrystal( ){
         Item t = new Item();
-        t.setType(Type.CRYSTAL);
-        //process size and PImage
-        t.setCategory(Type.ITEM_CRYSTAL);
+        t.category = Type.ITEM_CRYSTAL;
+        t.type = Type.CRYSTAL;
+        t.w = Type.BOARD_GRIDSIZE / 2;
+        t.h = Type.BOARD_GRIDSIZE / 2;
         PImage img = loadImage("imgs/items/crystal.png");
-        t.setImgs(new PImage[]{img, null});
-        t.getImgs()[0].resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
-        t.setWidth(Type.BOARD_GRIDSIZE);
-        t.setHeight(Type.BOARD_GRIDSIZE);
+        t.setImgs(img);
         return t;
     }
     

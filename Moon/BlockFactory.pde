@@ -6,7 +6,7 @@ public class BlockFactory extends Factory{
     
     public BlockFactory(){
        this.setImgs(new ArrayList());
-       this.setId(0);
+       this.id = 0;
        this.init();
     }
     
@@ -16,10 +16,10 @@ public class BlockFactory extends Factory{
     */
     public Block newBlock(int type){
        Block b = new Block(Type.BOARD_GRIDSIZE);
-       b.setType(type); 
-       b.setId(this.getId());
-       b.setImg(this.getImg(type));
-       b.getImg().resize(Type.BOARD_GRIDSIZE,Type.BOARD_GRIDSIZE);
+       b.type = type; 
+       b.id = this.id;
+       b.img = this.getImg(type);
+       b.img.resize(Type.BOARD_GRIDSIZE,Type.BOARD_GRIDSIZE);
        this.increaseId();
        return b;
     }
@@ -37,12 +37,9 @@ public class BlockFactory extends Factory{
        this.addImg(loadImage("imgs/crate.png"));
        this.addImg(loadImage("imgs/spike.png"));
        this.addImg(loadImage("imgs/platform.png"));
-       
-       for(int i = 0; i < this.getImgs().size(); i++){
-          this.getImgs().get(i).resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
+       for(int i = 0; i < this.imgs.size(); i++){
+          this.imgs.get(i).resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
        }
-       
     }
     
-
 }

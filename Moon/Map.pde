@@ -8,7 +8,6 @@ class Map extends HandleEnemies{
     
     public Map(){
         this.rooms = new ArrayList();
-        this.setEnemies();
     }
     
     public void addRoom(Room room){

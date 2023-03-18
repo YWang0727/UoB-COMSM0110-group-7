@@ -5,24 +5,24 @@
 public class Room extends HandleEnemies{
     private int type;
     private int index;
-    // 0-up, 1-down, 2-left, 3-right
     private int[] adjacent;
     private int[][] blockType;
     private String[] sections;
-    private ArrayList<Block> blocks;
-    private ArrayList<Bullet> bullets;
     
+    private ArrayList<Block> blocks;
+    private ArrayList<Bullet> playerBullets;
     private ArrayList<Bullet> enemyBullets;
-
     private ArrayList<Item> items;
 
     public Room(){
         this.blockType = new int[Type.BOARD_MAX_HEIGHT][Type.BOARD_MAX_WIDTH];
         this.adjacent = new int[4];
-        this.setEnemies();
-        this.bullets = new ArrayList();
+         this.enemies = new ArrayList();
+        this.playerBullets = new ArrayList();
+        this.enemyBullets = new ArrayList();
         this.blocks = new ArrayList();
         this.items = new ArrayList();
+        
         for(int i = 0; i < 4; i++){
             this.adjacent[i] = Type.NO_ROOM;
         }
@@ -48,7 +48,7 @@ public class Room extends HandleEnemies{
         this.type = type;
     }
     
-    public int getType(){
+    public int type(){
         return type;
     }
     
@@ -92,10 +92,7 @@ public class Room extends HandleEnemies{
        this.blockType[i][j] = type;
     }
     
-    //public void clearBlock(int i, int j){
-    //   blockType[i][j] = Type.BLOCK_EMPTY;
-    //}
-    
+
     public Block getBlockByPos(int i, int j){
        for(int k = 0; k < blocks.size(); k++){
          int[] pos = blocks.get(k).getPos();
@@ -105,32 +102,44 @@ public class Room extends HandleEnemies{
        }
        return null;
     }
+
+
     
-    public ArrayList<Bullet> getBullets(){
-       return bullets;
+    public void addBullet(Bullet... bs){
+      for(Bullet b :bs){
+          this.playerBullets.add(b);
+      }
     }
     
-    public void addBullet(Bullet b){
-       this.bullets.add(b);
+    public void  display(){
+
+        //draw enemies
+        for(int i = 0; i < enemies.size(); i++){
+            Enemy e = enemies.get(i);
+            e.move();
+            e.display();
+        }
+        
+        //draw items
+        for(int i = 0; i < items.size(); i++){
+           items.get(i).display();
+        }
+        
+        
+        for(int i = 0; i < playerBullets.size(); i++){
+           Bullet b = playerBullets.get(i);
+           //println(b):
+           b.move();
+           b.paint();
+        }
+        
+        for(int i = 0; i < enemyBullets.size(); i++){
+           Bullet b = enemyBullets.get(i);
+           b.move();
+           b.paint();
+        }
+      
     }
     
-    public ArrayList<Item> getItems(){
-       return this.items;
-    }
-    
-    public void addItem(Item t){
-       this.items.add(t);
-    }
-    
-    
-    //public void delItemById(int id){
-    //   for(int i = 0; i < items.size(); i++){
-    //     if(items.get(i).getId() == id){
-    //       items.remove(i);
-    //       return;
-    //     }
-    //   }
-    //}
-    
-    
+
 }
