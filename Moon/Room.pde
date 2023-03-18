@@ -13,6 +13,8 @@ public class Room extends HandleEnemies{
     protected ArrayList<Bullet> enemyBullets;
     protected ArrayList<Item> items;
     protected float tint;
+    
+    protected ArrayList<Decoration> decorations;
 
     public Room(){
         this.blockType = new int[Type.BOARD_MAX_HEIGHT][Type.BOARD_MAX_WIDTH];
@@ -22,7 +24,7 @@ public class Room extends HandleEnemies{
         this.enemyBullets = new ArrayList();
         this.blocks = new ArrayList();
         this.items = new ArrayList();
-        
+        this.decorations = new ArrayList();
         for(int i = 0; i < 4; i++){
             this.adjacent[i] = Type.NO_ROOM;
         }
@@ -109,21 +111,12 @@ public class Room extends HandleEnemies{
         for(int i = 0; i < items.size(); i++){
            items.get(i).display();
         }
-        
-        
-        //for(int i = 0; i < playerBullets.size(); i++){
-        //   Bullet b = playerBullets.get(i);
-        //   b.move();
-        //   b.paint();
-        //}
-        
+       
         Iterator<Bullet> iterator = playerBullets.iterator();
         while(iterator.hasNext()) {
            Bullet b = iterator.next();
            b.move();
            b.paint();
-           println("velocity" + b.id + ","+ b.velocity);
-           println("location" + b.id + ","+ b.location);
         }
                 
         for(int i = 0; i < enemyBullets.size(); i++){
@@ -131,8 +124,38 @@ public class Room extends HandleEnemies{
            b.move();
            b.paint();
         }
-      
+        
+        
+        Iterator<Decoration> iterator2 = decorations.iterator();
+        while(iterator2.hasNext()) {
+           Decoration d = iterator2.next();
+           if(d.canRemove){
+              iterator2.remove();
+           }else{
+              if(!d.beforePlayer){
+                  d.display();
+
+              }
+           }
+        }
+        
     }
     
+    public void drawGifBeforePlayer(){
+        Iterator<Decoration> iterator2 = decorations.iterator();
+        while(iterator2.hasNext()) {
+           Decoration d = iterator2.next();
+           if(d.canRemove){
+              iterator2.remove();
+           }else{
+              if(d.beforePlayer){
+                 d.display();
+              }
+           }
+        }
+    
+    }
+    
+
 
 }

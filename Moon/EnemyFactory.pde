@@ -9,10 +9,10 @@ public class EnemyFactory extends Factory{
     protected ArrayList<ArrayList<PImage[]>> enemyGifs;
 
     public EnemyFactory(){
-       enemyGifs = new ArrayList(); //<>//
+       enemyGifs = new ArrayList(); //<>// //<>// //<>//
     }
     
-   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>//
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>//
       for(ArrayList<PImage[]> gif : gifs){
           enemyGifs.add(gif);      
       }
@@ -89,7 +89,7 @@ public class EnemyFactory extends Factory{
     public Enemy newEnemy(int type){
        //Enemy e; 
        //if(type == Type.ENEMY_GHOST){
-       //    e = new Ghost(); //<>//
+       //    e = new Ghost(); //<>// //<>// //<>//
        //}else if(type == Type.ENEMY_WORM){
        //    e = new Worm();
        
@@ -97,7 +97,7 @@ public class EnemyFactory extends Factory{
        //    e = new Gunner();
        //}else{
        //    e = new Enemy();
-       //} //<>//
+       //} //<>// //<>// //<>//
        Enemy e = new Gunner(25);
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;

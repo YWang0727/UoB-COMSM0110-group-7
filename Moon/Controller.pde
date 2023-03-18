@@ -4,11 +4,15 @@
 * Collision detections and player controls are here.
 */
 public class Controller{
-   Model model;
+   protected Model model;
    //protected int bulletTimer;
+   protected Collision collision;
+   //protected GifPlayer gifPlayer;
    
    public Controller(Model mod){
       this.model = mod;
+      this.collision = new Collision();
+      collision.decorationFactory = model.decorationFactory;
       //this.bulletTimer = Type.BULLET_CD_SHORT;
    };
    
@@ -22,10 +26,10 @@ public class Controller{
           changeRoomAndPlayerPos();
           Player p = model.player;
           Room r = model.getCurrentRoom();
-          Collision.checkAllAround(p, r);
+          collision.checkAllAround(p, r);
           p.move();
       }
-
+     
    }
    
    /**
@@ -85,9 +89,9 @@ public class Controller{
        p.location.y = 1;
    }
    
-   public void addItemsAndEnemies(Room newRoom){
-       model.addEnemiesToRoom(newRoom);
-       
+   public void addElements(Room newRoom){
+       model.enemyFactory.addEnemiesToRoom(newRoom);
+       model.decorationFactory.addDecorationToRoom(newRoom);
    }
    
    /**
@@ -102,7 +106,7 @@ public class Controller{
          Room newRoom = model.getNewRoom();
          newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, curRoom.index});
          curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,newRoom.index,Type.NO_ROOM});
-         addItemsAndEnemies(newRoom);
+         addElements(newRoom);
       }
    }
    
@@ -117,7 +121,7 @@ public class Controller{
          Room newRoom = model.getNewRoom();
          newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,curRoom.index,Type.NO_ROOM});
          curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, newRoom.index});
-         addItemsAndEnemies(newRoom);
+         addElements(newRoom);
       }
    }
    
@@ -132,7 +136,7 @@ public class Controller{
          Room newRoom = model.getNewRoom();
          newRoom.setAdjacent(new int[]{Type.NO_ROOM,curRoom.index,Type.NO_ROOM,Type.NO_ROOM});
          curRoom.setAdjacent(new int[]{newRoom.index,Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
-         addItemsAndEnemies(newRoom);
+         addElements(newRoom);
       }
    }
    
@@ -147,7 +151,7 @@ public class Controller{
          Room newRoom = model.getNewRoom();
          newRoom.setAdjacent(new int[]{curRoom.index,Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
          curRoom.setAdjacent(new int[]{Type.NO_ROOM,newRoom.index,Type.NO_ROOM,Type.NO_ROOM});
-         addItemsAndEnemies(newRoom);
+         addElements(newRoom);
       }
    }
      
@@ -162,7 +166,7 @@ public class Controller{
       ArrayList<Item> items = r.items;
       for(int i = 0; i < items.size(); i++){
         Item t = items.get(i);
-        if(Collision.detect(o, t)){
+        if(collision.detect(o, t)){
             Player p = model.player;
             println("pick up item");
             items.remove(i);
@@ -180,11 +184,11 @@ public class Controller{
       //open crate
       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
           for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-              if(r.getBlockType(i,j) == Type.BLOCK_CRATE && Collision.detect(o, i, j)){
+              if(r.getBlockType(i,j) == Type.BLOCK_CRATE && collision.detect(o, i, j)){
                   println("open crate");
                   //should add something to player, like props or weapons, or golds(scores);
                   r.items.add(model.newItem(new int[]{i, j}));
-                  r.setBlockType(i,j, Type.BLOCK_EMPTY);
+                  r.setBlockType(i,j, Type.BLOCK_CRATE_OPEN);
               }
           }
        }
@@ -258,7 +262,8 @@ public class Controller{
           return;
         };
         if(p.highJump){
-          //trampoline.play(2);
+          trampoline.play(2);
+          model.decorationFactory.addJumpGif(model.getCurrentRoom());
           p.velocity.y = -Type.PLAYER_HIGH_JUMP_SPEEDY;
         }
         else{

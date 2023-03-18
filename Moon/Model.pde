@@ -9,6 +9,7 @@ public class Model{
    protected EnemyFactory enemyFactory;
    protected RoomFactory roomFactory;
    protected BlockFactory blockFactory;
+   protected DecorationFactory decorationFactory;
    
    protected boolean isMusicPlaying = true;
    protected boolean menuHomePage = true;
@@ -22,7 +23,7 @@ public class Model{
        this.blockFactory = new BlockFactory();
        this.roomFactory = new RoomFactory(blockFactory);
        map = new Map();
-       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>//
+       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>//
 
    }
    
@@ -30,14 +31,7 @@ public class Model{
       this.player = p;
    }
    
-   public void addEnemiesToRoom(Room r){
-       this.enemyFactory.addEnemiesToRoom(r);
-   }
    
-   public void addItemsToRoom(Room r){
-        //this.itemFactory.addItemsToRoom(r);
-   }
-
    public Item newItem(int[] pos){
       return itemFactory.newItem(pos);
    }

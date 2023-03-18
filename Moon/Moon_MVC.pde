@@ -9,8 +9,7 @@ IntList pkeys = new IntList();
 
 // Menu
 Minim minim;
-AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline;
-static AudioPlayer portal, stab, playerHurt;
+AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt;
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
@@ -32,8 +31,13 @@ void setup(){
     p.weapons[0] = t.weaponPistol();
     p.weapons[1] = t.weaponMinergun();
     GifsToPlayer(p);
+    
+    DecorationFactory d = new DecorationFactory();
+    GifsToDecorationFactory(d);
+    
     model.addPlayer(p);
     model.itemFactory = t;
+    model.decorationFactory = d;
     
     initMenu();
     if (model.isMusicPlaying){
@@ -41,7 +45,10 @@ void setup(){
     }
     
     controller = new Controller(model);
+    //Collision c = new Collision(g);
+    //controller.collision = c;
     view = new View(model);
+
 }
 
 /**
@@ -80,6 +87,20 @@ public void GifsToEenemyFactory(EnemyFactory e){
      //gifs for others...
 
      e.addEnemyGifs(gunnerGifs);
+}
+
+/**
+* Load all gifs for enemies
+*/
+public void GifsToDecorationFactory(DecorationFactory d){
+     //gifs for gunner
+     PImage[] jumpEffect = Gif.getPImages(this, "imgs/effect/jump_effect.gif");
+     PImage[] portalEffect = Gif.getPImages(this, "imgs/effect/portal_effect.gif");
+
+     
+     PImage[] torch = Gif.getPImages(this, "imgs/decoration/torch.gif");
+     
+     d.addDecorationGifs(jumpEffect, portalEffect, torch);
 }
 
 

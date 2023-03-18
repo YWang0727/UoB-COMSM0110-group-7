@@ -32,7 +32,7 @@ public class View{
          //drawGhost();
          drawPlayer();
          //showAround(model.player);
-         
+         drawRoomBeforePlayer();
          // Draw in game menu
          drawInGameMenu();
          //image(this.instructionImg,0,0);
@@ -76,9 +76,14 @@ public class View{
       r.display();
   }
 
+   public void drawRoomBeforePlayer(){
+     Room r = model.getCurrentRoom();  
+     r.drawGifBeforePlayer();
+   }
+
   public boolean emptyBack(int type){
      if(type == Type.BLOCK_SPIKE || type == Type.BLOCK_PLATFORM
-     || type == Type.BLOCK_CRATE){
+     || type == Type.BLOCK_CRATE || type == Type.BLOCK_CRATE_OPEN ){
        return true;
      }
      return false;

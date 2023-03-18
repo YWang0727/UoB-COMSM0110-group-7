@@ -58,6 +58,12 @@ static abstract class Type {
 
   //static final int GIF_KONCKBACK_L = 2;
   //static final int GIF_KONCKBACK_R = 3;
+  
+  static final int GIF_BOUNCE = 0;
+  static final int GIF_PORTAL = 1;
+  static final int GIF_TORCH = 2;
+  static final int GIF_BULLET_REMOVE = 2;
+
 
   
   
@@ -108,8 +114,9 @@ static abstract class Type {
   static final int BLOCK_PORTAL = 4;
   static final int BLOCK_BORDER = 5;
   static final int BLOCK_CRATE = 6;
-  static final int BLOCK_SPIKE = 7;
-  static final int BLOCK_PLATFORM = 8;
+  static final int BLOCK_CRATE_OPEN = 7;
+  static final int BLOCK_SPIKE = 8;
+  static final int BLOCK_PLATFORM = 9;
   
   // item type
   // Primary category

@@ -35,6 +35,7 @@ public class BlockFactory extends Factory{
        this.addImg(loadImage("imgs/block/portal.png"));
        this.addImg(loadImage("imgs/block/border.png"));
        this.addImg(loadImage("imgs/block/crate.png"));
+       this.addImg(loadImage("imgs/block/crateOpen.png"));
        this.addImg(loadImage("imgs/block/spike.png"));
        this.addImg(loadImage("imgs/block/platform.png"));
        for(int i = 0; i < this.imgs.size(); i++){

@@ -1,10 +1,19 @@
-public static class Collision{
+public class Collision{
+   //protected GifPlayer gifPlayer;
+   protected DecorationFactory decorationFactory;
+   protected boolean portalFlag;
+   protected Timer portalTimer;
 
+   Collision(){
+      //this.gifPlayer = gifPlayer;
+      portalTimer = new Timer();
+   }
+   
    /**
    * Collision detection between two BasicProp obj
    * Only useful when two objects are rect
    */
-   public static boolean detect(BasicProp a, BasicProp b){
+   public boolean detect(BasicProp a, BasicProp b){
        if(a.location.x + a.w > b.location.x &&
           a.location.x < b.location.x + b.w &&
           a.location.y + a.h > b.location.y &&
@@ -18,7 +27,7 @@ public static class Collision{
    * Collision detection between one BasicProp obj and one block
    * block's position can be calculated by i and j
    */
-   public static boolean detect(BasicProp a, int i, int j){
+   public boolean detect(BasicProp a, int i, int j){
        int s = Type.BOARD_GRIDSIZE;
        if(a.location.x + a.w > j * s &&
           a.location.x < j * s + s &&
@@ -32,8 +41,8 @@ public static class Collision{
    //added this boolean so that we can turn off collision detection for blocks other than the background
    //if return false, player can through these type of blocks
    //when player, throughDown = p.getThroughDown(), others, checkDown = false && throughDown = true
-   public static boolean cantThrough(int type, boolean checkDown, ActionProp o){
-     if(type == Type.BLOCK_EMPTY || type == Type.BLOCK_CRATE || type == Type.BLOCK_SPIKE){
+   public boolean cantThrough(int type, boolean checkDown, ActionProp o){
+     if(type == Type.BLOCK_EMPTY || type == Type.BLOCK_CRATE || type == Type.BLOCK_CRATE_OPEN || type == Type.BLOCK_SPIKE){
        return false;
      }
      
@@ -59,7 +68,7 @@ public static class Collision{
    * bullets and blocks
    * player and blocks
    */
-   public static void checkAllAround(Player p, Room r){
+   public void checkAllAround(Player p, Room r){
      
       //collision detection between enemies and blocks, enemies and player,enemies and bullets
       ArrayList<Enemy> enemies = r.enemies;
@@ -88,6 +97,7 @@ public static class Collision{
              if(detect(b,e)){
                 if(b.type != Type.BULLET_TYPE_MINER){
                     e.attacked(b.dp, b);
+                    //decorationFactory.addBulletRemoveGif();
                     bullets.remove(j);
                     break;
                 }
@@ -127,7 +137,7 @@ public static class Collision{
    /**
    * Collision detection between player and blocks
    */
-   public static void checkAround(ActionProp o, Room r){
+   public void checkAround(ActionProp o, Room r){
       checkLeft(o, r);
       checkRight(o, r);
       checkUp(o, r);
@@ -138,7 +148,7 @@ public static class Collision{
    /**
    * Collision detection between player and blocks above
    */
-    public static void checkUp(ActionProp o, Room r){
+    public void checkUp(ActionProp o, Room r){
       float x = o.location.x, y = o.location.y;
       float w = o.w;
       float s = Type.BOARD_GRIDSIZE;
@@ -164,7 +174,7 @@ public static class Collision{
    * Collision detection between player and blocks below
    * Changing properties of player by checking whether player is on special blocks.
    */
-    public static void checkDown(ActionProp o, Room r){
+    public void checkDown(ActionProp o, Room r){
       float x = o.location.x, y = o.location.y;
       float w = o.w, h = o.h;
       float s = Type.BOARD_GRIDSIZE;
@@ -174,6 +184,7 @@ public static class Collision{
       int R = (int)((x+w)/s);
       boolean canFall = true, canHighJump = false, canUsePortal = false;
       int portalPos = 0;
+
       //all blocks below are !cantThrough(), o can through
       for(int i = L; i <= R && below < Type.BOARD_MAX_HEIGHT; i++){
          int bType = r.getBlockType(below,i);
@@ -188,6 +199,8 @@ public static class Collision{
              //portal
              if(bType == Type.BLOCK_PORTAL){
                  canUsePortal = true;
+                 decorationFactory.portalBlock[0] = i;
+                 decorationFactory.portalBlock[1] = below;
                  portalPos = i;
              }
              
@@ -195,6 +208,8 @@ public static class Collision{
              o.highJump = false;
              if(bType == Type.BLOCK_BOUNCE){
                  canHighJump = true;
+                 decorationFactory.jumpBlock[0] = i;
+                 decorationFactory.jumpBlock[1] = below;
              }
              
              //spike - basic implemenation for now as we don't yet have a death mechanic
@@ -249,7 +264,8 @@ public static class Collision{
            o.onPortal = true;
            if(!o.transported){
                Block b = r.getBlockByPos(below , portalPos);
-               usePortal(o, b);
+               decorationFactory.addPortalGif(r, new int[]{decorationFactory.portalBlock[0], decorationFactory.portalBlock[1]});
+               usePortal(o, b, r);
                o.transported = true;
                return;
            }
@@ -263,15 +279,25 @@ public static class Collision{
    * If player use portal, player's position will be changed
    * according to int[] portal of that portal block
    */
-   public static void usePortal(ActionProp o, Block b){
+   public void usePortal(ActionProp o, Block b, Room r){
        portal.play(2);
-       float  s = Type.BOARD_GRIDSIZE;
-       int[] portal = b.getPortal(); 
-       o.location.y = s * portal[0];
-       o.location.x = s * portal[1] + 5;
+       if(!portalFlag){
+           portalFlag = true;
+           portalTimer.schedule(new TimerTask(){
+              @Override
+              public void run() {
+               float  s = Type.BOARD_GRIDSIZE;
+               int[] portal = b.getPortal(); 
+               o.location.y = s * portal[0];
+               o.location.x = s * portal[1] + 5;
+               decorationFactory.addPortalGif(r, new int[]{portal[1], portal[0]});
+               portalFlag = false;
+              }
+           }, 350);
+       }
    }
    
-    public static void checkLeft(ActionProp o, Room r){
+    public void checkLeft(ActionProp o, Room r){
       float x = o.location.x, y = o.location.y;
       float h = o.h;
       float s = Type.BOARD_GRIDSIZE;
@@ -307,7 +333,7 @@ public static class Collision{
       }
    }
    
-   public static void checkRight(ActionProp o, Room r){
+   public void checkRight(ActionProp o, Room r){
       float x = o.location.x, y = o.location.y;
       float w = o.w, h = o.h;
       float s = Type.BOARD_GRIDSIZE;
@@ -344,7 +370,7 @@ public static class Collision{
    }
 
    //if still collision, player collides with corner of block, need to reset position
-   public static void checkMore(ActionProp o, Room r){
+   public void checkMore(ActionProp o, Room r){
         for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
             for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
                 if(cantThrough(r.getBlockType(i,j) , false, o) && detect(o, i, j)){
