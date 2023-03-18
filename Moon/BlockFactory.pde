@@ -28,15 +28,15 @@ public class BlockFactory extends Factory{
     * Preload all imgs for all typee of blocks
     */
     protected void init(){
-       this.addImg(loadImage("imgs/empty.png"));
-       this.addImg(loadImage("imgs/wall.png"));
-       this.addImg(loadImage("imgs/crystal.png"));
-       this.addImg(loadImage("imgs/bounce_up.png"));
-       this.addImg(loadImage("imgs/portal.png"));
-       this.addImg(loadImage("imgs/border.png"));
-       this.addImg(loadImage("imgs/crate.png"));
-       this.addImg(loadImage("imgs/spike.png"));
-       this.addImg(loadImage("imgs/platform.png"));
+       this.addImg(loadImage("imgs/block/empty.png"));
+       this.addImg(loadImage("imgs/block/wall.png"));
+       this.addImg(loadImage("imgs/block/crystal.png"));
+       this.addImg(loadImage("imgs/block/bounce_up.png"));
+       this.addImg(loadImage("imgs/block/portal.png"));
+       this.addImg(loadImage("imgs/block/border.png"));
+       this.addImg(loadImage("imgs/block/crate.png"));
+       this.addImg(loadImage("imgs/block/spike.png"));
+       this.addImg(loadImage("imgs/block/platform.png"));
        for(int i = 0; i < this.imgs.size(); i++){
           this.imgs.get(i).resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
        }

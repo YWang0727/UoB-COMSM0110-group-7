@@ -37,6 +37,7 @@ public class RoomFactory extends Factory{
         }else{
            r =  generateLR(this.id);
         }
+        r.tint = random(360);
         this.increaseId();
         return r;
         

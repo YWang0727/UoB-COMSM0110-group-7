@@ -12,6 +12,7 @@ public class Room extends HandleEnemies{
     protected ArrayList<Bullet> playerBullets;
     protected ArrayList<Bullet> enemyBullets;
     protected ArrayList<Item> items;
+    protected float tint;
 
     public Room(){
         this.blockType = new int[Type.BOARD_MAX_HEIGHT][Type.BOARD_MAX_WIDTH];

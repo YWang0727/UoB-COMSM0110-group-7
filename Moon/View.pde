@@ -9,8 +9,6 @@ public class View{
   
   public View(Model mod){
      this.model = mod;
-     //background = loadImage("imgs/bg/bg.jpg");
-     //background.resize(1300, 800);
      //instructionImg = loadImage("imgs/menu/instruction.png");
      //instructionImg.resize(width/2, height);
   }
@@ -50,19 +48,51 @@ public class View{
      //if(r.index == 0){
      //  image(this.instructionImg,width,height);
      //}
-
-     
+    colorMode(HSB, 360, 100, 100);
+    float hue = sin(r.tint) * 180 + 180;
      ArrayList<PImage> imgs = model.blockFactory.imgs;
      //draw room
      for(int i = 0; i < 20; i++){
         for(int j = 0; j < 29; j++){
           int type = r.blockType[i][j];
-          image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+          if(emptyBack(type)){
+                tint(hue, 100, 100);
+             image(imgs.get(Type.BLOCK_EMPTY), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+             noTint();
+             image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+          }else if(wallBack(type)){
+             tint(hue, 100, 100);
+             image(imgs.get(Type.BLOCK_WALL), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+             noTint();
+             image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+          }else{
+             tint(hue, 100, 100);
+             image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
+          }
         }
       }
+      noTint();
+      colorMode(RGB);
       r.display();
   }
-  
+
+  public boolean emptyBack(int type){
+     if(type == Type.BLOCK_SPIKE || type == Type.BLOCK_PLATFORM
+     || type == Type.BLOCK_CRATE){
+       return true;
+     }
+     return false;
+  }
+
+  public boolean wallBack(int type){
+     if(type == Type.BLOCK_CRYSTAL || type == Type.BLOCK_BOUNCE
+     || type == Type.BLOCK_PORTAL){
+       return true;
+     }
+     return false;
+  }
+
+
   public void drawPlayer(){
       Player p = model.player;
       p.display();
