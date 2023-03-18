@@ -103,7 +103,7 @@ public class ItemFactory extends Factory{
     public Item weaponPistol(){
        //overload shot method
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 3, 1, 500, Type.BULLET_TYPE_CIRCLE);
+       Item t = new Item(10, 10, Type.BULLET_SPEED_SLOW, 3, 1, 500, Type.BULLET_TYPE_CIRCLE);
        //set category and type
        t.category = Type.ITEM_WEAPON;
        t.type = Type.WEAPON_PISTOL;

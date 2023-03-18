@@ -96,9 +96,11 @@ public class Collision{
              //check bullets and enemies
              if(detect(b,e)){
                 if(b.type != Type.BULLET_TYPE_MINER){
-                    e.attacked(b.dp, b);
-                    //decorationFactory.addBulletRemoveGif();
-                    bullets.remove(j);
+                    if(e.isAlive){
+                        e.attacked(b.dp, b);
+                        decorationFactory.addBulletRemoveGif(r, b);
+                        bullets.remove(j);          
+                    }
                     break;
                 }
              }

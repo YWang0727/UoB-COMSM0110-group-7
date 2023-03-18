@@ -152,10 +152,8 @@ public class Room extends HandleEnemies{
                  d.display();
               }
            }
-        }
-    
+        }    
     }
-    
-
+   
 
 }

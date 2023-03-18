@@ -30,8 +30,11 @@ public class DecorationFactory extends Factory{
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
             if(legalPosition(r, new int[]{i,j})){
-                    Decoration d = newDecoration(new int[]{j,i});
-                    r.decorations.add(d);
+                 int rd = (int)random(20);
+                 if(rd > 10){
+                     Decoration d = newDecoration(new int[]{j,i});
+                     r.decorations.add(d);       
+                 }
               }
             }
          }
@@ -73,9 +76,8 @@ public class DecorationFactory extends Factory{
            r.decorations.add(d);
     }
     
-    public void addBulletRemoveGif(Room r){
-           Decoration d = new Decoration(new int[]{jumpBlock[0], jumpBlock[1] - 1}, true, 750, Type.GIF_PLAY_SPEED * 3, true);
-           d.imgs = this.decorationGifs.get(Type.GIF_BULLET_REMOVE);//torch
+    public void addBulletRemoveGif(Room r , ActionProp o){
+           Decoration d = new Decoration(o, 750, this.decorationGifs.get(Type.GIF_BULLET_REMOVE));
            r.decorations.add(d);
     }
     
