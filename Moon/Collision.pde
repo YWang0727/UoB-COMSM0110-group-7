@@ -64,6 +64,15 @@ public static class Collision{
       //collision detection between enemies and blocks, enemies and player,enemies and bullets
       ArrayList<Enemy> enemies = r.enemies;
       ArrayList<Bullet> bullets = r.playerBullets;
+      
+       //if b out of board, remove
+       for(int j = bullets.size() - 1; j >= 0 ; j--){
+           Bullet b = bullets.get(j);
+            if(b.location.y >= Type.SCREEN_HEIGHT || b.location.y <= 0 || b.location.x >= Type.SCREEN_WIDTH || b.location.x <= 0){
+              bullets.remove(j);
+           }
+       }
+
       for(int i = enemies.size() - 1; i >= 0; i--){
          Enemy e = enemies.get(i);
          if(!e.isAlive &&  e.canRemove){
@@ -75,12 +84,8 @@ public static class Collision{
          }
          for(int j = bullets.size() - 1; j >= 0 ; j--){
              Bullet b = bullets.get(j);
-             //if b out of board, remove
-             if(b.location.y > Type.SCREEN_WIDTH || b.location.y < 0 || b.location.x > Type.SCREEN_WIDTH || b.location.x < 0){
-                bullets.remove(j);
-             }
              //check bullets and enemies
-             else if(detect(b,e)){
+             if(detect(b,e)){
                 if(b.type != Type.BULLET_TYPE_MINER){
                     e.attacked(b.dp, b);
                     bullets.remove(j);

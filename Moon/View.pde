@@ -5,10 +5,7 @@
 * Next stage: finish draw*() methods behind
 */
 public class View{
-  private Model model;
-  //private PImage instructionImg;
-  //private PImage background;
-
+  protected Model model;
   
   public View(Model mod){
      this.model = mod;
@@ -50,9 +47,10 @@ public class View{
   */
   public void drawRoom(){
      Room r = model.getCurrentRoom();  
-     //if(r.getIndex() == 0){
+     //if(r.index == 0){
      //  image(this.instructionImg,width,height);
      //}
+
      
      ArrayList<PImage> imgs = model.blockFactory.imgs;
      //draw room
@@ -62,7 +60,6 @@ public class View{
           image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
         }
       }
-      
       r.display();
   }
   

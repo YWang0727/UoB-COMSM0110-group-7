@@ -6,13 +6,13 @@ import java.util.*;
 */
 public class RoomFactory extends Factory{    
     
-    //private EnemyFactory enemyFactory;
-    private BlockFactory blockFactory;
-    private final int sectionSize=9;
-    private String[] level;
-    private List<Integer> sectionIndex = new ArrayList<>(14);
-    private boolean portal;
-    private int[] portalCoordinates = new int[4];
+    //protected EnemyFactory enemyFactory;
+    protected BlockFactory blockFactory;
+    protected final int sectionSize=9;
+    protected String[] level;
+    protected List<Integer> sectionIndex = new ArrayList<>(14);
+    protected boolean portal;
+    protected int[] portalCoordinates = new int[4];
    
     public RoomFactory(BlockFactory b){
       //this.enemyFactory = e;
@@ -42,7 +42,7 @@ public class RoomFactory extends Factory{
         
     }
     
-    private Room generateStart(int id){
+    protected Room generateStart(int id){
         int i = (int)random(5);//0~4
         Room r;
         if(i == 0){
@@ -56,11 +56,11 @@ public class RoomFactory extends Factory{
         }else{
            r = roomType4();
         }
-        r.setIndex(id);
+        r.index = id;
         return r;
     }
     
-    private Room generateUp(int id){
+    protected Room generateUp(int id){
         int i = (int)random(10);//0~9
         Room r;
         if(i >= 0 && i < 3){
@@ -70,11 +70,11 @@ public class RoomFactory extends Factory{
         }else{
            r = roomType4();
         }
-        r.setIndex(id);
+        r.index = id;
         return r;
     }
     
-   private Room generateDown(int id){
+   protected Room generateDown(int id){
         int i = (int)random(10);//0~9
         Room r;
         if(i >= 0 && i < 3){
@@ -86,11 +86,11 @@ public class RoomFactory extends Factory{
         }else{
            r = roomType5();
         }
-        r.setIndex(id);
+        r.index = id;
         return r;
     }
     
-    private Room generateLR(int id){
+    protected Room generateLR(int id){
         int i = (int)random(10);//0~9
         Room r;
         if(i >= 0 && i < 3){
@@ -100,11 +100,11 @@ public class RoomFactory extends Factory{
         }else{
            r = roomType4();
         }
-        r.setIndex(id);
+        r.index = id;
         return r;
     }
     
-    private void generateLevel(Room r){
+    protected void generateLevel(Room r){
       this.level = new String[6];
       Collections.shuffle(sectionIndex);
       for(int i=0; i<6; i++){
@@ -113,7 +113,7 @@ public class RoomFactory extends Factory{
       }
     }
     
-    private void addSection(String filename, Room r, int rowNum, int colNum)
+    protected void addSection(String filename, Room r, int rowNum, int colNum)
     {
       setPortal(false);
       String[] lines = loadStrings(filename);
@@ -196,7 +196,7 @@ public class RoomFactory extends Factory{
     }
     
     //adds crates to room - probability can be adjusted
-    private void addCrates(Room r)
+    protected void addCrates(Room r)
     {
       for(int i=0; i<20; i++){
           for(int j=0; j<29; j++){
@@ -211,7 +211,7 @@ public class RoomFactory extends Factory{
     }
     
     
-    private boolean lineCheck(Room r, int rowNum){
+    protected boolean lineCheck(Room r, int rowNum){
       for(int j=0; j<Type.BOARD_MAX_WIDTH; j++){
         if(r.blockType[rowNum][j] == Type.BLOCK_CRATE){
           return true;
@@ -221,7 +221,7 @@ public class RoomFactory extends Factory{
     }
     
     
-    private void addBorders(Room r)
+    protected void addBorders(Room r)
     {
       for(int i=0; i<20; i++){
           for(int j=0; j<29; j++){
@@ -249,7 +249,7 @@ public class RoomFactory extends Factory{
     }
     
     
-    private boolean borderCheck(int r, int c){
+    protected boolean borderCheck(int r, int c){
       if(r==0 || c==0){
         return true;
       }
@@ -260,7 +260,7 @@ public class RoomFactory extends Factory{
     }
     
     
-    private void fillLevel(Room r){
+    protected void fillLevel(Room r){
       generateLevel(r);
       addSection(level[0],r,1,1);
       addSection(level[1],r,1,10);
@@ -273,9 +273,9 @@ public class RoomFactory extends Factory{
     
     
     //0 - Only up and down exits
-    private Room roomType0(){
+    protected Room roomType0(){
         Room r = new Room();
-        r.setType(0);
+        r.type = 0;
         addBorders(r);
         r.blockType[6][0] = Type.BLOCK_BORDER;
         r.blockType[7][0] = Type.BLOCK_BORDER;
@@ -294,18 +294,18 @@ public class RoomFactory extends Factory{
     }
     
     // 1 - all exits
-    private Room roomType1(){
+    protected Room roomType1(){
         Room r = new Room();
-        r.setType(1);
+        r.type = 1;
         addBorders(r);
         fillLevel(r);
         return r;
     }
    
     // 2 - only left and right exits
-    private Room roomType2(){
+    protected Room roomType2(){
         Room r = new Room();
-        r.setType(2);
+        r.type = 2;
         addBorders(r);
         r.blockType[0][15] = Type.BLOCK_BORDER;
         r.blockType[0][16] = Type.BLOCK_BORDER;
@@ -316,9 +316,9 @@ public class RoomFactory extends Factory{
     }
 
     // 3 - only bottom exits
-    private Room roomType3(){
+    protected Room roomType3(){
         Room r = new Room();
-        r.setType(3);
+        r.type = 3;
         addBorders(r);
         r.blockType[6][0] = Type.BLOCK_BORDER;
         r.blockType[7][0] = Type.BLOCK_BORDER;
@@ -339,18 +339,18 @@ public class RoomFactory extends Factory{
     }
 
     // 4 - all exits
-    private Room roomType4(){
+    protected Room roomType4(){
         Room r = new Room();
-        r.setType(4);
+        r.type = 4;
         addBorders(r);
         fillLevel(r);
         return r;
     }
     
     // 5 - only top and right exit
-    private Room roomType5(){
+    protected Room roomType5(){
         Room r = new Room();
-        r.setType(5);
+        r.type = 5;
         addBorders(r);
         r.blockType[6][0] = Type.BLOCK_BORDER;
         r.blockType[7][0] = Type.BLOCK_BORDER;

@@ -3,8 +3,8 @@
 * Class used to contain all rooms
 */
 class Map extends HandleEnemies{
-    private ArrayList<Room> rooms;
-    private int currentRoomIndex;
+    protected ArrayList<Room> rooms;
+    protected int currentRoomIndex;
     
     public Map(){
         this.rooms = new ArrayList();

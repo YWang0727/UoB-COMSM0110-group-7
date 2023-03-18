@@ -10,9 +10,9 @@
 */
 public class ItemFactory extends Factory{
     
-    private ArrayList<PImage> weaponImgs;
-    private ArrayList<PImage> potionImgs;
-    //private ArrayList<PImage> outfitImgs;
+    protected ArrayList<PImage> weaponImgs;
+    protected ArrayList<PImage> potionImgs;
+    //protected ArrayList<PImage> outfitImgs;
 
     public ItemFactory(){
        this.id = 0;
@@ -25,7 +25,7 @@ public class ItemFactory extends Factory{
     /**
     * add all imgs of items
     */
-    private void init(){
+    protected void init(){
        // imgs of weapons
        weaponImgs.add(loadImage("imgs/items/weapon/0_1.png")); 
        weaponImgs.add(loadImage("imgs/items/weapon/0_2.png")); 
@@ -76,7 +76,6 @@ public class ItemFactory extends Factory{
     public Item newItem(int[] pos){
        int r = (int)random(10);
        Item t = null; 
-       r = 2;
        if(r >= 0 && r <= 3){   
            t = newWeapon();
        }else if(r > 3 && r <= 6){  
@@ -145,7 +144,6 @@ public class ItemFactory extends Factory{
        int r = (int)random(10);
        
        Item t = null;
-       r = 2;
        if(r >=0 && r <= 5){     
           t =  weaponShotgun();
        }else{
@@ -161,7 +159,7 @@ public class ItemFactory extends Factory{
 
     public Item weaponShotgun(){
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 2, 750, Type.BULLET_TYPE_CIRCLE);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 3, 750, Type.BULLET_TYPE_CIRCLE);
        t.type = Type.WEAPON_SHOTGUN;
        t.w = Type.BOARD_GRIDSIZE;
        t.h = Type.BOARD_GRIDSIZE/3;

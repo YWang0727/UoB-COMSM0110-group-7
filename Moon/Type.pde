@@ -36,9 +36,9 @@ static abstract class Type {
   static final float ENEMY_SPEED_X_NORMAL = (float)BOARD_GRIDSIZE / 80;
   
   //bullet - baisc attributes
-  static final int BULLET_SPEED_SLOW = 3;
-  static final int BULLET_SPEED_NORMAL = 5;
-  static final int BULLET_SPEED_FAST = 10;
+  static final int BULLET_SPEED_SLOW = BOARD_GRIDSIZE / 8;
+  static final int BULLET_SPEED_NORMAL = BOARD_GRIDSIZE / 7;
+  static final int BULLET_SPEED_FAST = BOARD_GRIDSIZE / 6;
   
   static final int BULLET_CD_LONG = 30;
   static final int BULLET_CD_NORMAL = 20;

@@ -28,18 +28,15 @@ public class Bullet extends ActionProp{
     }
      
     public void paint(){
-      
       if(this.type == Type.BULLET_TYPE_CIRCLE){
            fill(255);
            ellipse(this.location.x, this.location.y, this.w, this.h);
            noFill();
       }
       else if(this.type == Type.BULLET_TYPE_MINER){
-           
            fill(255);
            ellipse(this.location.x, this.location.y, 5, 25);
            noFill();
-       
       }      
       else{
            stroke(255);

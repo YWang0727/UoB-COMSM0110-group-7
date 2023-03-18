@@ -3,16 +3,15 @@
 * Class for rooms, each room consists of 9 sections which are generated randomly.
 */
 public class Room extends HandleEnemies{
-    private int type;
-    private int index;
-    private int[] adjacent;
-    private int[][] blockType;
-    private String[] sections;
-    
-    private ArrayList<Block> blocks;
-    private ArrayList<Bullet> playerBullets;
-    private ArrayList<Bullet> enemyBullets;
-    private ArrayList<Item> items;
+    protected int type;
+    protected int index;
+    protected int[] adjacent;
+    protected int[][] blockType;
+    protected String[] sections;
+    protected ArrayList<Block> blocks;
+    protected ArrayList<Bullet> playerBullets;
+    protected ArrayList<Bullet> enemyBullets;
+    protected ArrayList<Item> items;
 
     public Room(){
         this.blockType = new int[Type.BOARD_MAX_HEIGHT][Type.BOARD_MAX_WIDTH];
@@ -43,22 +42,6 @@ public class Room extends HandleEnemies{
         sections[13]="levels/section14.csv";
     }
     
-    
-    public void setType(int type){
-        this.type = type;
-    }
-    
-    public int type(){
-        return type;
-    }
-    
-    public void setIndex(int i){
-       this.index = i;
-    }
-    
-    public int getIndex(){
-        return index;
-    }
     
     public String getSection(int i){
       return sections[i];
@@ -105,9 +88,10 @@ public class Room extends HandleEnemies{
 
 
     
-    public void addBullet(Bullet... bs){
-      for(Bullet b :bs){
+    public void addBullet(ArrayList<Bullet> bullets){
+      for(Bullet b :bullets){
           this.playerBullets.add(b);
+          //println(b.velocity);
       }
     }
     
@@ -126,13 +110,21 @@ public class Room extends HandleEnemies{
         }
         
         
-        for(int i = 0; i < playerBullets.size(); i++){
-           Bullet b = playerBullets.get(i);
-           //println(b):
+        //for(int i = 0; i < playerBullets.size(); i++){
+        //   Bullet b = playerBullets.get(i);
+        //   b.move();
+        //   b.paint();
+        //}
+        
+        Iterator<Bullet> iterator = playerBullets.iterator();
+        while(iterator.hasNext()) {
+           Bullet b = iterator.next();
            b.move();
            b.paint();
+           println("velocity" + b.id + ","+ b.velocity);
+           println("location" + b.id + ","+ b.location);
         }
-        
+                
         for(int i = 0; i < enemyBullets.size(); i++){
            Bullet b = enemyBullets.get(i);
            b.move();

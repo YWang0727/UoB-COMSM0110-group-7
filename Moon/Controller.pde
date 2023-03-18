@@ -5,7 +5,7 @@
 */
 public class Controller{
    Model model;
-   //private int bulletTimer;
+   //protected int bulletTimer;
    
    public Controller(Model mod){
       this.model = mod;
@@ -100,8 +100,8 @@ public class Controller{
       if(adjacent[Type.TO_LEFT] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_LR);
          Room newRoom = model.getNewRoom();
-         newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, curRoom.getIndex()});
-         curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,newRoom.getIndex(),Type.NO_ROOM});
+         newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, curRoom.index});
+         curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,newRoom.index,Type.NO_ROOM});
          addItemsAndEnemies(newRoom);
       }
    }
@@ -115,8 +115,8 @@ public class Controller{
       if(adjacent[Type.TO_RIGHT] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_LR);
          Room newRoom = model.getNewRoom();
-         newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,curRoom.getIndex(),Type.NO_ROOM});
-         curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, newRoom.getIndex()});
+         newRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,curRoom.index,Type.NO_ROOM});
+         curRoom.setAdjacent(new int[]{Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM, newRoom.index});
          addItemsAndEnemies(newRoom);
       }
    }
@@ -130,8 +130,8 @@ public class Controller{
       if(adjacent[Type.TO_UP] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_UP);
          Room newRoom = model.getNewRoom();
-         newRoom.setAdjacent(new int[]{Type.NO_ROOM,curRoom.getIndex(),Type.NO_ROOM,Type.NO_ROOM});
-         curRoom.setAdjacent(new int[]{newRoom.getIndex(),Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
+         newRoom.setAdjacent(new int[]{Type.NO_ROOM,curRoom.index,Type.NO_ROOM,Type.NO_ROOM});
+         curRoom.setAdjacent(new int[]{newRoom.index,Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
          addItemsAndEnemies(newRoom);
       }
    }
@@ -145,8 +145,8 @@ public class Controller{
       if(adjacent[Type.TO_DOWN] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_DOWN);
          Room newRoom = model.getNewRoom();
-         newRoom.setAdjacent(new int[]{curRoom.getIndex(),Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
-         curRoom.setAdjacent(new int[]{Type.NO_ROOM,newRoom.getIndex(),Type.NO_ROOM,Type.NO_ROOM});
+         newRoom.setAdjacent(new int[]{curRoom.index,Type.NO_ROOM,Type.NO_ROOM,Type.NO_ROOM});
+         curRoom.setAdjacent(new int[]{Type.NO_ROOM,newRoom.index,Type.NO_ROOM,Type.NO_ROOM});
          addItemsAndEnemies(newRoom);
       }
    }
@@ -207,7 +207,6 @@ public class Controller{
      //move right by set speedX
      if(keyType == Type.KEY_D){
         if(mousePressed == false) p.left = false;
-        
         p.velocity.x = Type.PLAYER_SPEED_X;
      }
      

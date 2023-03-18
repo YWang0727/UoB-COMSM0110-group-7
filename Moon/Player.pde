@@ -12,8 +12,8 @@ public class Player extends ActionProp{
   protected ArrayList<Item> items;
   protected Item[] weapons;
   protected int currentWeaponIndex;
-  private int currentItemIndex;
-  private boolean isShoot;
+  protected int currentItemIndex;
+  protected boolean isShoot;
   
   protected Timer portalTimer;
   

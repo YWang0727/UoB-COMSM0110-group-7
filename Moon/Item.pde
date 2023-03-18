@@ -55,7 +55,7 @@ public class Item extends BasicProp{
       if(!inCd){
           shoot.play(2);
           inCd = true;
-          r.playerBullets.addAll(this.bullets(location, pBW, pBH, pBDp, pBSpeed, pBNum));
+          r.addBullet(this.bullets(location, pBW, pBH, pBDp, pBSpeed, pBNum));
           cdTimer.schedule(new TimerTask(){
             @Override
             public void run() {
@@ -76,13 +76,14 @@ public class Item extends BasicProp{
         bulletVel.mult(this.bSpeed + pBSpeed);
         PVector bulletVelOffset = bulletVel.copy();
         bulletVelOffset.rotate(radians(offset));  
-        Bullet b = new Bullet(location, new PVector(bulletVelOffset.x, bulletVelOffset.y), this.bW + pBW, this.bH + pBH, this.bDp + pBDp);
+        Bullet b = new Bullet(new PVector(location.x, location.y), new PVector(bulletVelOffset.x, bulletVelOffset.y), this.bW + pBW, this.bH + pBH, this.bDp + pBDp);
         b.type = bType;
         b.id = i;
         bs.add(b);
     }
     return bs;
   }
+
   
   void display(Player p) {
     if(p.isShoot){

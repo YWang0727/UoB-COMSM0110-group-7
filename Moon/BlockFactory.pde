@@ -27,7 +27,7 @@ public class BlockFactory extends Factory{
     /**
     * Preload all imgs for all typee of blocks
     */
-    private void init(){
+    protected void init(){
        this.addImg(loadImage("imgs/empty.png"));
        this.addImg(loadImage("imgs/wall.png"));
        this.addImg(loadImage("imgs/crystal.png"));
