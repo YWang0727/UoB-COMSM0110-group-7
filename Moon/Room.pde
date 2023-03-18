@@ -100,12 +100,6 @@ public class Room extends HandleEnemies{
     
     public void  display(){
 
-        //draw enemies
-        for(int i = 0; i < enemies.size(); i++){
-            Enemy e = enemies.get(i);
-            e.move();
-            e.display();
-        }
         
         //draw items
         for(int i = 0; i < items.size(); i++){
@@ -137,6 +131,13 @@ public class Room extends HandleEnemies{
 
               }
            }
+        }
+        
+        //draw enemies
+        for(int i = 0; i < enemies.size(); i++){
+            Enemy e = enemies.get(i);
+            e.move();
+            e.display();
         }
         
     }
