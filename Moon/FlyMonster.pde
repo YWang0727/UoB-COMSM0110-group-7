@@ -46,24 +46,38 @@ public class FlyMonster extends Enemy{
    }
   
 
-  //public void drawGif(){
-  //     if(isAlive){
-  //         drawGif(Type.GIF_RUN);
-  //     }else{
-  //          if(!canRemove){
-  //              PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
-  //              tint(255, imgAlpha);
-  //              imgAlpha -= 5;
-  //              image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          
-  //              noTint();
-  //               canRemoveTimer.schedule(new TimerTask(){
-  //                  @Override
-  //                  public void run() {
-  //                    canRemove = true;
-  //                  }
-  //               }, 750);
-  //          }
-  //     }
-  //}
+  public void drawGif(){
+       //if 
+       if(isAlive){
+           drawGif(Type.GIF_RUN);
+       }else{
+            if(!canRemove){
+                PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
+                //tint(255, imgAlpha);
+                //imgAlpha -= 5;
+                
+                 pushMatrix();
+                 translate(location.x, location.y);
+                 if (!this.left) {
+                      scale(-1, 1);
+                     image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], -imgs[0].width, 0);
+                 }
+                 else {
+                     image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], 0, 0);
+                 }
+                 popMatrix();
+                 this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
 
+                //image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          
+                //this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + 0.2) % imgs.length;
+                //noTint();
+                 canRemoveTimer.schedule(new TimerTask(){
+                    @Override
+                    public void run() {
+                      canRemove = true;
+                    }
+                 }, 350);
+            }
+       }
+  }
 }

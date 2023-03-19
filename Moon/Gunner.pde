@@ -62,6 +62,6 @@ public class Gunner extends Enemy{
        Bullet b = new Bullet(newLocation, velocity.copy(), 10, 10, 10);
        r.enemyBullets.add(b);
    }
-    
+   
     
 }
