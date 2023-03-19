@@ -21,7 +21,7 @@ static abstract class Type {
   static final int PLAYER_HEART = 10;
  
   static final int PLAYER_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/8;
-  static final int PLAYER_HIGH_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/7;
+  static final int PLAYER_HIGH_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/6;
 
   static final float PLAYER_SPEED_INCREMENT = (float)BOARD_GRIDSIZE / 100;
   static final float PLAYER_SPEED_X = BOARD_GRIDSIZE / 9;

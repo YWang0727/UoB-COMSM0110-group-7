@@ -34,7 +34,7 @@ public class Bullet extends ActionProp{
            ellipse(this.location.x, this.location.y, this.w, this.h);
            noFill();
       } else{
-           stroke(0, 255, 255);
+           stroke(0, 0, 100);
            strokeWeight(5);
            line(this.location.x, this.location.y, this.location.x + this.getFullVelocityX() * 3, this.location.y +  this.getFullVelocityY() * 3);
            strokeWeight(0);

@@ -26,6 +26,10 @@ public class AlienSpider extends Enemy{
     }
     
     public void move() {
+      if(!this.isAlive){
+         return;
+      }
+      
       if (location.y < downDistance / 2) {
         velocity.y += 0.1;
       } else {
@@ -50,12 +54,8 @@ public class AlienSpider extends Enemy{
     
      
    public void drawGif(){
+       drawLine();
        if(isAlive){
-           stroke(0, 0, 100);
-           strokeWeight(2);
-           line(initialLocation.x + this.w/2, initialLocation.y, location.x + this.w/2, location.y);
-           strokeWeight(0);
-           noStroke(); 
            drawGif(Type.GIF_RUN);
        }else{
             if(!canRemove){
@@ -81,6 +81,15 @@ public class AlienSpider extends Enemy{
                  }, 500);
             }
        }
+  }
+  
+  
+  public void drawLine(){
+      stroke(0, 0, 100);
+     strokeWeight(2);
+     line(initialLocation.x + this.w/2, initialLocation.y, location.x + this.w/2, location.y);
+     strokeWeight(0);
+     noStroke(); 
   }
     
 }
