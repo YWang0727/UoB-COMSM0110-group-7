@@ -6,11 +6,12 @@
 */
 public class View{
   protected Model model;
+  PImage help;
   
   public View(Model mod){
      this.model = mod;
-     //instructionImg = loadImage("imgs/menu/instruction.png");
-     //instructionImg.resize(width/2, height);
+     help = loadImage("imgs/menu/help.png");
+     help.resize(width, height/2);
   }
   
   /**
@@ -36,6 +37,7 @@ public class View{
          // Draw in game menu
          drawInGameMenu();
          //image(this.instructionImg,0,0);
+         
     }
          
   }
@@ -45,9 +47,6 @@ public class View{
   */
   public void drawRoom(){
      Room r = model.getCurrentRoom();  
-     //if(r.index == 0){
-     //  image(this.instructionImg,width,height);
-     //}
     colorMode(HSB, 360, 100, 100);
     float hue = sin(r.tint) * 180 + 180;
      ArrayList<PImage> imgs = model.blockFactory.imgs;
@@ -74,6 +73,9 @@ public class View{
       noTint();
       colorMode(RGB);
       r.display();
+      if(r.index == 0){
+           image(this.help,0,40);
+      }
   }
 
    public void drawRoomBeforePlayer(){
