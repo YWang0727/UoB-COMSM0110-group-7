@@ -47,9 +47,6 @@ public class Room extends HandleEnemies{
         sections[13]="levels/section14.csv";
     }
     
-    //public String getSection(int i){
-    //  return sections[i];
-    //}
     
     public void setAdjacent(int[] newIndex){
        for(int i = 0; i < 4; i++){
@@ -58,26 +55,6 @@ public class Room extends HandleEnemies{
            }
        }
     }
-    
-    //public int[] getAdjacent(){
-    //   return this.adjacent;
-    //}
-    
-    //public ArrayList<Block> getBlocks(){
-    //   return this.blocks;
-    //}
-    
-    //public void addBlock(Block block){
-    //   this.blocks.add(block);
-    //}
-    
-    //public int getBlockType(int i, int j){
-    //   return blockType[i][j];
-    //}
-    
-    //public void setBlockType(int i, int j, int type){
-    //   this.blockType[i][j] = type;
-    //}
     
 
     public Block getBlockByPos(int i, int j){
@@ -106,7 +83,6 @@ public class Room extends HandleEnemies{
     public void addBullet(ArrayList<Bullet> bullets){
       for(Bullet b :bullets){
           this.playerBullets.add(b);
-          //println(b.velocity);
       }
     }
     
@@ -143,7 +119,7 @@ public class Room extends HandleEnemies{
               }
            }
         }
-        
+        println(decorations.size());
         //draw enemies
         for(int i = 0; i < enemies.size(); i++){
             Enemy e = enemies.get(i);
@@ -166,6 +142,28 @@ public class Room extends HandleEnemies{
            }
         }    
     }
-   
+    
+    //public Decoration findDecorationByPos(int[] pos){
+    //    PVector target =  new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);
+    //    Iterator<Decoration> iterator2 = decorations.iterator();
+    //    while(iterator2.hasNext()) {
+    //       Decoration d = iterator2.next();
+    //       if(d.location.x == target.x && d.location.y == target.y){
+    //          return d;
+    //       }
+    //    }  
+    //    return null;
+    //}
+    
+    //public void removeDecorationByPos(int[] pos){
+    //    PVector target =  new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);
+    //    Iterator<Decoration> iterator2 = decorations.iterator();
+    //    while(iterator2.hasNext()) {
+    //       Decoration d = iterator2.next();
+    //       if(d.location.x == target.x && d.location.y == target.y){
+    //          iterator2.remove();
+    //       }
+    //    }  
+    //}
 
 }

@@ -1,5 +1,6 @@
 public class Decoration{
    
+  protected int id;
   protected PImage[] imgs;
   protected float count;
   protected PVector location;
@@ -56,6 +57,7 @@ public class Decoration{
          img.resize(o.w * 2, o.h * 2);
      }
   }
+
   
 
 }
