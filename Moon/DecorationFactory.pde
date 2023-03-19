@@ -8,10 +8,11 @@
 
 public class DecorationFactory extends Factory{    
     
-    protected ArrayList<PImage[]> decorationGifs;
+   protected ArrayList<PImage[]> decorationGifs;
     
    protected int[] jumpBlock = new int[2];
    protected int[] portalBlock = new int[2];
+   
 
     public DecorationFactory(){
        decorationGifs = new ArrayList();
@@ -25,7 +26,7 @@ public class DecorationFactory extends Factory{
           decorationGifs.add(gif);      
       }
    }
-
+   
     public void addDecorationToRoom(Room r){
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
@@ -33,7 +34,6 @@ public class DecorationFactory extends Factory{
                  int rd = (int)random(20);
                  if(rd > 10){
                      Decoration d = newDecoration(new int[]{j,i});
-                     d.id = this.id++;
                      r.decorations.add(d);       
                  }
               }
@@ -59,7 +59,6 @@ public class DecorationFactory extends Factory{
     
     public Decoration newDecoration(int[] pos){
        Decoration d = new Decoration(pos);
-       d.id = this.id++;
        d.imgs = this.decorationGifs.get(Type.GIF_TORCH);//2  - torch
        return d;
     }
@@ -69,32 +68,19 @@ public class DecorationFactory extends Factory{
            pos[1] -= 1;
            Decoration d = new Decoration(pos, true, 750, Type.GIF_PLAY_SPEED * 3, true);
            d.imgs = this.decorationGifs.get(Type.GIF_PORTAL);//torch
-           d.id = this.id++;
            r.decorations.add(d);
     }
     
     public void addJumpGif(Room r){
            Decoration d = new Decoration(new int[]{jumpBlock[0], jumpBlock[1] - 1}, true, 750, Type.GIF_PLAY_SPEED * 3, true);
            d.imgs = this.decorationGifs.get(Type.GIF_BOUNCE);//torch
-           d.id = this.id++;
            r.decorations.add(d);
     }
     
     public void addBulletRemoveGif(Room r , ActionProp o){
            Decoration d = new Decoration(o, 750, this.decorationGifs.get(Type.GIF_BULLET_REMOVE));
-           d.id = this.id++;
            r.decorations.add(d);
     }
     
-    public void addPressE(Room r , int[] pos){
-      //println("addPress");
-           Decoration d = new Decoration(pos);
-           d.imgs = this.decorationGifs.get(Type.GIF_PRESSE);
-           for(PImage img : d.imgs){
-               img.resize(Type.BOARD_GRIDSIZE * 3/ 4, Type.BOARD_GRIDSIZE * 3/ 4);
-           }
-           d.id = this.id++;
-           r.decorations.add(d);
-    }
     
 }

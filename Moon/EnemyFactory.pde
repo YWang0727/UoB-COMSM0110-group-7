@@ -9,10 +9,10 @@ public class EnemyFactory extends Factory{
     protected ArrayList<ArrayList<PImage[]>> enemyGifs;
 
     public EnemyFactory(){
-       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>//
+       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>// //<>// //<>//
     }
     
-   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>//
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>// //<>// //<>//
       for(ArrayList<PImage[]> gif : gifs){
           enemyGifs.add(gif);      
       }
@@ -25,17 +25,43 @@ public class EnemyFactory extends Factory{
             boolean flag = legalPosition(r, tmp, new int[]{i,j});
             if(flag){
               int rd = (int)random(20);
-              rd = 19;
-              if(rd > 15){
+              if(rd > 10){
                 Enemy e = tmp;
                 e.location.x = Type.BOARD_GRIDSIZE * j;
                 e.location.y = Type.BOARD_GRIDSIZE * i;
                 r.enemies.add(e);
               }
             }
+            boolean flag2 = legalPositionForFly(r, new int[]{i,j});
+            if(flag2){
+              int rd = (int)random(20);
+              if(rd > 18){
+                Enemy e = newEnemy(Type.ENEMY_FLY);
+                e.location.x = Type.BOARD_GRIDSIZE * j;
+                e.location.y = Type.BOARD_GRIDSIZE * i;
+                r.enemies.add(e);
+              }
+            }
+            
          }
        }
     }
+    
+    public boolean legalPositionForFly(Room r, int[] pos){
+      if(pos[0] <=3 || pos[0] >= Type.BOARD_MAX_HEIGHT - 3 || pos[1] <=3 || pos[1] >= Type.BOARD_MAX_WIDTH - 3){
+        return false;
+      }
+      for(int i = pos[0] - 1; i <= pos[0] + 1; i++){
+            for(int j = pos[1] - 1; j <= pos[1] + 1; j++){
+               if(r.blockType[i][j] != Type.BLOCK_EMPTY){
+                 return false;
+               }
+            }
+      }
+      return true;
+    }
+    
+    
     
     //check position according target position and enemy's size
     //pos[0] = i, pos[1] = j
@@ -87,18 +113,13 @@ public class EnemyFactory extends Factory{
     
     
     public Enemy newEnemy(int type){
-       //Enemy e; 
-       //if(type == Type.ENEMY_GHOST){
-       //    e = new Ghost(); //<>// //<>// //<>// //<>//
-       //}else if(type == Type.ENEMY_WORM){
-       //    e = new Worm();
+       Enemy e = null; 
+       if(type == Type.ENEMY_GUNNER){
+           e =  new Gunner(25); //<>// //<>// //<>//
+       }else if(type == Type.ENEMY_FLY){
+           e = new FlyMonster(15);
        
-       //}else if(type == Type.ENEMY_GUNNER){
-       //    e = new Gunner();
-       //}else{
-       //    e = new Enemy();
-       //} //<>// //<>// //<>// //<>//
-       Enemy e = new Gunner(25);
+       } //<>// //<>// //<>//
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;
        e.id = this.id;

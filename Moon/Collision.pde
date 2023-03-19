@@ -88,7 +88,9 @@ public class Collision{
              p.value += e.value;
              enemies.remove(i);
          }
-         checkAround(e, r);
+         if(e.type != Type.ENEMY_FLY){
+             checkAround(e, r);
+         }
          if(detect(p,e)){
             p.attacked(e.dp, e);
          }
@@ -117,6 +119,13 @@ public class Collision{
                                  bullets.remove(k);
                              }
                        }
+                       for(int k = r.enemyBullets.size() - 1; k >= 0 ; k--){
+                            Bullet b = r.enemyBullets.get(k);
+                            if(detect(b, i, j)){
+                                 r.enemyBullets.remove(k);
+                             }
+                       }
+                       
                 }
             }
          }
@@ -132,37 +141,14 @@ public class Collision{
       checkUp(o, r);
       checkDown(o, r);
       checkMore(o, r);
-      //showHelp(o, r);
    }
-   
-   //public void showHelp(ActionProp o, Room r){
-   //      for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
-   //         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-   //             if(canInteract(r.blockType[i][j])){
-   //                if(detect(o, i, j)){
-   //                     if(r.findDecorationByPos(new int[]{j,i-1}) == null){
-   //                          println("here");
-   //                          decorationFactory.addPressE(r, new int[]{j,i-1});
-   //                     }
-   //                }else{
-   //                      Decoration d = r.findDecorationByPos(new int[]{j,i-1});
-   //                      if(d!= null){
-   //                          //d.canRemove = true;
-   //                          r.removeDecorationByPos(new int[]{j,i-1});
-   //                      }
-   //                }
-   //             }
-   //         }
-   //      }
-   //}
-   
+
    public boolean canInteract(int type){
-     if(type == Type.BLOCK_PORTAL || type == Type.BLOCK_CRATE){
-        return true;
-     }
-     return false;
+      if(type == Type.BLOCK_CRATE || type == Type.BLOCK_CRATE){
+         return true;
+      }
+      return false;
    }
-   
    
    /**
    * Collision detection between player and blocks above

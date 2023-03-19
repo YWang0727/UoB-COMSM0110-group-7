@@ -21,7 +21,7 @@ static abstract class Type {
   static final int PLAYER_HEART = 10;
  
   static final int PLAYER_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/8;
-  static final int PLAYER_HIGH_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/6;
+  static final int PLAYER_HIGH_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/7;
 
   static final float PLAYER_SPEED_INCREMENT = (float)BOARD_GRIDSIZE / 100;
   static final float PLAYER_SPEED_X = BOARD_GRIDSIZE / 9;
@@ -53,7 +53,6 @@ static abstract class Type {
 
   // gif - animation type
   static final int GIF_RUN = 0;
-  //static final int GIF_RUN_R = 1;
   static final int GIF_DEATH = 1;
 
   //static final int GIF_KONCKBACK_L = 2;
@@ -108,6 +107,7 @@ static abstract class Type {
   //static final int ENEMY_GUNNER = 2;
   //static final int ENEMY_JUMPER = 3;
   static final int ENEMY_GUNNER = 0;
+  static final int ENEMY_FLY = 1;
 
   //block type
   static final int BLOCK_EMPTY = 0;

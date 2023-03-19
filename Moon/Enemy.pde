@@ -6,7 +6,7 @@ class Enemy extends ActionProp{
   
   protected int[] spawn;
   protected int imgAlpha = 255;
-
+  
   Enemy(){
       this.location = new PVector(0, 0);
       this.fall = true;
@@ -43,6 +43,11 @@ class Enemy extends ActionProp{
 
   }
   
+  
+   public void move(PVector location){}
+   
+   public void move(PVector location, Room r){}
+   
   public void attacked(float dp, ActionProp b){
      super.attacked(dp);
      if(!isKnockBack){
@@ -86,16 +91,17 @@ class Enemy extends ActionProp{
        }else{
             if(!canRemove){
                 PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
-                tint(255, imgAlpha);
-                imgAlpha -= 5;
+                //tint(255, imgAlpha);
+                //imgAlpha -= 5;
                 image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          
-                noTint();
+                this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + 0.2) % imgs.length;
+                //noTint();
                  canRemoveTimer.schedule(new TimerTask(){
                     @Override
                     public void run() {
                       canRemove = true;
                     }
-                 }, 500);
+                 }, 750);
             }
        }
   }

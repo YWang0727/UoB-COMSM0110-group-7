@@ -75,15 +75,21 @@ public void GifsToPlayer(Player p){
 public void GifsToEenemyFactory(EnemyFactory e){
      //gifs for gunner
      ArrayList<PImage[]> gunnerGifs = new ArrayList();
-     PImage[] gunnerLeft = Gif.getPImages(this, "imgs/enemy/gunner.gif");
-     PImage[] gunnerDeath = Gif.getPImages(this, "imgs/enemy/death.gif");
+     PImage[] gunner = Gif.getPImages(this, "imgs/enemy/gunner.gif");
+     PImage[] gunnerDeath = Gif.getPImages(this, "imgs/enemy/gunnerDeath.gif");
 
-     gunnerGifs.add(gunnerLeft);
+     gunnerGifs.add(gunner);
      gunnerGifs.add(gunnerDeath);
 
+     ArrayList<PImage[]> flyMonsterGifs = new ArrayList();
+     PImage[] flyMonster = Gif.getPImages(this, "imgs/enemy/fly1.gif");
+     PImage[] flyMonsterDeath = Gif.getPImages(this, "imgs/enemy/flyDeath.gif");
+     flyMonsterGifs.add(flyMonster);
+     flyMonsterGifs.add(flyMonsterDeath);
+    
      //gifs for others...
 
-     e.addEnemyGifs(gunnerGifs);
+     e.addEnemyGifs(gunnerGifs, flyMonsterGifs);
 }
 
 /**

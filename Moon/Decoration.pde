@@ -1,18 +1,19 @@
 public class Decoration{
    
-  protected int id;
+  protected int id, type, cd;
   protected PImage[] imgs;
-  protected float count;
+  protected float count, speed;
   protected PVector location;
-  protected boolean once, canRemove;
+  protected boolean once, canRemove, beforePlayer;
   protected Timer timer;
-  protected int cd;
-  protected float speed; 
-  protected boolean beforePlayer;
+  
+ public Decoration(){
+      this.speed = Type.GIF_PLAY_SPEED;
+  }
   
   public Decoration(int[] pos){
+      this();
       this.location = new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);
-      this.speed = Type.GIF_PLAY_SPEED;
   }
   
   public Decoration(int[] pos, boolean once, int cd, float speed, boolean before){
@@ -33,7 +34,7 @@ public class Decoration{
       this.speed = Type.GIF_PLAY_SPEED * 5;
       resizeGif(o);
   }
-  
+   
   public void display(){
        if(once && !canRemove){
            timer.schedule(new TimerTask(){
@@ -43,7 +44,7 @@ public class Decoration{
               }
            }, cd);
        }
-      image(imgs[(int)count], location.x, location.y);
+       image(imgs[(int)count], location.x, location.y);
        this.count = (this.count + this.speed) % (float)imgs.length;
   }
   
@@ -57,7 +58,5 @@ public class Decoration{
          img.resize(o.w * 2, o.h * 2);
      }
   }
-
-  
 
 }

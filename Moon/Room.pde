@@ -86,7 +86,7 @@ public class Room extends HandleEnemies{
       }
     }
     
-    public void  display(){
+    public void  display(Player p){
       
         //draw items
         for(int i = 0; i < items.size(); i++){
@@ -119,11 +119,14 @@ public class Room extends HandleEnemies{
               }
            }
         }
-        println(decorations.size());
         //draw enemies
         for(int i = 0; i < enemies.size(); i++){
             Enemy e = enemies.get(i);
-            e.move();
+            if(e.type == Type.ENEMY_FLY){
+               e.move(p.location);
+            }else if (e.type == Type.ENEMY_GUNNER){
+               e.move(p.location, this);
+            }
             e.display();
         }
         
@@ -142,6 +145,33 @@ public class Room extends HandleEnemies{
            }
         }    
     }
+    
+    
+    public Decoration findDecorationByPosAndType(int[] pos, int type){
+        pos[1] -= 1;
+        PVector target =  new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);
+        Iterator<Decoration> iterator2 = decorations.iterator();
+        while(iterator2.hasNext()) {
+           Decoration d = iterator2.next();
+           if(d.location.x == target.x && d.location.y == target.y && d.type == type){
+              return d;
+           }
+        }
+        return null;
+    }
+    
+    public void removeDecorationByPosAndType(int[] pos, int type){
+      pos[1] -= 1;
+        PVector target =  new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);
+        Iterator<Decoration> iterator2 = decorations.iterator();
+        while(iterator2.hasNext()) {
+           Decoration d = iterator2.next();
+           if(d.location.x == target.x && d.location.y == target.y && d.type == type){
+              iterator2.remove();
+           }
+        }  
+    }
+    
     
     //public Decoration findDecorationByPos(int[] pos){
     //    PVector target =  new PVector(pos[0] * Type.BOARD_GRIDSIZE, pos[1] * Type.BOARD_GRIDSIZE);

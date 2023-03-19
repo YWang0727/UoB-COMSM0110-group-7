@@ -71,7 +71,7 @@ public class View{
       }
       noTint();
       colorMode(RGB);
-      r.display();
+      r.display(model.player);
       if(r.index == 0){
            image(this.help,0,40);
       }
