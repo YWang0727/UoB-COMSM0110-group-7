@@ -83,5 +83,20 @@ public class ActionProp extends BasicProp{
   public void jump(){};
 
   public void display(){};
+  
+  public void drawGif(int gifType){
+       PImage[] imgs = this.gifsImgs.get(gifType);
+       pushMatrix();
+       translate(location.x, location.y);
+       if (!this.left) {
+            scale(-1, 1);
+           image(imgs[(int)this.gifsImgsCount[gifType]], -imgs[0].width, 0);
+       }
+       else {
+           image(imgs[(int)this.gifsImgsCount[gifType]], 0, 0);
+       }
+       popMatrix();
+       this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
+  }
 
 }

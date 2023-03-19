@@ -80,15 +80,13 @@ class Enemy extends ActionProp{
   }
   
   public void drawGif(){
+    
+       //if 
        if(isAlive){
-           int offset = this.left ? 0 : 1;
-           int gifType = Type.GIF_RUN_L + offset;
-           PImage[] imgs = this.gifsImgs.get(gifType);
-           image(imgs[(int)this.gifsImgsCount[gifType]], this.location.x, this.location.y);
-           this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
+           drawGif(Type.GIF_RUN);
        }else{
             if(!canRemove){
-                 PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
+                PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
                 tint(255, imgAlpha);
                 imgAlpha -= 5;
                 image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          

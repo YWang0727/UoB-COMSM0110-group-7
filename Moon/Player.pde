@@ -147,7 +147,7 @@ public class Player extends ActionProp{
     if (isInvincible) {
       if (blinkCount < 2) {
         if (frameCount % 6 == 0) {
-          tint(255, 50);
+          tint(255, 240);
           drawPlayerAndWeapon();
           noTint();
           blinkCount++;
@@ -181,10 +181,7 @@ public class Player extends ActionProp{
   }
   
   public void drawPlayerAndWeapon(){
-
-    pushMatrix();   
     drawGif();
-    popMatrix(); 
     Item w = weapons[currentWeaponIndex];
      w.display(this);
 
@@ -205,11 +202,7 @@ public class Player extends ActionProp{
   }
   
   public void drawGif(){
-       int offset = this.left ? 0 : 1;
-       int gifType = Type.GIF_RUN_L + offset;
-       PImage[] imgs = this.gifsImgs.get(gifType);
-       image(imgs[(int)this.gifsImgsCount[gifType]], location.x,location.y);
-       this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
+       int gifType = Type.GIF_RUN;
+       drawGif(gifType);
   }
-  
 }

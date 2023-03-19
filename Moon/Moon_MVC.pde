@@ -65,9 +65,8 @@ void draw(){
 }
 
 public void GifsToPlayer(Player p){
-     PImage[] pRunL = Gif.getPImages(this, "imgs/player/player_left.gif");
-     PImage[] pRunR = Gif.getPImages(this, "imgs/player/player_right.gif");
-     p.addGifsImgs(pRunL, pRunR);
+     PImage[] pRun = Gif.getPImages(this, "imgs/player/player.gif");
+     p.addGifsImgs(pRun);
 }
 
 /**
@@ -76,12 +75,10 @@ public void GifsToPlayer(Player p){
 public void GifsToEenemyFactory(EnemyFactory e){
      //gifs for gunner
      ArrayList<PImage[]> gunnerGifs = new ArrayList();
-     PImage[] gunnerLeft = Gif.getPImages(this, "imgs/enemy/gunner_left.gif");
-     PImage[] gunnerRight = Gif.getPImages(this, "imgs/enemy/gunner_right.gif");
+     PImage[] gunnerLeft = Gif.getPImages(this, "imgs/enemy/gunner.gif");
      PImage[] gunnerDeath = Gif.getPImages(this, "imgs/enemy/death.gif");
 
      gunnerGifs.add(gunnerLeft);
-     gunnerGifs.add(gunnerRight);
      gunnerGifs.add(gunnerDeath);
 
      //gifs for others...
@@ -125,8 +122,8 @@ public void initMenu(){
     shoot.setGain(-18);
     portal = minim.loadFile("Data/music/portal.wav");
     portal.setGain(-5);
-    enemyHurt = minim.loadFile("Data/music/enemyHurt.mp3");
-    enemyHurt.setGain(-5);
+    enemyHurt = minim.loadFile("Data/music/enemyHurt.wav");
+    //enemyHurt.setGain(-5);
     playerHurt = minim.loadFile("Data/music/playerHurt.wav");
     playerHurt.setGain(-5);
     stab = minim.loadFile("Data/music/stabbed.mp3");

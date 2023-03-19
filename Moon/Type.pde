@@ -52,9 +52,9 @@ static abstract class Type {
 
 
   // gif - animation type
-  static final int GIF_RUN_L = 0;
-  static final int GIF_RUN_R = 1;
-  static final int GIF_DEATH = 2;
+  static final int GIF_RUN = 0;
+  //static final int GIF_RUN_R = 1;
+  static final int GIF_DEATH = 1;
 
   //static final int GIF_KONCKBACK_L = 2;
   //static final int GIF_KONCKBACK_R = 3;

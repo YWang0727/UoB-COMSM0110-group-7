@@ -37,7 +37,6 @@ public class View{
          // Draw in game menu
          drawInGameMenu();
          //image(this.instructionImg,0,0);
-         
     }
          
   }
@@ -184,7 +183,7 @@ public class View{
    
    // Menu when game is paused 
    public void drawGamePause(){
-   
+
    }
    
    // When player lose all HP
