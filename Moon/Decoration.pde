@@ -58,5 +58,11 @@ public class Decoration{
          img.resize(o.w * 2, o.h * 2);
      }
   }
+  
+  public void resizeGif(int w, int h){
+     for(PImage img : imgs){
+         img.resize(w, h);
+     }
+  }
 
 }

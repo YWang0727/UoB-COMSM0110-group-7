@@ -59,7 +59,14 @@ public class DecorationFactory extends Factory{
     
     public Decoration newDecoration(int[] pos){
        Decoration d = new Decoration(pos);
-       d.imgs = this.decorationGifs.get(Type.GIF_TORCH);//2  - torch
+       int rd = (int)random(4, 7);
+       d.imgs = this.decorationGifs.get(rd);//2  - torch
+       if(rd == 4 || rd == 5){
+         d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
+       }else{
+         d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE);
+       }
+       
        return d;
     }
     

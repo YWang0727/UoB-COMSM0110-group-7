@@ -106,11 +106,13 @@ public void GifsToDecorationFactory(DecorationFactory d){
      PImage[] jumpEffect = Gif.getPImages(this, "imgs/effect/jump_effect.gif");
      PImage[] portalEffect = Gif.getPImages(this, "imgs/effect/portal_effect.gif");
      PImage[] blood = Gif.getPImages(this, "imgs/effect/blood.gif");
-     PImage[] torch = Gif.getPImages(this, "imgs/decoration/torch.gif");
      PImage[] pressE = Gif.getPImages(this, "imgs/effect/pressE.gif");
+     PImage[] d1 = Gif.getPImages(this, "imgs/decoration/d1.gif");
+     PImage[] d2 = Gif.getPImages(this, "imgs/decoration/d2.gif");
+     PImage[] d3 = Gif.getPImages(this, "imgs/decoration/d3.gif");
 
      
-     d.addDecorationGifs(jumpEffect, portalEffect, blood, torch, pressE);
+     d.addDecorationGifs(jumpEffect, portalEffect, blood, pressE, d1, d2, d3);
 }
 
 
