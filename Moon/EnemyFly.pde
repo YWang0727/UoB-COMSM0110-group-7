@@ -1,12 +1,12 @@
-public class FlyMonster extends Enemy{
+public class AlienFly extends Enemy{
 
     PVector targetLocation;
 
-    public FlyMonster(int hp){
+    public AlienFly(int hp){
       this.fall = false;
       this.type = Type.ENEMY_FLY;
       this.velocity = new PVector(0.1, 0.1);
-      this.w = (int)(Type.BOARD_GRIDSIZE*2/3);
+      this.w = (int)(Type.BOARD_GRIDSIZE * 5/4);
       this.h = (int)(Type.BOARD_GRIDSIZE);
       this.hp = hp;
       this.maxHp = hp;
@@ -17,6 +17,7 @@ public class FlyMonster extends Enemy{
     
     //control speed by changing 0.5 in velocity.normalize().mult(0.5); 
     public void move(PVector playerLocation){
+        if(!isAlive){ return;};
         this.targetLocation.set(playerLocation);
         PVector target = PVector.sub(targetLocation, location);
         target.normalize();
@@ -53,9 +54,6 @@ public class FlyMonster extends Enemy{
        }else{
             if(!canRemove){
                 PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
-                //tint(255, imgAlpha);
-                //imgAlpha -= 5;
-                
                  pushMatrix();
                  translate(location.x, location.y);
                  if (!this.left) {
@@ -66,17 +64,13 @@ public class FlyMonster extends Enemy{
                      image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], 0, 0);
                  }
                  popMatrix();
-                 this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
-
-                //image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          
-                //this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + 0.2) % imgs.length;
-                //noTint();
+                 this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + Type.GIF_PLAY_SPEED * 2) % (float)imgs.length;
                  canRemoveTimer.schedule(new TimerTask(){
                     @Override
                     public void run() {
                       canRemove = true;
                     }
-                 }, 350);
+                 }, 700);
             }
        }
   }

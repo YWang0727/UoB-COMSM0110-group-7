@@ -8,7 +8,7 @@ public class Gunner extends Enemy{
     PVector targetLocation;
    
     private int lastShootTime = 0; 
-   private int shootInterval = 3000;
+   private int shootInterval = 2000;
 
   
     public Gunner(int hp){
@@ -19,20 +19,21 @@ public class Gunner extends Enemy{
       this.hp = hp;
       this.maxHp = hp;
       this.dp = 10;
-      this.value = 100;
+      this.value = 300;
     }
     
     
     //200 = attack range
     public void move(PVector playerLocation, Room r){
+         if(!isAlive){ return;};
         float distance = PVector.dist(location, playerLocation);
         
         int currentTime = millis();
-        if(distance <= 200  && currentTime - lastShootTime >= shootInterval){
+        if(isAlive && distance <= 200  && currentTime - lastShootTime >= shootInterval){
           PVector velocity = PVector.sub(playerLocation, location);
           velocity.normalize().mult(5);
-          shot(velocity, r);
           left = playerLocation.x < location.x;
+          shot(velocity, r);
           lastShootTime = currentTime; 
         }else{
            super.move();
@@ -56,12 +57,45 @@ public class Gunner extends Enemy{
    }
    
    public void shot(PVector velocity, Room r){
+       enemyShoot.play(2);
        PVector newLocation = location.copy();
        newLocation.x += this.w/2;
        newLocation.y += this.h/2;
-       Bullet b = new Bullet(newLocation, velocity.copy(), 10, 10, 10);
+       Bullet b = new Bullet(newLocation, velocity.copy(), 7, 7, 7){
+           public void paint(){
+             fill(70, 100 ,100);
+             ellipse(this.location.x, this.location.y, this.w, this.h);
+             noFill();
+          }
+       };
        r.enemyBullets.add(b);
    }
    
+     public void drawGif(){
+       if(isAlive){
+           drawGif(Type.GIF_RUN);
+       }else{
+            if(!canRemove){
+                 PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
+                 pushMatrix();
+                 translate(location.x, location.y);
+                 if (!this.left) {
+                      scale(-1, 1);
+                     image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], -imgs[0].width, 0);
+                 }
+                 else {
+                     image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], 0, 0);
+                 }
+                 popMatrix();
+                 this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
+                 canRemoveTimer.schedule(new TimerTask(){
+                    @Override
+                    public void run() {
+                      canRemove = true;
+                    }
+                 }, 1000);
+            }
+       }
+  }
     
 }

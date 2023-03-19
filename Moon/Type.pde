@@ -28,7 +28,7 @@ static abstract class Type {
   static final float PLAYER_SPEED_Y = BOARD_GRIDSIZE / 4;
   
   static final int FALL_DAMAGE = 20;
-  static final int FALL_DAMAGE_DIST = BOARD_GRIDSIZE * 10;
+  static final int FALL_DAMAGE_DIST = BOARD_GRIDSIZE * 2;
 
   
   //enemy - baisc attributes
@@ -60,9 +60,9 @@ static abstract class Type {
   
   static final int GIF_BOUNCE = 0;
   static final int GIF_PORTAL = 1;
-    static final int GIF_BULLET_REMOVE = 2;
+  static final int GIF_BULLET_REMOVE = 2;
   static final int GIF_TORCH = 3;
-    static final int GIF_PRESSE = 4;
+  static final int GIF_PRESSE = 4;
 
   //static final int GIF_BULLET_REMOVE = 2;
 
@@ -108,6 +108,8 @@ static abstract class Type {
   //static final int ENEMY_JUMPER = 3;
   static final int ENEMY_GUNNER = 0;
   static final int ENEMY_FLY = 1;
+  static final int ENEMY_SPIDER = 2;
+
 
   //block type
   static final int BLOCK_EMPTY = 0;

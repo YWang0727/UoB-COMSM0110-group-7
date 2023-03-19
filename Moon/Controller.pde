@@ -164,12 +164,17 @@ public class Controller{
       
        //pick up items
       ArrayList<Item> items = r.items;
-      for(int i = 0; i < items.size(); i++){
+      for(int i = items.size() - 1; i >= 0; i--){
         Item t = items.get(i);
         if(collision.detect(o, t)){
             Player p = model.player;
             println("pick up item");
             items.remove(i);
+            //if crystal
+            if(t.category == Type.ITEM_CRYSTAL){
+              p.value += t.value;
+              continue;
+            }
             //change weapon
             if(t.category == Type.ITEM_WEAPON){
                Item tmp = p.weapons[0];

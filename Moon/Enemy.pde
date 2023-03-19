@@ -5,7 +5,7 @@
 class Enemy extends ActionProp{
   
   protected int[] spawn;
-  protected int imgAlpha = 255;
+  //protected int imgAlpha = 255;
   
   Enemy(){
       this.location = new PVector(0, 0);
@@ -14,6 +14,8 @@ class Enemy extends ActionProp{
       this.canRemoveTimer = new Timer();
       this.isAlive = true;
   };
+   
+   public void init(float x, float y, float speed){};
    
   public void setSpawn(int[] spawn){
      this.spawn[0] = spawn[0];
@@ -64,7 +66,6 @@ class Enemy extends ActionProp{
           }
        }, 100);
      }
-      
   }
   
   public void addGifsImgs(ArrayList<PImage[]> gifs){
@@ -84,15 +85,11 @@ class Enemy extends ActionProp{
   }
   
   public void drawGif(){
-       //if 
        if(isAlive){
            drawGif(Type.GIF_RUN);
        }else{
             if(!canRemove){
-                PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
-                //tint(255, imgAlpha);
-                //imgAlpha -= 5;
-                
+                 PImage[] imgs = this.gifsImgs.get(Type.GIF_DEATH);
                  pushMatrix();
                  translate(location.x, location.y);
                  if (!this.left) {
@@ -104,10 +101,6 @@ class Enemy extends ActionProp{
                  }
                  popMatrix();
                  this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
-
-                //image(imgs[(int)this.gifsImgsCount[Type.GIF_DEATH]], this.location.x, this.location.y);          
-                //this.gifsImgsCount[Type.GIF_DEATH] = (this.gifsImgsCount[Type.GIF_DEATH] + 0.2) % imgs.length;
-                //noTint();
                  canRemoveTimer.schedule(new TimerTask(){
                     @Override
                     public void run() {
@@ -120,7 +113,7 @@ class Enemy extends ActionProp{
   
   public void drawHp(){
       if(this.hp < maxHp && isAlive){
-        fill(255,0,0);
+        fill(0,100,100);
         rect(location.x, location.y - 5, (float)hp/ (float) maxHp * w, 2);    
         noFill();
         stroke(255);

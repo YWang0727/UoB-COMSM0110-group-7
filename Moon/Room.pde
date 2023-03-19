@@ -126,6 +126,8 @@ public class Room extends HandleEnemies{
                e.move(p.location);
             }else if (e.type == Type.ENEMY_GUNNER){
                e.move(p.location, this);
+            }else{
+               e.move();
             }
             e.display();
         }

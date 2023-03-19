@@ -9,7 +9,7 @@ IntList pkeys = new IntList();
 
 // Menu
 Minim minim;
-AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt, mining;
+AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt, mining, enemyShoot, touchGround;
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
@@ -81,15 +81,21 @@ public void GifsToEenemyFactory(EnemyFactory e){
      gunnerGifs.add(gunner);
      gunnerGifs.add(gunnerDeath);
 
-     ArrayList<PImage[]> flyMonsterGifs = new ArrayList();
-     PImage[] flyMonster = Gif.getPImages(this, "imgs/enemy/fly1.gif");
-     PImage[] flyMonsterDeath = Gif.getPImages(this, "imgs/enemy/flyDeath.gif");
-     flyMonsterGifs.add(flyMonster);
-     flyMonsterGifs.add(flyMonsterDeath);
-    
+     ArrayList<PImage[]> alienFlyGifs = new ArrayList();
+     PImage[] alienFly = Gif.getPImages(this, "imgs/enemy/fly1.gif");
+     PImage[] alienFlyDeath = Gif.getPImages(this, "imgs/enemy/fly2.gif");
+     alienFlyGifs.add(alienFly);
+     alienFlyGifs.add(alienFlyDeath);
+     
+     ArrayList<PImage[]> alienSpiderGifs = new ArrayList();
+     PImage[] alienSpider = Gif.getPImages(this, "imgs/enemy/spider.gif");
+     PImage[] alienSpiderDeath = Gif.getPImages(this, "imgs/enemy/spider.gif");
+     alienSpiderGifs.add(alienSpider);
+     alienSpiderGifs.add(alienSpiderDeath);
+
      //gifs for others...
 
-     e.addEnemyGifs(gunnerGifs, flyMonsterGifs);
+     e.addEnemyGifs(gunnerGifs, alienFlyGifs, alienSpiderGifs);
 }
 
 /**
@@ -133,6 +139,8 @@ public void initMenu(){
     playerHurt = minim.loadFile("Data/music/playerHurt.wav");
     playerHurt.setGain(-5);
     mining = minim.loadFile("Data/music/mining.wav");
+    enemyShoot = minim.loadFile("Data/music/enemyShot.wav");
+    touchGround = minim.loadFile("Data/music/touchGround.wav");
     
     stab = minim.loadFile("Data/music/stabbed.mp3");
     stab.setGain(-3);
@@ -351,6 +359,9 @@ public void mouseReleased(){
     }
     if(mouseButton == LEFT){
         controller.controlPlayer(Type.MOUSE_LEFT);
+        if(mining.isPlaying()){
+           mining.pause();
+        }
     }
     if(mouseButton == RIGHT){
         controller.controlPlayer(Type.MOUSE_RIGHT);

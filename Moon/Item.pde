@@ -115,6 +115,11 @@ public class Item extends BasicProp{
   }
   
     public void minerLaser(PVector start, Room r){
+      
+      if(!mining.isPlaying()){
+         mining.play(2);
+      }
+      
       PVector end = new PVector(mouseX, mouseY);
       
       float maxDist = 200;
@@ -155,7 +160,6 @@ public class Item extends BasicProp{
                         b = newB;
                      }
                      b.update();
-                     
                 }
            }
          }

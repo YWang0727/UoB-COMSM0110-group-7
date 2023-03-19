@@ -43,6 +43,18 @@ public class EnemyFactory extends Factory{
               }
             }
             
+            boolean flag3 = legalPositionForSpider(r, new int[]{i,j});
+            if(flag3){
+              println("legal");
+              int rd = (int)random(20);
+              rd = 15;
+              if(rd > 10){
+                Enemy e = newEnemy(Type.ENEMY_SPIDER);
+                e.init( Type.BOARD_GRIDSIZE * j, Type.BOARD_GRIDSIZE * i, 3);
+                println(e.location);
+                r.enemies.add(e);
+              }
+            }
          }
        }
     }
@@ -57,6 +69,23 @@ public class EnemyFactory extends Factory{
                  return false;
                }
             }
+      }
+      return true;
+    }
+    
+    public boolean legalPositionForSpider(Room r, int[] pos){
+      if(pos[0] <=3 || pos[0] >= Type.BOARD_MAX_HEIGHT - 11 || pos[1] <=3 || pos[1] >= Type.BOARD_MAX_WIDTH - 3){
+        return false;
+      }
+      //6 boards is empty
+      int j = pos[1];
+      if(r.blockType[pos[0] - 1][j] != Type.BLOCK_WALL){
+         return false;
+      }
+      for(int i = pos[0]; i <= pos[0] + 5; i++){
+         if(r.blockType[i][j] != Type.BLOCK_EMPTY){
+           return false;
+         }
       }
       return true;
     }
@@ -117,9 +146,10 @@ public class EnemyFactory extends Factory{
        if(type == Type.ENEMY_GUNNER){
            e =  new Gunner(25); //<>// //<>// //<>//
        }else if(type == Type.ENEMY_FLY){
-           e = new FlyMonster(15);
-       
-       } //<>// //<>// //<>//
+           e = new AlienFly(15);       
+       } else if(type == Type.ENEMY_SPIDER){ //<>//
+           e = new AlienSpider(20);       
+       }
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;
        e.id = this.id;

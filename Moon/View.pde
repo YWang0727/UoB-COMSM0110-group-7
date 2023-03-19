@@ -70,7 +70,7 @@ public class View{
         }
       }
       noTint();
-      colorMode(RGB);
+      //colorMode(RGB);
       r.display(model.player);
       if(r.index == 0){
            image(this.help,0,40);

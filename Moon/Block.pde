@@ -28,26 +28,17 @@ class Block extends BasicProp{
     }
     
     
-    //public int[] getPos(){
-    //   return pos;
-    //}
-    
     public void setPos(int i, int j){
        this.pos[0] = i;
        this.pos[1] = j;
     }
-    
-    //public int[] getPortal(){
-    //   return portal;
-    //}
-    
+   
     public void setPortal(int i, int j){
        this.portal[0] = i;
        this.portal[1] = j;
     }
     
     void update() {
-      mining.play(2);
       hp--;
       if (hp <= 0) {
         canRemove = true;
@@ -59,7 +50,7 @@ class Block extends BasicProp{
     public void drawHp(){
         if(maxHp > 0){
             noStroke();
-            fill(0,255,0);
+            fill(120,100,100);
             rect(pos[1] * this.w, pos[0] * this.h + h + 1, (float)hp/ (float) maxHp * w, 2);    
             noFill();
             stroke(255);

@@ -8,7 +8,6 @@ public class Bullet extends ActionProp{
     //cause damage if alive
     //maybe two gifs, fly and die
     protected PVector target;
-    
    
     Bullet(PVector location, PVector velocity, int w, int h, int dp){
        this.isAlive = true;
@@ -31,7 +30,7 @@ public class Bullet extends ActionProp{
      
     public void paint(){
       if(this.type == Type.BULLET_TYPE_CIRCLE){
-           fill(255,100,100);
+           fill(60,60,100);
            ellipse(this.location.x, this.location.y, this.w, this.h);
            noFill();
       } else{

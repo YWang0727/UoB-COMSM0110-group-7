@@ -13,9 +13,6 @@ public class ActionProp extends BasicProp{
 
   protected boolean isInvincible, isKnockBack, canRemove;
   protected Timer invincibleTimer, knockBackTimer, canRemoveTimer;
-
-
-
   
   public ActionProp(){
     this.fall = true;
@@ -34,9 +31,7 @@ public class ActionProp extends BasicProp{
        }
   }
   
-  public void attacked(float dp, ActionProp e){
-
-  };
+  public void attacked(float dp, ActionProp e){};
   
   /**
   * In each frame, player's position depends on x + speedX and y + speedY

@@ -88,7 +88,7 @@ public class Collision{
              p.value += e.value;
              enemies.remove(i);
          }
-         if(e.type != Type.ENEMY_FLY){
+         if(isEnemyNeedDetect(e.type)){
              checkAround(e, r);
          }
          if(detect(p,e)){
@@ -125,12 +125,26 @@ public class Collision{
                                  r.enemyBullets.remove(k);
                              }
                        }
-                       
+                       for(int k = r.enemyBullets.size() - 1; k >= 0 ; k--){
+                            Bullet b = r.enemyBullets.get(k);
+                            if(detect(p, b)){
+                                 p.attacked(b.dp, b);
+                                 r.enemyBullets.remove(k);
+                             }
+                       }
                 }
             }
-         }
+      }
       checkAround(p, r);
    }
+   
+   public boolean isEnemyNeedDetect(int type){
+      if(type == Type.ENEMY_GUNNER){
+         return true;
+      }
+      return false;
+   }
+   
    
    /**
    * Collision detection between player and blocks
@@ -219,8 +233,8 @@ public class Collision{
              
              //spike - basic implemenation for now as we don't yet have a death mechanic
              if(o.fall && (bType == Type.BLOCK_SPIKE)){
-                stab.play(2);
-                o.attacked(5, null);
+                //stab.play(2);
+                //o.attacked(5, null);
              }
          }
          
@@ -250,9 +264,10 @@ public class Collision{
             o.location.y = below * s - h - 1;
              if(o.type == Type.PLAYER){
                    if(o.fallDist > Type.FALL_DAMAGE_DIST){
-                       o.attacked(Type.FALL_DAMAGE, null);
+                       //o.attacked(Type.FALL_DAMAGE, null);
                        o.fallDist = 0;
-                       playerHurt.play(2);
+                       touchGround.play(1);
+                       //playerHurt.play(2);
                    }
              }
             
