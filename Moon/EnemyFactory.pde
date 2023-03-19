@@ -9,10 +9,10 @@ public class EnemyFactory extends Factory{
     protected ArrayList<ArrayList<PImage[]>> enemyGifs;
 
     public EnemyFactory(){
-       enemyGifs = new ArrayList(); //<>// //<>// //<>//
+       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>//
     }
     
-   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>//
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>//
       for(ArrayList<PImage[]> gif : gifs){
           enemyGifs.add(gif);      
       }
@@ -54,7 +54,7 @@ public class EnemyFactory extends Factory{
       int D = (int)((y+h)/s);
       for(int i = U; i <= D; i++){
           for(int j = left; j <= right; j++){
-            if(cantThrough(r.getBlockType(i,j))){
+            if(cantThrough(r.blockType[i][j])){
                return false;
             }
           }
@@ -66,12 +66,12 @@ public class EnemyFactory extends Factory{
       int R = (int)((x+w)/s);
       //all blocks above are !blockCannotThrough(), o can through
       for(int i = L; i <= R && upper >= 0; i++){
-         if(cantThrough(r.getBlockType(upper,i))){
+         if(cantThrough(r.blockType[upper][i])){
             return false;
          }
       }
       for(int i = L - 1; i <= R + 1 && below < Type.BOARD_MAX_HEIGHT; i++){
-         if(!cantThrough(r.getBlockType(below,i))){
+         if(!cantThrough(r.blockType[below][i])){
             return false;
          }
       }
@@ -89,7 +89,7 @@ public class EnemyFactory extends Factory{
     public Enemy newEnemy(int type){
        //Enemy e; 
        //if(type == Type.ENEMY_GHOST){
-       //    e = new Ghost(); //<>// //<>// //<>//
+       //    e = new Ghost(); //<>// //<>// //<>// //<>//
        //}else if(type == Type.ENEMY_WORM){
        //    e = new Worm();
        
@@ -97,7 +97,7 @@ public class EnemyFactory extends Factory{
        //    e = new Gunner();
        //}else{
        //    e = new Enemy();
-       //} //<>// //<>// //<>//
+       //} //<>// //<>// //<>// //<>//
        Enemy e = new Gunner(25);
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;

@@ -14,8 +14,8 @@ public class ActionProp extends BasicProp{
   protected boolean isInvincible, isKnockBack, canRemove;
   protected Timer invincibleTimer, knockBackTimer, canRemoveTimer;
 
-  protected int hp, dp;
-  
+
+
   
   public ActionProp(){
     this.fall = true;
@@ -98,5 +98,5 @@ public class ActionProp extends BasicProp{
        popMatrix();
        this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
   }
-
+  
 }

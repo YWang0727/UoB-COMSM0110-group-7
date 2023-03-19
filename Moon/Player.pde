@@ -162,6 +162,7 @@ public class Player extends ActionProp{
 
     }
     drawHp();
+    drawScore();
   }
   
   
@@ -178,6 +179,17 @@ public class Player extends ActionProp{
      for(int j = 0; j <= this.hp; j += Type.PLAYER_HEART){
          image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
       }
+  }
+  
+   public void drawScore(){
+      translate(0, 0);
+      noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(255);
+      textSize(32); 
+      textAlign(LEFT, TOP);
+      text("Score: " + this.value, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
   }
   
   public void drawPlayerAndWeapon(){

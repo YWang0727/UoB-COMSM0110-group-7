@@ -124,13 +124,13 @@ public class ItemFactory extends Factory{
     //new-hand weapon
     public Item weaponMinergun(){  //Player comes with own miner gun initially
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 500, Type.BULLET_TYPE_MINER);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 250, Type.BULLET_TYPE_MINER);
        t.category = Type.ITEM_WEAPON;
        t.type = Type.WEAPON_MINER;
 
        //Type must be set
        //get PImage and resize them
-       t.w = Type.BOARD_GRIDSIZE * 3/2;
+       t.w = Type.BOARD_GRIDSIZE * 2/3;
        t.h = Type.BOARD_GRIDSIZE/2;
        t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
        t.id = this.id;
@@ -173,8 +173,8 @@ public class ItemFactory extends Factory{
        Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 300, Type.BULLET_TYPE_LINE);
        t.type = Type.WEAPON_LASER;
 
-       t.w = Type.BOARD_GRIDSIZE * 3/2;
-       t.h = Type.BOARD_GRIDSIZE/2;
+       t.w = Type.BOARD_GRIDSIZE;
+       t.h = Type.BOARD_GRIDSIZE/3;
 
        //get PImage and resize them
        t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));

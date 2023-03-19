@@ -29,7 +29,7 @@ class Map extends HandleEnemies{
     
     public int getIndexByDirection(int type){
         Room curRoom = this.getCurrentRoom();
-        return curRoom.getAdjacent()[type];
+        return curRoom.adjacent[type];
     }
     
 }

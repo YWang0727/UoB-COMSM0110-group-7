@@ -9,6 +9,8 @@ public class Room extends HandleEnemies{
     protected int[][] blockType;
     protected String[] sections;
     protected ArrayList<Block> blocks;
+    
+    
     protected ArrayList<Bullet> playerBullets;
     protected ArrayList<Bullet> enemyBullets;
     protected ArrayList<Item> items;
@@ -45,10 +47,9 @@ public class Room extends HandleEnemies{
         sections[13]="levels/section14.csv";
     }
     
-    
-    public String getSection(int i){
-      return sections[i];
-    }
+    //public String getSection(int i){
+    //  return sections[i];
+    //}
     
     public void setAdjacent(int[] newIndex){
        for(int i = 0; i < 4; i++){
@@ -58,38 +59,49 @@ public class Room extends HandleEnemies{
        }
     }
     
-    public int[] getAdjacent(){
-       return this.adjacent;
-    }
+    //public int[] getAdjacent(){
+    //   return this.adjacent;
+    //}
     
-    public ArrayList<Block> getBlocks(){
-       return this.blocks;
-    }
+    //public ArrayList<Block> getBlocks(){
+    //   return this.blocks;
+    //}
     
-    public void addBlock(Block block){
-       this.blocks.add(block);
-    }
+    //public void addBlock(Block block){
+    //   this.blocks.add(block);
+    //}
     
-    public int getBlockType(int i, int j){
-       return blockType[i][j];
-    }
+    //public int getBlockType(int i, int j){
+    //   return blockType[i][j];
+    //}
     
-    public void setBlockType(int i, int j, int type){
-       this.blockType[i][j] = type;
-    }
+    //public void setBlockType(int i, int j, int type){
+    //   this.blockType[i][j] = type;
+    //}
     
 
     public Block getBlockByPos(int i, int j){
        for(int k = 0; k < blocks.size(); k++){
-         int[] pos = blocks.get(k).getPos();
+         int[] pos = blocks.get(k).pos;
          if( pos[0] == i && pos[1] == j){
             return blocks.get(k);
          }
        }
        return null;
     }
-
-
+    
+    public void removeBlockByPos(Player p){
+        Iterator<Block> iterator = blocks.iterator();
+        while(iterator.hasNext()) {
+           Block b = iterator.next();
+           b.drawHp();
+           if(b.canRemove == true){
+              this.blockType[b.pos[0]][b.pos[1]] = Type.BLOCK_EMPTY;
+              iterator.remove();
+              p.value += b.value;
+           }
+        }
+    }
     
     public void addBullet(ArrayList<Bullet> bullets){
       for(Bullet b :bullets){
@@ -99,8 +111,7 @@ public class Room extends HandleEnemies{
     }
     
     public void  display(){
-
-        
+      
         //draw items
         for(int i = 0; i < items.size(); i++){
            items.get(i).display();
@@ -112,7 +123,7 @@ public class Room extends HandleEnemies{
            b.move();
            b.paint();
         }
-                
+
         for(int i = 0; i < enemyBullets.size(); i++){
            Bullet b = enemyBullets.get(i);
            b.move();

@@ -53,8 +53,8 @@ public class Item extends BasicProp{
   //if item is weapon
   public void shot(Room r, PVector location, int pBW, int pBH, int pBDp, int pBSpeed, int pBNum){
       if(!inCd){
-          shoot.play(2);
           inCd = true;
+          shoot.play(2);
           r.addBullet(this.bullets(location, pBW, pBH, pBDp, pBSpeed, pBNum));
           cdTimer.schedule(new TimerTask(){
             @Override
@@ -102,8 +102,6 @@ public class Item extends BasicProp{
         }
         image(imgs[i], -w/2, -h/2);
         popMatrix();
-        
-        
     }else{
       if (p.left) {
         this.location = new PVector(p.location.x - this.w, p.location.y + p.h/3);
@@ -115,5 +113,65 @@ public class Item extends BasicProp{
     }
 
   }
- 
+  
+    public void minerLaser(PVector start, Room r){
+      PVector end = new PVector(mouseX, mouseY);
+      
+      float maxDist = 200;
+      float distance = start.dist(end);
+      
+      if (distance > maxDist) {
+        end = PVector.sub(end, start);
+        end.setMag(maxDist);
+        end.add(start);
+      }
+      
+      PVector center = PVector.lerp(start, end, 0.5f);
+      PVector diff = PVector.sub(end, start);
+      diff.setMag(maxDist); 
+      
+      float controlMag = maxDist / 5;
+      PVector control1 = PVector.add(center, PVector.fromAngle(random(TWO_PI)).mult(random(-controlMag, controlMag)));
+      PVector control2 = PVector.add(center, PVector.fromAngle(random(TWO_PI)).mult(random(-controlMag, controlMag)));
+      
+      noFill();
+      stroke(255);
+      strokeWeight(3);
+      beginShape();
+      vertex(start.x, start.y);
+      bezierVertex(control1.x, control1.y, control2.x, control2.y, end.x, end.y);
+      endShape();
+      
+      
+      //check collision between blocks and this curve
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+            for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+                if(r.blockType[i][j] == Type.BLOCK_CRYSTAL && detect(end, i , j )){
+                     Block b = r.getBlockByPos(i, j);
+                     if(b == null){
+                        //add new block
+                        Block newB = new Block(Type.BLOCK_CRYSTAL, new int[]{i,j}, 1000, 120);
+                        r.blocks.add(newB);
+                        b = newB;
+                     }
+                     b.update();
+                     
+                }
+           }
+         }
+    }
+    
+    public boolean detect(PVector location, int i, int j){
+       int s = Type.BOARD_GRIDSIZE;
+       if(location.x> j * s &&
+          location.x < j * s + s &&
+          location.y > i * s &&
+          location.y < i * s + s){
+          return true;   
+       }
+       return false;
+   }
+    
+    
+    
 }

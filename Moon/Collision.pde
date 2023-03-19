@@ -85,6 +85,7 @@ public class Collision{
       for(int i = enemies.size() - 1; i >= 0; i--){
          Enemy e = enemies.get(i);
          if(!e.isAlive &&  e.canRemove){
+             p.value += e.value;
              enemies.remove(i);
          }
          checkAround(e, r);
@@ -95,14 +96,12 @@ public class Collision{
              Bullet b = bullets.get(j);
              //check bullets and enemies
              if(detect(b,e)){
-                if(b.type != Type.BULLET_TYPE_MINER){
-                    if(e.isAlive){
-                        e.attacked(b.dp, b);
-                        decorationFactory.addBulletRemoveGif(r, b);
-                        bullets.remove(j);          
-                    }
-                    break;
+                if(e.isAlive){
+                    e.attacked(b.dp, b);
+                    decorationFactory.addBulletRemoveGif(r, b);
+                    bullets.remove(j);          
                 }
+                break;
              }
          }
       }
@@ -111,25 +110,13 @@ public class Collision{
        //if b crash blocks, remove
          for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
             for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-                if(cantThrough(r.getBlockType(i,j), false, null)){
-                    if(r.getBlockType(i,j) != Type.BLOCK_CRYSTAL){
-                        for(int k = bullets.size() - 1; k >= 0 ; k--){
+                if(cantThrough(r.blockType[i][j], false, null)){
+                       for(int k = bullets.size() - 1; k >= 0 ; k--){
                             Bullet b = bullets.get(k);
                             if(detect(b, i, j)){
                                  bullets.remove(k);
                              }
                        }
-                    }else{
-                       for(int k = bullets.size() - 1; k >= 0 ; k--){  //minergun bullet meets crystal block: The design could be modified to a more interesting type...
-                            Bullet b = bullets.get(k);
-                            if(detect(b, i, j)){
-                               if(b.type == Type.BULLET_TYPE_MINER){
-                                 r.blockType[i][j] = 0;
-                               }
-                               bullets.remove(k);
-                            }
-                       }
-                    }
                 }
             }
          }
@@ -161,7 +148,7 @@ public class Collision{
       //all blocks above are !cantThrough(), o can through
       boolean canThrough = true;
       for(int i = L; i <= R && upper >= 0; i++){
-         if(cantThrough(r.getBlockType(upper,i),false,o) && (y + o.getFullVelocityY() <= upper * s + s)){
+         if(cantThrough(r.blockType[upper][i],false,o) && (y + o.getFullVelocityY() <= upper * s + s)){
             canThrough = false;
          }
       }
@@ -189,7 +176,7 @@ public class Collision{
 
       //all blocks below are !cantThrough(), o can through
       for(int i = L; i <= R && below < Type.BOARD_MAX_HEIGHT; i++){
-         int bType = r.getBlockType(below,i);
+         int bType = r.blockType[below][i];
          
          //for all obj
          if(cantThrough(bType,true,o)){
@@ -226,13 +213,13 @@ public class Collision{
        //if enemies, change direction
        if(o.type != Type.PLAYER){
            //make enemy move to right
-           if(L >= 0 && o.left && !cantThrough(r.getBlockType(below,L), false, null)){
+           if(L >= 0 && o.left && !cantThrough(r.blockType[below][L], false, null)){
               o.left = false;
               o.velocity.x = abs(o.velocity.x);
               o.location.x = L * s + s + 1;
            }
            //make enemy move to left
-           if(R < 29 && !o.left && !cantThrough(r.getBlockType(below,R), false, null)){
+           if(R < 29 && !o.left && !cantThrough(r.blockType[below][R], false, null)){
                o.left = true;
                o.velocity.x = -abs(o.velocity.x);
                o.location.x = R * s - w - 1;
@@ -289,7 +276,7 @@ public class Collision{
               @Override
               public void run() {
                float  s = Type.BOARD_GRIDSIZE;
-               int[] portal = b.getPortal(); 
+               int[] portal = b.portal; 
                o.location.y = s * portal[0];
                o.location.x = s * portal[1] + 5;
                decorationFactory.addPortalGif(r, new int[]{portal[1], portal[0]});
@@ -313,7 +300,7 @@ public class Collision{
                canMoveForward = false;
                break;
             }
-            int bType = r.getBlockType(i,left);
+            int bType = r.blockType[i][left];
             if(o.type != Type.PLAYER){
               if(cantThrough(bType,false,null) && (x + o.getFullVelocityX() * 10 <= left * s + s)){
                  canMoveForward = false;
@@ -348,7 +335,7 @@ public class Collision{
                canMoveForward = false;
                break;
             }
-            int bType = r.getBlockType(i,right);
+            int bType = r.blockType[i][right];
             if(o.type != Type.PLAYER){
               if(cantThrough(bType,false,null) && (x + w + o.getFullVelocityX()*10 >= right * s)){
                   canMoveForward = false;
@@ -375,7 +362,7 @@ public class Collision{
    public void checkMore(ActionProp o, Room r){
         for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
             for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-                if(cantThrough(r.getBlockType(i,j) , false, o) && detect(o, i, j)){
+                if(cantThrough(r.blockType[i][j] , false, o) && detect(o, i, j)){
                     float s = Type.BOARD_GRIDSIZE;
                     float y = o.location.y, by = i * s;
                     float  h = o.h;

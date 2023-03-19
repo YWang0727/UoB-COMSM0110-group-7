@@ -54,7 +54,7 @@ public class View{
         for(int j = 0; j < 29; j++){
           int type = r.blockType[i][j];
           if(emptyBack(type)){
-                tint(hue, 100, 100);
+             tint(hue, 100, 100);
              image(imgs.get(Type.BLOCK_EMPTY), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
              noTint();
              image(imgs.get(type), j * Type.BOARD_GRIDSIZE, i * Type.BOARD_GRIDSIZE);
@@ -75,6 +75,10 @@ public class View{
       if(r.index == 0){
            image(this.help,0,40);
       }
+      
+      //remove crystal
+      r.removeBlockByPos(model.player);
+      
   }
 
    public void drawRoomBeforePlayer(){
@@ -102,6 +106,10 @@ public class View{
   public void drawPlayer(){
       Player p = model.player;
       p.display();
+      Item w = p.weapons[p.currentWeaponIndex];
+      if(p.isShoot && w.type == Type.WEAPON_MINER){
+         w.minerLaser(p.getBulletLocation(), model.getCurrentRoom());
+      }
   }
   
   

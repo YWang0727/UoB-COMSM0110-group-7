@@ -9,7 +9,7 @@ IntList pkeys = new IntList();
 
 // Menu
 Minim minim;
-AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt;
+AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt, mining;
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
@@ -126,6 +126,8 @@ public void initMenu(){
     //enemyHurt.setGain(-5);
     playerHurt = minim.loadFile("Data/music/playerHurt.wav");
     playerHurt.setGain(-5);
+    mining = minim.loadFile("Data/music/mining.wav");
+    
     stab = minim.loadFile("Data/music/stabbed.mp3");
     stab.setGain(-3);
     trampoline = minim.loadFile("Data/music/trampoline.wav");

@@ -110,7 +110,7 @@ public class RoomFactory extends Factory{
       Collections.shuffle(sectionIndex);
       for(int i=0; i<6; i++){
         int section = getSectionIndex(i);
-        level[i]=r.getSection(section);
+        level[i]=r.sections[section];
       }
     }
     
@@ -189,11 +189,11 @@ public class RoomFactory extends Factory{
       Block b1 = blockFactory.newBlock(Type.BLOCK_PORTAL);
       b1.setPos(portalCoordinates[0], portalCoordinates[1]);
       b1.setPortal(portalCoordinates[2], portalCoordinates[3]);
-      r.addBlock(b1);
+      r.blocks.add(b1);
       Block b2 = blockFactory.newBlock(Type.BLOCK_PORTAL);
       b2.setPos(portalCoordinates[2], portalCoordinates[3]);
       b2.setPortal(portalCoordinates[0], portalCoordinates[1]);
-      r.addBlock(b2);
+      r.blocks.add(b2);
     }
     
     //adds crates to room - probability can be adjusted

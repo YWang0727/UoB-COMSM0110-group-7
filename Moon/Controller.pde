@@ -100,7 +100,7 @@ public class Controller{
    */
    public void generateLeft(){
       Room curRoom = model.getCurrentRoom();
-      int[] adjacent = curRoom.getAdjacent();
+      int[] adjacent = curRoom.adjacent;
       if(adjacent[Type.TO_LEFT] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_LR);
          Room newRoom = model.getNewRoom();
@@ -115,7 +115,7 @@ public class Controller{
    */
    public void generateRight(){
       Room curRoom = model.getCurrentRoom();
-      int[] adjacent = curRoom.getAdjacent();
+      int[] adjacent = curRoom.adjacent;
       if(adjacent[Type.TO_RIGHT] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_LR);
          Room newRoom = model.getNewRoom();
@@ -130,7 +130,7 @@ public class Controller{
    */
    public void generateUp(){
       Room curRoom = model.getCurrentRoom();
-      int[] adjacent = curRoom.getAdjacent();
+      int[] adjacent = curRoom.adjacent;
       if(adjacent[Type.TO_UP] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_UP);
          Room newRoom = model.getNewRoom();
@@ -145,7 +145,7 @@ public class Controller{
    */
    public void generateDown(){
       Room curRoom = model.getCurrentRoom();
-      int[] adjacent = curRoom.getAdjacent();
+      int[] adjacent = curRoom.adjacent;
       if(adjacent[Type.TO_DOWN] == Type.NO_ROOM){
          model.addRoom(Type.ROOM_DOWN);
          Room newRoom = model.getNewRoom();
@@ -184,11 +184,11 @@ public class Controller{
       //open crate
       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
           for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-              if(r.getBlockType(i,j) == Type.BLOCK_CRATE && collision.detect(o, i, j)){
+              if(r.blockType[i][j] == Type.BLOCK_CRATE && collision.detect(o, i, j)){
                   println("open crate");
                   //should add something to player, like props or weapons, or golds(scores);
                   r.items.add(model.newItem(new int[]{i, j}));
-                  r.setBlockType(i,j, Type.BLOCK_CRATE_OPEN);
+                  r.blockType[i][j] = Type.BLOCK_CRATE_OPEN;
               }
           }
        }
@@ -348,8 +348,9 @@ public class Controller{
       p.isShoot = true;
       Room r = model.getCurrentRoom();
       Item w = p.weapons[p.currentWeaponIndex];
-      w.shot(r, p.getBulletLocation(), p.bWidthInc, p.bHeightInc, p.bDp, p.bSpeed, p.bNum);
-
+      if(w.type != Type.WEAPON_MINER){
+         w.shot(r, p.getBulletLocation(), p.bWidthInc, p.bHeightInc, p.bDp, p.bSpeed, p.bNum);
+      }
    }
    
    public void setIsMusicPlaying(boolean flag){

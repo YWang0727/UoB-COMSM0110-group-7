@@ -5,7 +5,6 @@
 class Enemy extends ActionProp{
   
   protected int[] spawn;
-  protected int maxHp;
   protected int imgAlpha = 255;
 
   Enemy(){
@@ -102,7 +101,6 @@ class Enemy extends ActionProp{
   }
   
   public void drawHp(){
-    
       if(this.hp < maxHp && isAlive){
         fill(255,0,0);
         rect(location.x, location.y - 5, (float)hp/ (float) maxHp * w, 2);    
@@ -112,7 +110,6 @@ class Enemy extends ActionProp{
         rect(location.x, location.y - 6, w, 4);
         noStroke();
       }
-
   }
   
 }

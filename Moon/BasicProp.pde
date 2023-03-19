@@ -8,10 +8,9 @@ public abstract class BasicProp{
   protected PVector location;
   protected int w, h;
   protected boolean isAlive;
-  protected float hp, dp;
+  protected float hp, dp, maxHp;
   protected int dpCd, dpTimer;
   protected PImage img;
-
 
   protected ArrayList<PImage[]> gifsImgs;
   protected float[] gifsImgsCount;

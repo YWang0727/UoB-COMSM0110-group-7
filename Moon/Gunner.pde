@@ -13,6 +13,7 @@ public class Gunner extends Enemy{
       this.hp = hp;
       this.maxHp = hp;
       this.dp = 10;
+      this.value = 100;
     }
     
     
