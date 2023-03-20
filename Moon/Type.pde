@@ -112,6 +112,7 @@ static abstract class Type {
   static final int ENEMY_GUNNER = 0;
   static final int ENEMY_FLY = 1;
   static final int ENEMY_SPIDER = 2;
+  static final int ENEMY_KILLER = 3;
 
 
   //block type

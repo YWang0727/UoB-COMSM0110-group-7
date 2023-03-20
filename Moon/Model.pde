@@ -24,13 +24,15 @@ public class Model{
        this.roomFactory = new RoomFactory(blockFactory);
        map = new Map();
        map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
    }
    
    public void addPlayer(Player p){
       this.player = p;
    }
    
+   public void addBossToMap(){
+       enemyFactory.addBossToMap(map);
+   }
    
    public Item newItem(int[] pos){
       return itemFactory.newItem(pos);

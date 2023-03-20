@@ -25,7 +25,7 @@ void setup(){
     EnemyFactory e = new EnemyFactory();
     GifsToEenemyFactory(e);
     model.enemyFactory = e;
-    
+    model.addBossToMap();
     ItemFactory t = new ItemFactory();
     Player p = new Player();
     p.weapons[0] = t.weaponPistol();
@@ -38,7 +38,7 @@ void setup(){
     model.addPlayer(p);
     model.itemFactory = t;
     model.decorationFactory = d;
-    
+
     initMenu();
     if (model.isMusicPlaying){
       bgMusic.play();
@@ -103,9 +103,15 @@ public void GifsToEenemyFactory(EnemyFactory e){
      alienSpiderGifs.add(alienSpider);
      alienSpiderGifs.add(alienSpiderDeath);
 
+     ArrayList<PImage[]> alienKillerGifs = new ArrayList();
+     PImage[] alienKiller = Gif.getPImages(this, "imgs/enemy/boss1.gif");
+     PImage[] alienKillerDeath = Gif.getPImages(this, "imgs/enemy/boss1.gif");
+     alienKillerGifs.add(alienKiller);
+     alienKillerGifs.add(alienKillerDeath);
+
      //gifs for others...
 
-     e.addEnemyGifs(gunnerGifs, alienFlyGifs, alienSpiderGifs);
+     e.addEnemyGifs(gunnerGifs, alienFlyGifs, alienSpiderGifs, alienKillerGifs);
 }
 
 /**

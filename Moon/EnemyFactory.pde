@@ -45,18 +45,17 @@ public class EnemyFactory extends Factory{
             
             boolean flag3 = legalPositionForSpider(r, new int[]{i,j});
             if(flag3){
-              println("legal");
               int rd = (int)random(20);
               rd = 15;
               if(rd > 10){
                 Enemy e = newEnemy(Type.ENEMY_SPIDER);
                 e.init( Type.BOARD_GRIDSIZE * j, Type.BOARD_GRIDSIZE * i, 3);
-                println(e.location);
                 r.enemies.add(e);
               }
             }
          }
        }
+
     }
     
     public boolean legalPositionForFly(Room r, int[] pos){
@@ -149,12 +148,24 @@ public class EnemyFactory extends Factory{
            e = new AlienFly(15);       
        } else if(type == Type.ENEMY_SPIDER){ //<>//
            e = new AlienSpider(20);       
+       }else if(type == Type.ENEMY_KILLER){
+           e = new AlienKiller(2000);       
        }
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;
        e.id = this.id;
        this.increaseId();
        return e;
+    }
+    
+    public void addBossToMap(Map m){
+    
+         //add boss
+         Enemy killer = newEnemy(Type.ENEMY_KILLER);
+        killer.location.x = random(width);
+        killer.location.x = random(height);
+        m.enemies.add(killer);
+    
     }
     
 }

@@ -31,14 +31,22 @@ public class View{
     }else if(model.gameStart){
          drawRoom();
          //drawGhost();
+         drawBoss();
          drawPlayer();
          //showAround(model.player);
          drawRoomBeforePlayer();
          // Draw in game menu
          drawInGameMenu();
          //image(this.instructionImg,0,0);
+         drawRoomNumber();
     }
          
+  }
+  
+  public void drawBoss(){
+     Enemy boss = model.map.enemies.get(0);
+     boss.move(model.player.location);
+     boss.display();
   }
  
   /**
@@ -80,6 +88,24 @@ public class View{
       r.removeBlockByPos(model.player);
       
   }
+
+  public void drawRoomNumber(){
+  
+      translate(0, 0);
+      noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(255);
+      textSize(32); 
+      textAlign(RIGHT, TOP);
+      text("Room Num: " + this.model.roomFactory.id, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
+      //if( (this.model.roomFactory.id + 1) == 3){
+      //   text("Danger is comming!!" , Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
+      //}
+      
+  
+  }
+
 
    public void drawRoomBeforePlayer(){
      Room r = model.getCurrentRoom();  

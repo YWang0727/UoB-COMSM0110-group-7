@@ -122,7 +122,7 @@ public class Room extends HandleEnemies{
         //draw enemies
         for(int i = 0; i < enemies.size(); i++){
             Enemy e = enemies.get(i);
-            if(e.type == Type.ENEMY_FLY){
+            if(e.type == Type.ENEMY_FLY || e.type ==Type.ENEMY_KILLER){
                e.move(p.location);
             }else if (e.type == Type.ENEMY_GUNNER){
                e.move(p.location, this);

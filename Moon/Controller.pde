@@ -39,12 +39,16 @@ public class Controller{
       Player p = model.player;
       if(p.location.x <= 0){
          goLeft(p, p.w);
+         model.map.enemies.get(0).location.x += width;
       }else if(p.location.x + p.w > width){
          goRight(p); 
+         model.map.enemies.get(0).location.x -= width;
       }else if(p.location.y < 0){
          goUp(p, p.h);
+         model.map.enemies.get(0).location.y += width;
       }else if(p.location.y + p.h > height){
          goDown(p);
+         model.map.enemies.get(0).location.y -= width;
       }
    }
   
