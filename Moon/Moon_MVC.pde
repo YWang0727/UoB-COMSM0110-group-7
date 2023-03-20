@@ -215,8 +215,12 @@ public void keyPressed(){
 
 public void keyReleased(){
 
+   if(key == 'p'){
+      controller.setGamePause(controller.getGamePause() ? false : true);
+    }
+  
     //only work when game starts
-    if(!controller.getGameStart()){
+    if(!controller.getGameStart()  || controller.getGamePause()){
         return;
     }
     //use WASD to move
@@ -244,16 +248,13 @@ public void keyReleased(){
       controller.controlPlayer(Type.KEY_R);
     }
     
-    if(key == 'p'){
-      controller.setGamePause(controller.getGamePause() ? false : true);
-    }
+
     
 }
 
 public void mouseListener(){
-  
    //only work when game starts
-   if(controller.getGameStart()){
+   if(controller.getGameStart() && !controller.getGamePause()){
         if(mousePressed == true && mouseButton == LEFT){
            controller.shotBullet();
         }
@@ -369,6 +370,7 @@ public void mouseReleased(){
         controller.setIsMusicPlaying(true);
       }
     }
+        
     if(mouseButton == LEFT){
         controller.controlPlayer(Type.MOUSE_LEFT);
         if(mining.isPlaying()){
