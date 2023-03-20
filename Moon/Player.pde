@@ -15,13 +15,16 @@ public class Player extends ActionProp{
   protected int currentItemIndex;
   protected boolean isShoot;
   
+  protected PImage[] hpGif;
+  protected float hpGifCount;
+  
   protected Timer portalTimer;
   
-  public Player(int w, int h){
+  public Player(){
     this.type = Type.PLAYER;    
     this.location = new PVector(width/2, height/2);
-    this.w = w;
-    this.h = h;
+    this.w = Type.BOARD_GRIDSIZE - 10;
+    this.h = Type.BOARD_GRIDSIZE - 1;
     this.hp = 100;
     this.bNum = 0;
     //Timer and blink effects
@@ -34,10 +37,9 @@ public class Player extends ActionProp{
     this.items = new ArrayList();
 
     this.transported = true;
-    
     //img of heart
-    this.img = loadImage("imgs/player/hp.png");
-    this.img.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
+    //this.img = loadImage("imgs/player/hp.png");
+    //this.img.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
   }
   
   //add weapon
@@ -166,18 +168,19 @@ public class Player extends ActionProp{
   }
   
   
-  public void drawWeapon(){
-     Item w = weapons[currentWeaponIndex];
-     int offset = this.left ? 1 : 0;
-     image(w.imgs[1 - offset], this.location.x - w.w * offset + this.w/2, this.location.y + this.h/3);
-  }
+  //public void drawWeapon(){
+  //   Item w = weapons[currentWeaponIndex];
+  //   int offset = this.left ? 1 : 0;
+  //   image(w.imgs[1 - offset], this.location.x - w.w * offset + this.w/2, this.location.y + this.h/3);
+  //}
  
   
   
   public void drawHp(){
      translate(0, 0);
      for(int j = 0; j <= this.hp; j += Type.PLAYER_HEART){
-         image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
+         image(hpGif[(int)hpGifCount], Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
+         this.hpGifCount = (hpGifCount + 0.01) % (float)hpGif.length;
       }
   }
   
@@ -214,7 +217,25 @@ public class Player extends ActionProp{
   }
   
   public void drawGif(){
-       int gifType = Type.GIF_RUN;
+       int gifType;
+       //println(jump + ","+ fall + "," + getFullVelocityY());
+       //if(getFullVelocityY() != 0 && getFullVelocityX() != 0){
+       //   gifType = 2;
+       //}else 
+       if(this.jump && this.fall && abs(getFullVelocityY()) > 1){
+          gifType = 2;
+       }
+       
+       else if(getFullVelocityX() == 0){
+           gifType = 0;
+       }else{
+           gifType = 1;
+       }
        drawGif(gifType);
   }
+  
+  
+
+  
+  
 }

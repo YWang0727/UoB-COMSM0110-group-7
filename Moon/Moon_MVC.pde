@@ -27,7 +27,7 @@ void setup(){
     model.enemyFactory = e;
     
     ItemFactory t = new ItemFactory();
-    Player p = new Player(Type.BOARD_GRIDSIZE - 15, Type.BOARD_GRIDSIZE - 5);
+    Player p = new Player();
     p.weapons[0] = t.weaponPistol();
     p.weapons[1] = t.weaponMinergun();
     GifsToPlayer(p);
@@ -65,8 +65,18 @@ void draw(){
 }
 
 public void GifsToPlayer(Player p){
-     PImage[] pRun = Gif.getPImages(this, "imgs/player/player.gif");
-     p.addGifsImgs(pRun);
+     PImage[] playerStand = Gif.getPImages(this, "imgs/player/playerStand.gif");
+     PImage[] playerRun = Gif.getPImages(this, "imgs/player/playerRun.gif");
+     PImage[] playerJump = Gif.getPImages(this, "imgs/player/playerJump.gif");
+
+     p.addGifsImgs(playerStand, playerRun, playerJump);
+     
+     PImage[] hpGif = Gif.getPImages(this, "imgs/player/hp.gif");
+     for(PImage hp : hpGif){
+         hp.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
+     }
+     p.hpGif = hpGif;
+     
 }
 
 /**

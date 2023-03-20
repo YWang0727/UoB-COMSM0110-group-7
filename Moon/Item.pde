@@ -86,10 +86,11 @@ public class Item extends BasicProp{
 
   
   void display(Player p) {
+     float offset = 10;
     if(p.isShoot){
      int i = mouseX > p.location.x + p.w/2 ? 1 : 0;
-        //10 = arm length
-        float distance = 10 + this.w/2;
+        //5 = arm length  = offset
+        float distance = offset/2 + this.w/2;
         PVector rotatePoint;
         rotatePoint = new PVector(p.location.x + p.w/2, p.location.y + p.h/2);
         location.set(rotatePoint);
@@ -104,10 +105,10 @@ public class Item extends BasicProp{
         popMatrix();
     }else{
       if (p.left) {
-        this.location = new PVector(p.location.x - this.w, p.location.y + p.h/3);
+        this.location = new PVector(p.location.x - this.w + offset * 2, p.location.y + p.h/3 - offset);
         image(imgs[0], location.x, location.y);
       } else {
-        this.location = new PVector(p.location.x + p.w + this.w, p.location.y + p.h/3);
+        this.location = new PVector(p.location.x + p.w + this.w - offset * 2, p.location.y + p.h/3 - offset);
         image(imgs[1], location.x - this.w, location.y);
       }
     }
