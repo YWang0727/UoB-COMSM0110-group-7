@@ -59,6 +59,30 @@ public class Collision{
      }
      return true;
    }
+   
+   
+   public void checkBossAndPlayer(Map map, Player p){
+      Enemy boss = map.enemies.get(0);
+      Room r = map.getCurrentRoom();
+            
+        Iterator<Bullet> iterator = r.playerBullets.iterator();
+        while(iterator.hasNext()) {
+           Bullet b = iterator.next();
+           if(detect(boss, b)){
+              if(boss.isAlive){
+                  boss.attacked(b.dp, b);
+                  decorationFactory.addBulletRemoveGif(r, b);
+                  iterator.remove();
+              }
+           }
+        }
+        
+        if(detect(p, boss) && boss.isAlive){
+           p.attacked(boss.dp, boss);
+        }
+       
+       
+   }
   
    /**
    * Collision detection between:

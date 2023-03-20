@@ -29,6 +29,8 @@ public class Controller{
           collision.checkAllAround(p, r);
           p.move();
       }
+      //boss and player
+      collision.checkBossAndPlayer(model.map, model.player);
      
    }
    
