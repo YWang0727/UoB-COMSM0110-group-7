@@ -28,7 +28,7 @@ public class AlienKiller extends Enemy{
           target.mult(3); 
           velocity.lerp(target, 0.05f); 
           velocity.normalize();
-          velocity.mult(2);
+          velocity.mult(1);
           location.add(velocity);
 
 

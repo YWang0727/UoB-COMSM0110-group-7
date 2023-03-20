@@ -26,7 +26,7 @@ public class Player extends ActionProp{
     this.w = Type.BOARD_GRIDSIZE - 10;
     this.h = Type.BOARD_GRIDSIZE - 1;
     this.hp = 100;
-    this.bNum = 0;
+    this.bNum = 5;
     //Timer and blink effects
     this.invincibleTimer = new Timer();
     this.knockBackTimer = new Timer();
