@@ -269,7 +269,8 @@ public class Controller{
      }
      //not in fly mode
      if(keyType == Type.KEY_SPACE && !p.fly){
-        if(p.jump){
+        println(p.jump + "," + p.doubleJump  + "," + p.canDoubleJump);
+        if(p.jump && p.doubleJump){
           return;
         };
         if(p.highJump){
@@ -278,12 +279,21 @@ public class Controller{
           p.velocity.y = -Type.PLAYER_HIGH_JUMP_SPEEDY;
         }
         else{
-          p.jump = true;
+          if(!p.jump){
+            p.jump = true;
+            p.velocity.y = -Type.PLAYER_JUMP_SPEEDY;
+          }else if(!p.doubleJump && p.canDoubleJump){
+            p.doubleJump = true;
+            p.velocity.y = -Type.PLAYER_JUMP_SPEEDY;
+          }
           p.fall = true;
-          p.velocity.y = -Type.PLAYER_JUMP_SPEEDY;
         }
-        
      }
+     
+     if(keyType == Type.KEY_RELEASED_SPACE){
+         p.canDoubleJump = true;
+     }
+     
      
      // W - speed up or move upward
      if(keyType == Type.KEY_W){

@@ -20,7 +20,7 @@ static abstract class Type {
   static final int PLAYER = -1;
   static final int PLAYER_HEART = 10;
  
-  static final int PLAYER_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/8;
+  static final int PLAYER_JUMP_SPEEDY = BOARD_GRIDSIZE * 3/13;
   static final int PLAYER_HIGH_JUMP_SPEEDY = BOARD_GRIDSIZE * 2/6;
 
   static final float PLAYER_SPEED_INCREMENT = (float)BOARD_GRIDSIZE / 100;
@@ -85,6 +85,7 @@ static abstract class Type {
   static final int KEY_SPACE = 32;
   static final int KEY_RELEASED_AD = 1000;
   static final int KEY_RELEASED_WS = 1001;
+  static final int KEY_RELEASED_SPACE = 1002;
   static final int KEY_Q = 113;
   static final int KEY_R = 114;
   //press S and SPACE together, can throught blocks

@@ -1,11 +1,9 @@
 public class Collision{
-   //protected GifPlayer gifPlayer;
    protected DecorationFactory decorationFactory;
    protected boolean portalFlag;
    protected Timer portalTimer;
 
    Collision(){
-      //this.gifPlayer = gifPlayer;
       portalTimer = new Timer();
    }
    
@@ -284,6 +282,8 @@ public class Collision{
       if(!canFall && (y + h + o.getFullVelocityY()>= below * s)){
             o.fall = false;
             o.jump = false;
+            o.doubleJump = false;
+            o.canDoubleJump = false;
             o.setAllVelocityY(0);
             o.location.y = below * s - h - 1;
              if(o.type == Type.PLAYER){

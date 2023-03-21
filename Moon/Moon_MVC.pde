@@ -235,6 +235,11 @@ public void keyReleased(){
           pkeys.remove(i); 
       }
     }
+    
+    if((int)key == 32){
+        controller.controlPlayer(Type.KEY_RELEASED_SPACE);
+    }
+    
     if(key == 'a' || key == 'd'){
       controller.controlPlayer(Type.KEY_RELEASED_AD);
     }
@@ -254,7 +259,7 @@ public void keyReleased(){
       controller.controlPlayer(Type.KEY_R);
     }
     
-
+    
     
 }
 

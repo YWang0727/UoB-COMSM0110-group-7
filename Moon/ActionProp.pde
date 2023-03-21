@@ -7,6 +7,7 @@ public class ActionProp extends BasicProp{
   protected PVector velocity, velocity2, velocity3;
   
   protected boolean fall, jump, transported, highJump, left, onPortal, throughDown;
+  protected boolean doubleJump, canDoubleJump;
   protected float fallDist;
   
   protected boolean fly;
