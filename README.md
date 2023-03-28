@@ -27,6 +27,13 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 
 o Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
+Use case diagrams and user stories are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
+
+We follow the game developement process :
+o pre-production:
+o 
+
+
 ## 4. Design (15% ~750 words)
 
 o System architecture. Class diagrams, behavioural diagrams.
