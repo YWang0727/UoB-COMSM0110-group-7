@@ -3,10 +3,10 @@
 # Meeting note on 8th, April
 
 Features need to be finished or considered
-o Interface for GAMEOVER
-o Difficulty Level
-o Tutorial
-o Global Ranking
+- Interface for GAMEOVER
+- Difficulty Level
+- Tutorial
+- Global Ranking
 
 Final Report
 Since Xiao has contributed a lot for coding parts , so rest of team members will focus on report & presentation.
