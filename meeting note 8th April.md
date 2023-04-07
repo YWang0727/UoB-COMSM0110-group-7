@@ -12,6 +12,7 @@ Final Report
 Since Xiao has contributed a lot for coding parts , so rest of team members will focus on report & presentation.
 
 | Assignment | weight % | To do by |
+| -------------- | -------- | -------- |
 | Introduction | 5 % | Ed |
 | Requirement | 15 % | Arlo |
 | Design | 15 % | Arlo |
