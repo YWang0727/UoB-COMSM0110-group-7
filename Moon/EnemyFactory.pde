@@ -9,10 +9,10 @@ public class EnemyFactory extends Factory{
     protected ArrayList<ArrayList<PImage[]>> enemyGifs;
 
     public EnemyFactory(){
-       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>// //<>// //<>//
+       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     
-   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>// //<>// //<>//
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       for(ArrayList<PImage[]> gif : gifs){
           enemyGifs.add(gif);      
       }
@@ -143,13 +143,13 @@ public class EnemyFactory extends Factory{
     public Enemy newEnemy(int type){
        Enemy e = null; 
        if(type == Type.ENEMY_GUNNER){
-           e =  new Gunner(25); //<>// //<>// //<>//
+           e =  new Gunner(dif.gunnerHp, dif.gunnerDp); //<>// //<>// //<>// //<>//
        }else if(type == Type.ENEMY_FLY){
-           e = new AlienFly(15);       
-       } else if(type == Type.ENEMY_SPIDER){ //<>//
-           e = new AlienSpider(20);       
+           e = new AlienFly(dif.flyHp, dif.flyDp);       
+       } else if(type == Type.ENEMY_SPIDER){ //<>// //<>//
+           e = new AlienSpider(dif.spiderHp, dif.spiderDp);       
        }else if(type == Type.ENEMY_KILLER){
-           e = new AlienKiller(2000);       
+           e = new AlienKiller();       
        }
        e.addGifsImgs(this.enemyGifs.get(e.type));
        e.fall = true;

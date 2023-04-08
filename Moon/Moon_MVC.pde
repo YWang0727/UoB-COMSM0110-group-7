@@ -14,18 +14,22 @@ AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerH
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
 
+Difficulty dif;
+
 /**
 * Initialize all project, run once
 */
 void setup(){
     
     size(1160,800);
+    dif = new Difficulty();
+        
     Model model = new Model();
     
     EnemyFactory e = new EnemyFactory();
     GifsToEenemyFactory(e);
     model.enemyFactory = e;
-    model.addBossToMap();
+    //model.addBossToMap();
     ItemFactory t = new ItemFactory();
     Player p = new Player();
     p.weapons[0] = t.weaponPistol();
@@ -38,7 +42,7 @@ void setup(){
     model.addPlayer(p);
     model.itemFactory = t;
     model.decorationFactory = d;
-
+    
     initMenu();
     if (model.isMusicPlaying){
       bgMusic.play();
@@ -50,6 +54,7 @@ void setup(){
     view = new View(model);
 
 }
+
 
 /**
 * Code inside will run by order in each frame
@@ -127,7 +132,6 @@ public void GifsToDecorationFactory(DecorationFactory d){
      PImage[] d2 = Gif.getPImages(this, "imgs/decoration/d2.gif");
      PImage[] d3 = Gif.getPImages(this, "imgs/decoration/d3.gif");
 
-     
      d.addDecorationGifs(jumpEffect, portalEffect, blood, pressE, d1, d2, d3);
 }
 

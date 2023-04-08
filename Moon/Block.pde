@@ -39,10 +39,10 @@ class Block extends BasicProp{
     }
     
     void update() {
-      hp--;
+      hp-= 2;
       if (hp <= 0) {
         canRemove = true;
-        println("canRemove");
+        //println("canRemove");
         hp = 0;
       }
     }

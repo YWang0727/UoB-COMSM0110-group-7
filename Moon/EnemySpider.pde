@@ -5,14 +5,14 @@ public class AlienSpider extends Enemy{
     protected float downDistance;
     protected PVector initialLocation;
 
-    public AlienSpider(int hp){
+    public AlienSpider(float hp, float dp){
       this.type = Type.ENEMY_GUNNER;
       this.velocity = new PVector(Type.ENEMY_SPEED_X_NORMAL, 0);
       this.w = (int)(Type.BOARD_GRIDSIZE - 5);
       this.h = (int)(Type.BOARD_GRIDSIZE - 5);
       this.hp = hp;
       this.maxHp = hp;
-      this.dp = 10;
+      this.dp = dp;
       this.value = 200;
       this.type = Type.ENEMY_SPIDER;
     }

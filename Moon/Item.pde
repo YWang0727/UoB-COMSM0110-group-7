@@ -17,8 +17,13 @@ public class Item extends BasicProp{
     protected Timer cdTimer;
     protected boolean inCd;
     
+    protected Timer showTimer;
+    protected boolean showMe;
+    
     // w.shot(r, new PVector(bx, by), p.bWidthInc, p.bHeightInc, p.bDp, p.bSpeed, p.bNum);
-    protected int bW, bH, bSpeed, bDp, bNum, bCd, bType;
+    protected float bW, bH, bSpeed, bDp;
+    
+    protected int bNum, bCd, bType;
     
     public Item(){
        //this.pos = new int[2];
@@ -27,7 +32,7 @@ public class Item extends BasicProp{
     }
 
     //basic prop of bullets
-    public Item(int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType){
+    public Item(float bW, float bH, float bSpeed, float bDp, int bNum, int bCd, int bType){
        this();
        this.cdTimer = new Timer();
        this.bW = bW;
@@ -51,7 +56,7 @@ public class Item extends BasicProp{
   }
   
   //if item is weapon
-  public void shot(Room r, PVector location, int pBW, int pBH, int pBDp, int pBSpeed, int pBNum){
+  public void shot(Room r, PVector location, float pBW, float pBH, float pBDp, float pBSpeed, int pBNum){
       if(!inCd){
           inCd = true;
           shoot.play(2);
@@ -65,7 +70,7 @@ public class Item extends BasicProp{
       }  
   }
   
-  public ArrayList<Bullet> bullets(PVector location, int pBW, int pBH, int pBDp, int pBSpeed, int pBNum){
+  public ArrayList<Bullet> bullets(PVector location, float pBW, float pBH, float pBDp, float pBSpeed, int pBNum){
     float angleStep = 10; 
     PVector mousePos = new PVector(mouseX, mouseY);
     ArrayList<Bullet> bs = new ArrayList();
@@ -105,10 +110,10 @@ public class Item extends BasicProp{
         popMatrix();
     }else{
       if (p.left) {
-        this.location = new PVector(p.location.x - this.w + offset * 2, p.location.y + p.h/3 - offset);
+        this.location = new PVector(p.location.x - this.w + offset * 2, p.location.y + p.h/3 - offset/2);
         image(imgs[0], location.x, location.y);
       } else {
-        this.location = new PVector(p.location.x + p.w + this.w - offset * 2, p.location.y + p.h/3 - offset);
+        this.location = new PVector(p.location.x + p.w + this.w - offset * 2, p.location.y + p.h/3 - offset/2);
         image(imgs[1], location.x - this.w, location.y);
       }
     }
@@ -176,7 +181,44 @@ public class Item extends BasicProp{
        }
        return false;
    }
+   
+   public void showMe(PVector playerLoction){
+
+      if(showMe){
+         //rect(playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE, this.w, this.h);
+         image(imgs[0], playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE);
+         
+         showEffect(playerLoction);
+         
+         if(showTimer == null) {showTimer = new Timer();};
+          showTimer.schedule(new TimerTask(){
+            @Override
+            public void run() {
+              showMe = false;
+            }
+         }, 5000);
+      }
+   }
     
+   public void showEffect(PVector playerLoction){
+       noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(255);
+      textSize(20); 
+      textAlign(CENTER, TOP);
+      String s = "";
+      //if(this.type == xxxx){
+      //   s = "";
+      //}else{
+      //   s = "";
+      //}
+      
+      text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
+      noStroke();
+      noFill();
+   
+   }
     
     
 }

@@ -2,7 +2,7 @@ public class AlienFly extends Enemy{
 
     PVector targetLocation;
 
-    public AlienFly(int hp){
+    public AlienFly(float hp, float dp){
       this.fall = false;
       this.type = Type.ENEMY_FLY;
       this.velocity = new PVector(0.1, 0.1);
@@ -10,7 +10,7 @@ public class AlienFly extends Enemy{
       this.h = (int)(Type.BOARD_GRIDSIZE);
       this.hp = hp;
       this.maxHp = hp;
-      this.dp = 10;
+      this.dp = dp;
       this.value = 100;
       this.targetLocation = new PVector(0, 0);
     }

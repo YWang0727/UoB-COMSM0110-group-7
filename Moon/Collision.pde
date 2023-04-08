@@ -60,6 +60,7 @@ public class Collision{
    
    
    public void checkBossAndPlayer(Map map, Player p){
+      if(map.enemies.size() ==0) return;
       Enemy boss = map.enemies.get(0);
       Room r = map.getCurrentRoom();
             
@@ -254,10 +255,10 @@ public class Collision{
              }
              
              //spike - basic implemenation for now as we don't yet have a death mechanic
-             if(o.fall && (bType == Type.BLOCK_SPIKE)){
-                //stab.play(2);
-                //o.attacked(5, null);
-             }
+             //if(o.fall && (bType == Type.BLOCK_SPIKE)){
+             //   stab.play(2);
+             //   o.attacked(5, null);
+             //}
          }
          
       }

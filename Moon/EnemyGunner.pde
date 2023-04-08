@@ -11,14 +11,14 @@ public class Gunner extends Enemy{
    private int shootInterval = 2000;
 
   
-    public Gunner(int hp){
+    public Gunner(float hp, float dp){
       this.type = Type.ENEMY_GUNNER;
       this.velocity = new PVector(Type.ENEMY_SPEED_X_NORMAL, 0);
       this.w = (int)(Type.BOARD_GRIDSIZE + 10);
       this.h = (int)(Type.BOARD_GRIDSIZE + 10);
       this.hp = hp;
       this.maxHp = hp;
-      this.dp = 10;
+      this.dp = dp;
       this.value = 300;
     }
     
@@ -61,7 +61,7 @@ public class Gunner extends Enemy{
        PVector newLocation = location.copy();
        newLocation.x += this.w/2;
        newLocation.y += this.h/2;
-       Bullet b = new Bullet(newLocation, velocity.copy(), 7, 7, 7){
+       Bullet b = new Bullet(newLocation, velocity.copy(), 7, 7, this.dp){
            public void paint(){
              fill(70, 100 ,100);
              ellipse(this.location.x, this.location.y, this.w, this.h);

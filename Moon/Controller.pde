@@ -28,9 +28,15 @@ public class Controller{
           Room r = model.getCurrentRoom();
           collision.checkAllAround(p, r);
           p.move();
+          model.addBossToMap();
+          
+          //boss and player
+          collision.checkBossAndPlayer(model.map, model.player);
+          
+          dif.increaseByTime(model.player);
+      
       }
-      //boss and player
-      collision.checkBossAndPlayer(model.map, model.player);
+
      
    }
    
@@ -41,16 +47,24 @@ public class Controller{
       Player p = model.player;
       if(p.location.x <= 0){
          goLeft(p, p.w);
-         model.map.enemies.get(0).location.x += width;
+         if(model.map.enemies.size() >0){
+             model.map.enemies.get(0).location.x += width;
+         }
       }else if(p.location.x + p.w > width){
          goRight(p); 
+         if(model.map.enemies.size() >0){
          model.map.enemies.get(0).location.x -= width;
+         }
       }else if(p.location.y < 0){
          goUp(p, p.h);
+         if(model.map.enemies.size() >0){
          model.map.enemies.get(0).location.y += width;
+         }
       }else if(p.location.y + p.h > height){
          goDown(p);
+         if(model.map.enemies.size() >0){
          model.map.enemies.get(0).location.y -= width;
+         }
       }
    }
   
@@ -174,7 +188,7 @@ public class Controller{
         Item t = items.get(i);
         if(collision.detect(o, t)){
             Player p = model.player;
-            println("pick up item");
+            //println("pick up item");
             items.remove(i);
             //if crystal
             if(t.category == Type.ITEM_CRYSTAL){
@@ -196,7 +210,7 @@ public class Controller{
       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
           for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
               if(r.blockType[i][j] == Type.BLOCK_CRATE && collision.detect(o, i, j)){
-                  println("open crate");
+                  //println("open crate");
                   //should add something to player, like props or weapons, or golds(scores);
                   r.items.add(model.newItem(new int[]{i, j}));
                   r.blockType[i][j] = Type.BLOCK_CRATE_OPEN;
@@ -269,7 +283,7 @@ public class Controller{
      }
      //not in fly mode
      if(keyType == Type.KEY_SPACE && !p.fly){
-        println(p.jump + "," + p.doubleJump  + "," + p.canDoubleJump);
+        //println(p.jump + "," + p.doubleJump  + "," + p.canDoubleJump);
         if(p.jump && p.doubleJump){
           return;
         };
@@ -356,7 +370,7 @@ public class Controller{
      
    }
    
-      /**
+   /**
    * Add a bullet to ArrayList<Bullet> in current room
    */
    public void shotBullet(){

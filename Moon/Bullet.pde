@@ -9,10 +9,10 @@ public class Bullet extends ActionProp{
     //maybe two gifs, fly and die
     protected PVector target;
    
-    Bullet(PVector location, PVector velocity, int w, int h, int dp){
+    Bullet(PVector location, PVector velocity, float w, float h, float dp){
        this.isAlive = true;
-       this.w = w;
-       this.h = h;
+       this.w = (int)w;
+       this.h = (int)h;
        this.dp = dp;
        this.location = location;
        this.velocity = velocity;
