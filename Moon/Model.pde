@@ -25,7 +25,7 @@ public class Model{
        this.blockFactory = new BlockFactory();
        this.roomFactory = new RoomFactory(blockFactory);
        map = new Map();
-       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
    }
    
    public void addPlayer(Player p){

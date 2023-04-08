@@ -248,6 +248,8 @@ public class Controller{
      
      //activate or cancel fly mode
      if(keyType == Type.KEY_F){
+       if(p.showFlyTrigger == false) p.showFlyTrigger = true;
+       else return;
        //cancel fly mode
        if(p.fly){
           p.fly = false;
@@ -258,12 +260,6 @@ public class Controller{
           p.jump = false;
           p.fall = false;
           p.velocity.y = 0;
-       }
-       
-       if(p.fly){
-          println("fly mode activated");
-       }else{
-          println("fly mode cancelled");
        }
      }
      

@@ -43,7 +43,6 @@ void setup(){
     model.itemFactory = t;
     model.decorationFactory = d;
     
-    
     initMenu();
     if (model.isMusicPlaying){
       bgMusic.play();

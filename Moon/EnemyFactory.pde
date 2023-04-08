@@ -9,10 +9,10 @@ public class EnemyFactory extends Factory{
     protected ArrayList<ArrayList<PImage[]>> enemyGifs;
 
     public EnemyFactory(){
-       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+       enemyGifs = new ArrayList(); //<>// //<>// //<>// //<>// //<>// //<>//
     }
     
-   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+   public void addEnemyGifs(ArrayList<PImage[]>... gifs){ //<>// //<>// //<>// //<>// //<>// //<>//
       for(ArrayList<PImage[]> gif : gifs){
           enemyGifs.add(gif);      
       }
@@ -143,10 +143,10 @@ public class EnemyFactory extends Factory{
     public Enemy newEnemy(int type){
        Enemy e = null; 
        if(type == Type.ENEMY_GUNNER){
-           e =  new Gunner(dif.gunnerHp, dif.gunnerDp); //<>// //<>// //<>// //<>//
+           e =  new Gunner(dif.gunnerHp, dif.gunnerDp); //<>// //<>// //<>//
        }else if(type == Type.ENEMY_FLY){
            e = new AlienFly(dif.flyHp, dif.flyDp);       
-       } else if(type == Type.ENEMY_SPIDER){ //<>// //<>//
+       } else if(type == Type.ENEMY_SPIDER){ //<>//
            e = new AlienSpider(dif.spiderHp, dif.spiderDp);       
        }else if(type == Type.ENEMY_KILLER){
            e = new AlienKiller();       
@@ -160,10 +160,10 @@ public class EnemyFactory extends Factory{
     
     public void addBossToMap(Map m){
     
-         //add boss
-         Enemy killer = newEnemy(Type.ENEMY_KILLER);
-        killer.location.x = random(width);
-        killer.location.x = random(height);
+        //add boss
+        Enemy killer = newEnemy(Type.ENEMY_KILLER);
+        killer.location.x = 0;
+        killer.location.x = 0;
         m.enemies.add(killer);
     
     }

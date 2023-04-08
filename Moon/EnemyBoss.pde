@@ -38,15 +38,6 @@ public class AlienKiller extends Enemy{
         if(this.velocity.x < 0){
            this.left = true;
         }
-      //float x = this.location.x;
-      //float y = this.location.y;
-      //if(x <= 0 || x + this.w >= width){
-      //   this.velocity.x = - this.velocity.x;
-      //   this.left = x <= 0 ? false : true;
-      //}
-      //if(y <= 0 || y + this.h >= height){
-      //   this.velocity.y = - this.velocity.y;
-      //}
    }
   
 
