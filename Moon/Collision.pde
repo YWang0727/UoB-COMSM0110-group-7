@@ -36,6 +36,17 @@ public class Collision{
        return false;
    }
    
+   public boolean detect(BasicProp a, Decoration b){
+       if(a.location.x + a.w > b.location.x &&
+          a.location.x < b.location.x + b.w &&
+          a.location.y + a.h > b.location.y &&
+          a.location.y < b.location.y + b.h){
+          return true;   
+       }
+       return false;
+   }
+   
+   
    //added this boolean so that we can turn off collision detection for blocks other than the background
    //if return false, player can through these type of blocks
    //when player, throughDown = p.getThroughDown(), others, checkDown = false && throughDown = true
@@ -159,7 +170,29 @@ public class Collision{
             }
       }
       checkAround(p, r);
+      checkDecorations(p, r);
    }
+   
+   
+   public void checkDecorations(ActionProp p, Room r){
+        Iterator<Decoration> iterator = r.decorations.iterator();
+        while(iterator.hasNext()) {
+           Decoration d = iterator.next();
+           if(d.type ==  Type.GIF_HP || d.type ==  Type.GIF_CRYSTAL){
+              if(detect(p, d)){
+                 if(d.type == Type.GIF_HP){
+                   p.hp += 10;
+                 }else{
+                   p.value += 200;
+                 }
+                 iterator.remove();
+              }
+           }
+           
+        }
+
+   }
+   
    
    public boolean isEnemyNeedDetect(int type){
       if(type == Type.ENEMY_GUNNER){

@@ -6,6 +6,7 @@ public class Decoration{
   protected PVector location;
   protected boolean once, canRemove, beforePlayer;
   protected Timer timer;
+  protected int w, h;
   
  public Decoration(){
       this.speed = Type.GIF_PLAY_SPEED;

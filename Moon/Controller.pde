@@ -66,6 +66,7 @@ public class Controller{
          model.map.enemies.get(0).location.y -= width;
          }
       }
+      //println(model.map.getCurrentRoom().type);
    }
   
    /**

@@ -48,14 +48,19 @@ public class RoomFactory extends Factory{
         Room r;
         if(i == 0){
            r = roomType0();
+           r.type = 0;
         }else if(i == 1){
            r = roomType1();
+           r.type = 1;
         }else if(i == 2){
            r = roomType2();
+           r.type = 2;
         }else if(i == 3){
            r = roomType3();
+           r.type = 3;
         }else{
            r = roomType4();
+           r.type = 4;
         }
         r.index = id;
         return r;

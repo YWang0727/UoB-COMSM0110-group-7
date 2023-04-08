@@ -38,10 +38,11 @@ void setup(){
     
     DecorationFactory d = new DecorationFactory();
     GifsToDecorationFactory(d);
-    
+    d.addDecorationToRoom(model.map.rooms.get(0));
     model.addPlayer(p);
     model.itemFactory = t;
     model.decorationFactory = d;
+    
     
     initMenu();
     if (model.isMusicPlaying){
@@ -128,11 +129,15 @@ public void GifsToDecorationFactory(DecorationFactory d){
      PImage[] portalEffect = Gif.getPImages(this, "imgs/effect/portal_effect.gif");
      PImage[] blood = Gif.getPImages(this, "imgs/effect/blood.gif");
      PImage[] pressE = Gif.getPImages(this, "imgs/effect/pressE.gif");
-     PImage[] d1 = Gif.getPImages(this, "imgs/decoration/d1.gif");
-     PImage[] d2 = Gif.getPImages(this, "imgs/decoration/d2.gif");
+     PImage[] crystal = Gif.getPImages(this, "imgs/decoration/d1.gif");
+     PImage[] hp = Gif.getPImages(this, "imgs/decoration/d2.gif");
      PImage[] d3 = Gif.getPImages(this, "imgs/decoration/d3.gif");
-
-     d.addDecorationGifs(jumpEffect, portalEffect, blood, pressE, d1, d2, d3);
+     PImage[] arrow_down = Gif.getPImages(this, "imgs/decoration/arrow_down.gif");
+     PImage[] arrow_left = Gif.getPImages(this, "imgs/decoration/arrow_left.gif");
+     PImage[] arrow_right = Gif.getPImages(this, "imgs/decoration/arrow_right.gif");
+     PImage[] arrow_up = Gif.getPImages(this, "imgs/decoration/arrow_up.gif");
+     
+     d.addDecorationGifs(jumpEffect, portalEffect, blood, pressE, crystal, hp, d3, arrow_down, arrow_left, arrow_right, arrow_up);
 }
 
 
