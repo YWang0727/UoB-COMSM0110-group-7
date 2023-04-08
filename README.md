@@ -85,59 +85,51 @@ Here are some screenshots for how we collaborated as a team.
 - Shared good software
 - Helped to fix bugs
 - Shared the change that might affect everyone’s development to keep everyone stay up to date
-
-<p align="center">
-    ![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
-    Screenshot of proposing games to develops
+<br></br>
+  <p align="center">
+      <img src="./ReportMaterials/reportprocess/gamepropose.png" alt="Screenshot of proposing games to develops">
+      <br>Screenshot of proposing games to develops
+       <br></br>
+      <img src="./ReportMaterials/reportprocess/meeting1.png" alt="Screenshot of meeting notes example - 1">
+      <br> Screenshot of meeting notes example - 1
+      <br></br>
+      <img src="./ReportMaterials/reportprocess/meeting2.png" alt="Screenshot of meeting notes example - 2">
+      <br>Screenshot of meeting notes example - 2
+      <br></br>
+      <img src="./ReportMaterials/reportprocess/goodsoftware.png" alt="Screenshot of sharing good software">
+      <br>Screenshot of sharing good software
+        <br></br>
+      <br></br>
+      <img src="./ReportMaterials/reportprocess/change.png" alt="Screenshot of sharing changes">
+      <br>Screenshot of sharing changes
+        <br></br>
+      <img src="./ReportMaterials/reportprocess/goodideas.png" alt="Screenshot of sharing good ideas for generating maps for game">
+      <br>Screenshot of sharing good ideas for generating maps for game
+        <br></br>
+      <img src="./ReportMaterials/reportprocess/fixbug.png" alt="Screenshot of helping to fix bug">  
+      <br>Screenshot of helping to fix bug
+        <br></br>
 </p>
-
-<p align="center">
-    ![Screenshot of meeting notes example - 1](./ReportMaterials/reportprocess/meeting1.png)
-        Screenshot of meeting notes example - 1
-</p>
-
-<p align="center">
-    ![Screenshot of meeting notes example - 2](./ReportMaterials/reportprocess/meeting2.png)
-    Screenshot of meeting notes example - 2
-</p>
-<p align="center">
-    ![Screenshot of sharing good software](./ReportMaterials/reportprocess/goodsoftware.png)
-    Screenshot of sharing good software
-</p>
-
-<p align="center">
-    ![Screenshot of sharing changes](./ReportMaterials/reportprocess/change.png)
-    SScreenshot of sharing changes
-</p>
-
-<p align="center">
-    ![Screenshot of sharing good ideas for generating maps for game](./ReportMaterials/reportprocess/goodideas.png)
-    Screenshot of sharing good ideas for generating maps for game
-</p>
-
-<p align="center">
-    ![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/fixbug.png)
-    Screenshot of helping to fix bug
-</p>
-
 What software did we use?
 
 Yes, we used various software introduced from the lecture.
-• Teams: communication and meeting
-• Jira: Assigned tasks and monitored our progress
-• UML: Illustrated class diagrams
-• Git & GitHub: for version control and committed staged work
-• Photoshop: designed certain character in game
-• Processing: wrote codes to build the game
+
+- Teams: communication and meeting
+- Jira: Assigned tasks and monitored our progress
+- UML: Illustrated class diagrams
+- Git & GitHub: for version control and committed staged work
+- Photoshop: designed certain character in game
+- Processing: wrote codes to build the game
+  <br></br>
 
 <p align="center">
-    ![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/jira.png)
-    Screenshot of using Jira to assign tasks and monitor progress
+    <img src="./ReportMaterials/reportprocess/jira.png" alt="Screenshot of using Jira to assign tasks and monitor progress">   
+    <br>Screenshot of using Jira to assign tasks and monitor progress
 </p>
-
+  <br></br>
 Also please follow below link if you want to check how we collaborate in Jira.
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
-
+<br></br>
 Did you have team roles?
 
 Yes, we divided the game into 5 parts at beginning of the project, so everyone can focus on his or her own part. Please find below table as how we assign the team role.
@@ -150,12 +142,14 @@ Yes, we divided the game into 5 parts at beginning of the project, so everyone c
 | Items & Items Factory               | Yue      |
 | Enemy & Enemy Factory               | Cedric   |
 
-Meanwhile, there are some works that we did not list above. We had different team member to do below:
-• kept tracking and pushing the progress to ensure delivery of the game
-• jotted down meeting note and shared recap
-• Assigned tasks regarding meeting
-• Acted as user or found new user to play game and asked for feedback
-• Reached out to internet for game design (player, enemies, items, gems & rocks etc..), as we wanted it our game in an extraterrestrial world setting
+Meanwhile, apart from the game, there are some works have been done by different team members:
+
+- kept tracking and pushing the progress to ensure delivery of the game
+- jotted down meeting note and shared recap
+- Assigned tasks regarding meeting
+- Acted as user or found new user to play game and asked for feedback
+- Reached out to internet for game design (player, enemies, items, gems & rocks etc..), as we wanted it our game in an extraterrestrial world setting
+  <br></br>
 
 ## 8. Conclusion (10% ~500 words)
 
