@@ -172,6 +172,8 @@ public class DecorationFactory extends Factory{
        if(rd == 4 || rd == 5){
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
          d.type = rd == 4 ? Type.GIF_CRYSTAL : Type.GIF_HP;
+         d.w = Type.BOARD_GRIDSIZE/2;
+         d.h = Type.BOARD_GRIDSIZE/2;
        }else{
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE);
          d.type = Type.GIF_LIGHT;

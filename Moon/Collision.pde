@@ -181,11 +181,15 @@ public class Collision{
            if(d.type ==  Type.GIF_HP || d.type ==  Type.GIF_CRYSTAL){
               if(detect(p, d)){
                  if(d.type == Type.GIF_HP){
-                   p.hp += 10;
+                   if(p.hp < p.maxHp){
+                      p.hp += 10;
+                      if(p.hp > p.maxHp) p.hp = p.maxHp;
+                      iterator.remove();
+                   }
                  }else{
                    p.value += 200;
+                   iterator.remove();
                  }
-                 iterator.remove();
               }
            }
            
