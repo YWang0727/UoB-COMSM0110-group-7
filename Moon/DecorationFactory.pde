@@ -19,12 +19,32 @@ public class DecorationFactory extends Factory{
     }
     
    public void addDecorationGifs(PImage[]... gifs){
-      for(PImage[] gif : gifs){
-          for(PImage img : gif){
-              img.resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
+      for(int i = 0 ; i < gifs.length; i++){
+         PImage[] gif = gifs[i];
+         for(PImage img : gif){
+              if(i == Type.GIF_ARROW_DOWN || i == Type.GIF_ARROW_UP){
+                 img.resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE * 2);
+              }else if(i == Type.GIF_ARROW_LEFT || i == Type.GIF_ARROW_RIGHT){
+                 img.resize(Type.BOARD_GRIDSIZE * 2, Type.BOARD_GRIDSIZE);
+               }else{
+                  img.resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
+               }
            }
-          decorationGifs.add(gif);      
+          decorationGifs.add(gif);   
       }
+     
+     // for(PImage[] gif : gifs){
+     //     for(PImage img : gif){
+     //         img.resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE);
+     //      }
+     //     decorationGifs.add(gif);      
+     // }
+      
+      //PImage[] arrow = this.decorationGifs.get(this.decorationGifs.size() - 1);
+      // for(PImage img : arrow){
+      //  img.resize(Type.BOARD_GRIDSIZE, Type.BOARD_GRIDSIZE / 2);
+      // }
+      
    }
    
     public void addDecorationToRoom(Room r){
@@ -39,7 +59,89 @@ public class DecorationFactory extends Factory{
               }
             }
          }
+         
+         addPathArrow(r);
+         
+         
     }
+    
+    /*
+      static final int GIF_ARROW_DOWN = 7;
+      static final int GIF_ARROW_LEFT = 8;
+      static final int GIF_ARROW_RIGHT = 9;
+      static final int GIF_ARROW_UP = 10;
+      
+        static final int BOARD_MAX_HEIGHT = 20;
+  static final int BOARD_MAX_WIDTH = 29;
+    */
+    
+    public void addPathArrow(Room r){
+      
+      //up
+      Decoration up = new Decoration(new int[]{Type.BOARD_MAX_WIDTH/2 + 1 , 1});
+      up.imgs = this.decorationGifs.get(Type.GIF_ARROW_UP);
+      up.w = Type.BOARD_GRIDSIZE;
+      up.h = Type.BOARD_GRIDSIZE * 2;
+      
+      //down
+      Decoration down = new Decoration(new int[]{Type.BOARD_MAX_WIDTH/2 + 1 , Type.BOARD_MAX_HEIGHT - 3});
+      down.imgs = this.decorationGifs.get(Type.GIF_ARROW_DOWN);
+      down.w = Type.BOARD_GRIDSIZE;
+      down.h = Type.BOARD_GRIDSIZE * 2;
+      
+      //left
+      Decoration left1 = new Decoration(new int[]{1, Type.BOARD_MAX_HEIGHT / 3 + 1});
+      left1.imgs = this.decorationGifs.get(Type.GIF_ARROW_LEFT);
+      left1.h = Type.BOARD_GRIDSIZE;
+      left1.w = Type.BOARD_GRIDSIZE * 2;
+      
+      Decoration left2 = new Decoration(new int[]{1, Type.BOARD_MAX_HEIGHT * 2 / 3 + 3});
+      left2.imgs = this.decorationGifs.get(Type.GIF_ARROW_LEFT);
+      left2.h = Type.BOARD_GRIDSIZE;
+      left2.w = Type.BOARD_GRIDSIZE * 2;
+      
+      //right
+      Decoration right1 = new Decoration(new int[]{Type.BOARD_MAX_WIDTH - 3, Type.BOARD_MAX_HEIGHT / 3 + 1});
+      right1.imgs = this.decorationGifs.get(Type.GIF_ARROW_RIGHT);
+      right1.h = Type.BOARD_GRIDSIZE;
+      right1.w = Type.BOARD_GRIDSIZE * 2;
+      
+      Decoration right2 = new Decoration(new int[]{Type.BOARD_MAX_WIDTH - 3, Type.BOARD_MAX_HEIGHT * 2 / 3 + 3});
+      right2.imgs = this.decorationGifs.get(Type.GIF_ARROW_RIGHT);      
+      right2.h = Type.BOARD_GRIDSIZE;
+      right2.w = Type.BOARD_GRIDSIZE * 2; 
+      
+      if(r.type == 0){
+         r.decorations.add(up); 
+         r.decorations.add(down); 
+      }
+      
+      if(r.type == 1 || r.type == 4){
+         r.decorations.add(up); 
+         r.decorations.add(down); 
+         r.decorations.add(left1); 
+         r.decorations.add(left2); 
+
+         r.decorations.add(right1); 
+         r.decorations.add(right2); 
+
+      }
+      if(r.type == 2){
+         r.decorations.add(left1); 
+         r.decorations.add(left2); 
+         r.decorations.add(right1); 
+         r.decorations.add(right2); 
+      }
+      if(r.type == 3){
+         r.decorations.add(down); 
+      }
+      if(r.type == 5){
+         r.decorations.add(up); 
+         r.decorations.add(right1); 
+         r.decorations.add(right2); 
+      }
+    }
+    
     
     //check position according target position and enemy's size
     //pos[0] = i, pos[1] = j
@@ -57,14 +159,24 @@ public class DecorationFactory extends Factory{
       return true;
     }
     
+    /*  static final int GIF_HP = 4;
+        static final int GIF_CRYSTAL = 5;
+        static final int GIF_LIGHT = 6;
+        static final int GIF_ARROW = 7;
+    */
+    
     public Decoration newDecoration(int[] pos){
        Decoration d = new Decoration(pos);
        int rd = (int)random(4, 7);
-       d.imgs = this.decorationGifs.get(rd);//2  - torch
+       d.imgs = this.decorationGifs.get(rd);
        if(rd == 4 || rd == 5){
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
+         d.type = rd == 4 ? Type.GIF_CRYSTAL : Type.GIF_HP;
+         d.w = Type.BOARD_GRIDSIZE/2;
+         d.h = Type.BOARD_GRIDSIZE/2;
        }else{
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE);
+         d.type = Type.GIF_LIGHT;
        }
        
        return d;

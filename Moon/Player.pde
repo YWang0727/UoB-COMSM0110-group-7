@@ -7,7 +7,8 @@ public class Player extends ActionProp{
   
   protected int blinkCount; 
   
-  protected int bWidthInc, bHeightInc, bSpeed, bDp, bNum;
+  protected float bWidthInc, bHeightInc, bSpeed, bDp;
+  protected int bNum;
 
   protected ArrayList<Item> items;
   protected Item[] weapons;
@@ -24,9 +25,13 @@ public class Player extends ActionProp{
     this.type = Type.PLAYER;    
     this.location = new PVector(width/2, height/2);
     this.w = Type.BOARD_GRIDSIZE - 10;
-    this.h = Type.BOARD_GRIDSIZE - 1;
+    this.h = Type.BOARD_GRIDSIZE - 5;
     this.hp = 100;
-    this.bNum = 0;
+    this.maxHp = hp;
+    this.bSpeed = dif.bSpeed;
+    this.bDp = dif.bDp;
+    this.bNum = dif.bNum;
+    
     //Timer and blink effects
     this.invincibleTimer = new Timer();
     this.knockBackTimer = new Timer();
@@ -37,9 +42,9 @@ public class Player extends ActionProp{
     this.items = new ArrayList();
 
     this.transported = true;
-    //img of heart
-    //this.img = loadImage("imgs/player/hp.png");
-    //this.img.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
+    //img of heart_zero
+    this.img = loadImage("imgs/player/hp.png");
+    this.img.resize(Type.BOARD_GRIDSIZE *2/3, Type.BOARD_GRIDSIZE *2/3);
   }
   
   //add weapon
@@ -65,11 +70,27 @@ public class Player extends ActionProp{
   
   public void changeItem(){
      if(items.size() == 0){
+        
         println("no items");
+        
+        
         return;
      }
      this.currentItemIndex = (this.currentItemIndex + 1) % items.size();
-     println("change items: " + currentItemIndex);
+     //println("change items: " + currentItemIndex);
+     this.items.get(currentItemIndex).showMe = true;
+     
+  }
+  
+  public void showCurrentItem(){
+     if(this.items.size() <= 0) return;
+     this.items.get(currentItemIndex).showMe(this.location);
+     
+     //for(Item t : items){
+     //  if(t.showMe && t.id == this.currentItemIndex){
+     //     t.showMe(this.location);
+     //  }
+     //}
   }
   
   public void removeCurrentItem(){
@@ -132,7 +153,8 @@ public class Player extends ActionProp{
        }
        
        
-        super.attacked(dp);
+       super.attacked(dp);
+       println(dp);
         
        //twinkle
        isInvincible = true;
@@ -165,6 +187,7 @@ public class Player extends ActionProp{
     }
     drawHp();
     drawScore();
+    showCurrentItem();
   }
   
   
@@ -177,11 +200,17 @@ public class Player extends ActionProp{
   
   
   public void drawHp(){
-     translate(0, 0);
+      translate(0, 0);
+      
+      for(int j = 0; j <= this.maxHp; j += Type.PLAYER_HEART){
+         image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
+      }
+     
      for(int j = 0; j <= this.hp; j += Type.PLAYER_HEART){
          image(hpGif[(int)hpGifCount], Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
          this.hpGifCount = (hpGifCount + 0.01) % (float)hpGif.length;
       }
+      
   }
   
    public void drawScore(){

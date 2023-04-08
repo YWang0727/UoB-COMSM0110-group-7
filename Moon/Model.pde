@@ -18,12 +18,14 @@ public class Model{
    protected boolean gamePause = false;
    protected boolean gameOver = false;
    protected boolean globalList = false;
+   
+   protected boolean addBoss = false;
 
    public Model(){
        this.blockFactory = new BlockFactory();
        this.roomFactory = new RoomFactory(blockFactory);
        map = new Map();
-       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+       map.addRoom(roomFactory.newRoom(Type.ROOM_START)); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
    }
    
    public void addPlayer(Player p){
@@ -31,7 +33,10 @@ public class Model{
    }
    
    public void addBossToMap(){
-       enemyFactory.addBossToMap(map);
+       if(roomFactory.id >=2 && this.addBoss == false){
+           enemyFactory.addBossToMap(map);
+           this.addBoss = true;
+       }
    }
    
    public Item newItem(int[] pos){

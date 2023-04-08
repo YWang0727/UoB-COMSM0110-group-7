@@ -62,10 +62,13 @@ static abstract class Type {
   static final int GIF_PORTAL = 1;
   static final int GIF_BULLET_REMOVE = 2;
   static final int GIF_PRESSE = 3;
-  static final int GIF_D1 = 4;
-  static final int GIF_D2 = 5;
-  static final int GIF_D3 = 6;
-
+  static final int GIF_CRYSTAL = 4;
+  static final int GIF_HP = 5;
+  static final int GIF_LIGHT = 6;
+  static final int GIF_ARROW_DOWN = 7;
+  static final int GIF_ARROW_LEFT = 8;
+  static final int GIF_ARROW_RIGHT = 9;
+  static final int GIF_ARROW_UP = 10;
 
   //static final int GIF_BULLET_REMOVE = 2;
 

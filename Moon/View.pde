@@ -38,12 +38,15 @@ public class View{
          // Draw in game menu
          drawInGameMenu();
          //image(this.instructionImg,0,0);
-         drawRoomNumber();
+         //drawRoomNumber();
+         drawDifficultyLevel();
+         
     }
          
   }
   
   public void drawBoss(){
+    if(model.map.enemies.size() <= 0) return;
      Enemy boss = model.map.enemies.get(0);
      boss.move(model.player.location);
      boss.display();
@@ -103,6 +106,18 @@ public class View{
       //   text("Danger is comming!!" , Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
       //}
       
+  
+  }
+  
+  public void drawDifficultyLevel(){
+      translate(0, 0);
+      noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(255);
+      textSize(32); 
+      textAlign(RIGHT, TOP);
+      text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
   
   }
 

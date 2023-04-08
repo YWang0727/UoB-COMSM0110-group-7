@@ -2,15 +2,15 @@ public class AlienKiller extends Enemy{
 
     PVector targetLocation;
 
-    public AlienKiller(int hp){
+    public AlienKiller(){
       this.fall = false;
       this.type = Type.ENEMY_KILLER;
       this.velocity = new PVector(0.1, 0.1);
       this.w = (int)(Type.BOARD_GRIDSIZE * 3);
       this.h = (int)(Type.BOARD_GRIDSIZE) * 3;
-      this.hp = hp;
-      this.maxHp = hp;
-      this.dp = 10;
+      this.hp = 20000;
+      this.maxHp = 20000;
+      this.dp = dif.bossDp;
       this.value = 10000;
       this.targetLocation = new PVector(0, 0);
     }
@@ -28,7 +28,7 @@ public class AlienKiller extends Enemy{
           target.mult(3); 
           velocity.lerp(target, 0.05f); 
           velocity.normalize();
-          velocity.mult(1);
+          velocity.mult(dif.bossV);
           location.add(velocity);
 
 

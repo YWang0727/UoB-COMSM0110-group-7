@@ -75,10 +75,11 @@ public class ItemFactory extends Factory{
     
     public Item newItem(int[] pos){
        int r = (int)random(10);
+       r = 5;
        Item t = null; 
        if(r >= 0 && r <= 3){   
            t = newWeapon();
-       }else if(r > 3 && r <= 6){  
+       }else if(r > 3 && r <= 6){
             //randomly generate a new potion
            t = newPotion();
        }else{
