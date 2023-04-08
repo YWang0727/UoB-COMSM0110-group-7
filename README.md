@@ -130,7 +130,11 @@ Yes, we used various software introduced from the lecture.
 • Photoshop: designed certain character in game
 • Processing: wrote codes to build the game
 
-Screenshot of how we assign tasks and monitored progress
+<p align="center">
+    ![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/jira.png)
+    Screenshot of using Jira to assign tasks and monitor progress
+</p>
+
 Also please follow below link if you want to check how we collaborate in Jira.
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
 
