@@ -170,6 +170,10 @@ public class DecorationFactory extends Factory{
        int rd = (int)random(4, 7);
        d.imgs = this.decorationGifs.get(rd);
        if(rd == 4 || rd == 5){
+        int rd2 = (int)random(0, 10);
+        if(rd2 <= 2) rd = 5;
+         else rd = 4;
+         
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
          d.type = rd == 4 ? Type.GIF_CRYSTAL : Type.GIF_HP;
          d.w = Type.BOARD_GRIDSIZE/2;

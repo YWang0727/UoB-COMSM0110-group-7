@@ -183,12 +183,14 @@ public class Collision{
               if(detect(p, d)){
                  if(d.type == Type.GIF_HP){
                    if(p.hp < p.maxHp){
+                      ding.play(2);
                       p.hp += 10;
                       if(p.hp > p.maxHp) p.hp = p.maxHp;
                       iterator.remove();
                    }
                  }else{
                    p.value += 200;
+                   ding.play(2);
                    iterator.remove();
                  }
               }
