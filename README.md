@@ -78,12 +78,13 @@ How did we work together?
 We adopted a quite flexible and collaborative approach for game development. Generally, we have a weekly meeting in lab and on teams during holiday, to go through every aspect of the game development, we have one team member jotted down meeting notes each week and assign tasks to team member who is in charge for that in Jira. We posted our questions on teams to get instant feedback or to get support, or to fix bugs, and we committed our work to GitHub so everyone in team could see the changes and monitor our process to ensure our work hit the weekly schedule.
 
 Here are some screenshots for how we collaborated as a team.
-• Shared meeting notes
-• Shared good ideas
-• Shared public methods so others can make full use of the codes and avoid repetition
-• Shared good software
-• Helped to fix bugs
-• Shared the change that might affect everyone’s development to keep everyone stay up to date
+
+- Shared meeting notes
+- Shared good ideas
+- Shared public methods so others can make full use of the codes and avoid repetition
+- Shared good software
+- Helped to fix bugs
+- Shared the change that might affect everyone’s development to keep everyone stay up to date
 
 ![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
 
