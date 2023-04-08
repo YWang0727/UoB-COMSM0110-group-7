@@ -86,33 +86,28 @@ Here are some screenshots for how we collaborated as a team.
 - Helped to fix bugs
 - Shared the change that might affect everyone’s development to keep everyone stay up to date
 
-![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
 
-<center>Screenshot of proposing games to develops</center>
-
-![Screenshot of meeting notes example - 1](./ReportMaterials/reportprocess/meeting1.png)
-
-<center>Screenshot of meeting notes example - 1</center>
+<p align="center">Screenshot of meeting notes example - 1</p>
 
 ![Screenshot of meeting notes example - 2](./ReportMaterials/reportprocess/meeting2.png)
 
-<center>Screenshot of meeting notes example - 2</center>
+<p align="center">Screenshot of meeting notes example - 2</p>
 
 ![Screenshot of sharing good software](./ReportMaterials/reportprocess/goodsoftware.png)
 
-<center>Screenshot of sharing good software</center>
+<p align="center">Screenshot of sharing good software</p>
 
 ![Screenshot of sharing changes](./ReportMaterials/reportprocess/change.png)
 
-<center>SScreenshot of sharing changes</center>
+<p align="center">SScreenshot of sharing changes</p>
 
 ![Screenshot of sharing good ideas for generating maps for game](./ReportMaterials/reportprocess/goodideas.png)
 
-<center>Screenshot of sharing good ideas for generating maps for game</center>
+<p align="center">Screenshot of sharing good ideas for generating maps for game</p>
 
 ![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/fixbug.png)
 
-<center>Screenshot of helping to fix bug</center>
+<p align="center">Screenshot of helping to fix bug</p>
 
 What software did we use?
 
@@ -124,7 +119,9 @@ Yes, we used various software introduced from the lecture.
 • Photoshop: designed certain character in game
 • Processing: wrote codes to build the game
 
-Screenshot of how we assign tasks and monitored progress
+
+![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/jira.png)
+<p align="center">Screenshot of how we assign tasks and monitored progress</p>
 Also please follow below link if you want to check how we collaborate in Jira.
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
 
