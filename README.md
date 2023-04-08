@@ -88,19 +88,31 @@ Here are some screenshots for how we collaborated as a team.
 
 ![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
 
-![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/meeting1.png)
+<center>Screenshot of proposing games to develops</center>
 
-Screenshot of meeting notes example -1
+![Screenshot of meeting notes example - 1](./ReportMaterials/reportprocess/meeting1.png)
 
-Screenshot of meeting notes example 2
+<center>Screenshot of meeting notes example - 1</center>
 
-Screenshot of sharing good software
+![Screenshot of meeting notes example - 2](./ReportMaterials/reportprocess/meeting2.png)
 
-Screenshot of sharing good ideas for generating maps for game
+<center>Screenshot of meeting notes example - 2</center>
 
-Screenshot of sharing changes
+![Screenshot of sharing good software](./ReportMaterials/reportprocess/goodsoftware.png)
 
-Screenshot of helping to fix bug
+<center>Screenshot of sharing good software</center>
+
+![Screenshot of sharing changes](./ReportMaterials/reportprocess/change.png)
+
+<center>SScreenshot of sharing changes</center>
+
+![Screenshot of sharing good ideas for generating maps for game](./ReportMaterials/reportprocess/goodideas.png)
+
+<center>Screenshot of sharing good ideas for generating maps for game</center>
+
+![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/fixbug.png)
+
+<center>Screenshot of helping to fix bug</center>
 
 What software did we use?
 
