@@ -71,24 +71,68 @@ o Description of how code was tested.
 
 ## 7. Process (15% ~750 words)
 
-o Teamwork. How did you work together, what tools did you use. Did you have team roles? Reflection on how you worked together.
+o Teamwork. How did you work together, what tools did you use? Did you have team roles? Reflection on how you worked together.
 
-We had our weekly meeting in lab and communicated in teams daily. we had our meeting note shared in teams.
-We use UML to illustate our class diagrams , we update our progress in github . we use Jira to assign our tasks and track our progress. We use agile software development method to develop our game.
+How did we work together?
 
+We adopted a quite flexible and collaborative approach for game development. Generally, we have a weekly meeting in lab and on teams during holiday, to go through every aspect of the game development, we have one team member jotted down meeting notes each week and assign tasks to team member who is in charge for that in Jira. We posted our questions on teams to get instant feedback or to get support, or to fix bugs, and we committed our work to GitHub so everyone in team could see the changes and monitor our process to ensure our work hit the weekly schedule.
+
+Here are some screenshots for how we collaborated as a team.
+• Shared meeting notes
+• Shared good ideas
+• Shared public methods so others can make full use of the codes and avoid repetition
+• Shared good software
+• Helped to fix bugs
+• Shared the change that might affect everyone’s development to keep everyone stay up to date
+
+![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
+
+![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/meeting1.png)
+
+Screenshot of meeting notes example -1
+
+Screenshot of meeting notes example 2
+
+Screenshot of sharing good software
+
+Screenshot of sharing good ideas for generating maps for game
+
+Screenshot of sharing changes
+
+Screenshot of helping to fix bug
+
+What software did we use?
+
+Yes, we used various software introduced from the lecture.
+• Teams: communication and meeting
+• Jira: Assigned tasks and monitored our progress
+• UML: Illustrated class diagrams
+• Git & GitHub: for version control and committed staged work
+• Photoshop: designed certain character in game
+• Processing: wrote codes to build the game
+
+Screenshot of how we assign tasks and monitored progress
+Also please follow below link if you want to check how we collaborate in Jira.
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
 
-Since we have a more clearer picture of our goal and we divided the game to 5 parts and allocate them to exactly 5 team members. Here you have an overview of our initial task allocation.
+Did you have team roles?
 
-    Room & Room Factory - Ed
+Yes, we divided the game into 5 parts at beginning of the project, so everyone can focus on his or her own part. Please find below table as how we assign the team role.
 
-    Player, basic properties , collision Detection etc.. - Xiao
+| Task                                | To do by |
+| ----------------------------------- | -------- |
+| Rooms & Room Factory                | Ed       |
+| Menu & Setting & BGM                | Arlo     |
+| Player, Basic props, Collision etc… | Xiao     |
+| Items & Items Factory               | Yue      |
+| Enemy & Enemy Factory               | Cedric   |
 
-    Item & Item Factory - Yue
-
-    Menu - Arlo
-
-    Enemy & Enemy Factory - Cedric
+Meanwhile, there are some works that we did not list above. We had different team member to do below:
+• kept tracking and pushing the progress to ensure delivery of the game
+• jotted down meeting note and shared recap
+• Assigned tasks regarding meeting
+• Acted as user or found new user to play game and asked for feedback
+• Reached out to internet for game design (player, enemies, items, gems & rocks etc..), as we wanted it our game in an extraterrestrial world setting
 
 ## 8. Conclusion (10% ~500 words)
 
