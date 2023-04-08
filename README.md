@@ -86,33 +86,39 @@ Here are some screenshots for how we collaborated as a team.
 - Helped to fix bugs
 - Shared the change that might affect everyone’s development to keep everyone stay up to date
 
-![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
+<p align="center">
+    ![Screenshot of proposing games to develops](./ReportMaterials/reportprocess/gamepropose.png)
+    Screenshot of proposing games to develops
+</p>
 
-<center>Screenshot of proposing games to develops</center>
+<p align="center">
+    ![Screenshot of meeting notes example - 1](./ReportMaterials/reportprocess/meeting1.png)
+        Screenshot of meeting notes example - 1
+</p>
 
-![Screenshot of meeting notes example - 1](./ReportMaterials/reportprocess/meeting1.png)
+<p align="center">
+    ![Screenshot of meeting notes example - 2](./ReportMaterials/reportprocess/meeting2.png)
+    Screenshot of meeting notes example - 2
+</p>
+<p align="center">
+    ![Screenshot of sharing good software](./ReportMaterials/reportprocess/goodsoftware.png)
+    Screenshot of sharing good software
+</p>
 
-<center>Screenshot of meeting notes example - 1</center>
+<p align="center">
+    ![Screenshot of sharing changes](./ReportMaterials/reportprocess/change.png)
+    SScreenshot of sharing changes
+</p>
 
-![Screenshot of meeting notes example - 2](./ReportMaterials/reportprocess/meeting2.png)
+<p align="center">
+    ![Screenshot of sharing good ideas for generating maps for game](./ReportMaterials/reportprocess/goodideas.png)
+    Screenshot of sharing good ideas for generating maps for game
+</p>
 
-<center>Screenshot of meeting notes example - 2</center>
-
-![Screenshot of sharing good software](./ReportMaterials/reportprocess/goodsoftware.png)
-
-<center>Screenshot of sharing good software</center>
-
-![Screenshot of sharing changes](./ReportMaterials/reportprocess/change.png)
-
-<center>SScreenshot of sharing changes</center>
-
-![Screenshot of sharing good ideas for generating maps for game](./ReportMaterials/reportprocess/goodideas.png)
-
-<center>Screenshot of sharing good ideas for generating maps for game</center>
-
-![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/fixbug.png)
-
-<center>Screenshot of helping to fix bug</center>
+<p align="center">
+    ![Screenshot of helping to fix bug](./ReportMaterials/reportprocess/fixbug.png)
+    Screenshot of helping to fix bug
+</p>
 
 What software did we use?
 
