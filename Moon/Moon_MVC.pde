@@ -9,12 +9,16 @@ IntList pkeys = new IntList();
 
 // Menu
 Minim minim;
-AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, playerHurt, mining, enemyShoot, touchGround;
+AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, 
+playerHurt, mining, enemyShoot, touchGround, ding;
+
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
 
 Difficulty dif;
+ArrayList<String> rank = new ArrayList();
+String playerName = "";
 
 /**
 * Initialize all project, run once
@@ -43,7 +47,6 @@ void setup(){
     model.itemFactory = t;
     model.decorationFactory = d;
     
-    
     initMenu();
     if (model.isMusicPlaying){
       bgMusic.play();
@@ -53,6 +56,41 @@ void setup(){
     //Collision c = new Collision(g);
     //controller.collision = c;
     view = new View(model);
+
+}
+
+void reset(){
+    
+    playerName = "";
+  
+    Model newModel = new Model();
+    
+    EnemyFactory e = new EnemyFactory();
+    GifsToEenemyFactory(e);
+    newModel.enemyFactory = e;
+    
+    //model.addBossToMap();
+    ItemFactory t = new ItemFactory();
+    Player p = new Player();
+    p.weapons[0] = t.weaponPistol();
+    p.weapons[1] = t.weaponMinergun();
+    GifsToPlayer(p);
+    
+    DecorationFactory d = new DecorationFactory();
+    GifsToDecorationFactory(d);
+    d.addDecorationToRoom(newModel.map.rooms.get(0));
+    newModel.addPlayer(p);
+    newModel.itemFactory = t;
+    newModel.decorationFactory = d;
+    
+    if (newModel.isMusicPlaying){
+      bgMusic.play();
+    }
+    
+    controller.model = newModel;
+    controller.collision.decorationFactory = newModel.decorationFactory;
+    
+    view.model = newModel;
 
 }
 
@@ -168,7 +206,7 @@ public void initMenu(){
     mining = minim.loadFile("Data/music/mining.wav");
     enemyShoot = minim.loadFile("Data/music/enemyShot.wav");
     touchGround = minim.loadFile("Data/music/touchGround.wav");
-    
+    ding = minim.loadFile("Data/music/ding.wav");
     stab = minim.loadFile("Data/music/stabbed.mp3");
     stab.setGain(-3);
     trampoline = minim.loadFile("Data/music/trampoline.wav");
@@ -255,9 +293,9 @@ public void keyReleased(){
     if(key == 'w' || key == 's'){
       controller.controlPlayer(Type.KEY_RELEASED_WS);
     }
-    if(key == 'f'){
-      controller.controlPlayer(Type.KEY_F);
-    }
+    //if(key == 'f'){
+    //  controller.controlPlayer(Type.KEY_F);
+    //}
     if(key == 'e'){
       controller.controlPlayer(Type.KEY_E);
     }
@@ -291,6 +329,7 @@ public void mouseReleased(){
       click.play(2);
       controller.setMenuHomePage(false);
       controller.setGameStart(true);
+      
     }
     // Click Option
     if (mouseX > 201 && mouseX < 433 && mouseY > 281 && mouseY < 378) {
@@ -354,11 +393,19 @@ public void mouseReleased(){
   else if(controller.getGameOver()){
       //there should be a restart button in this menu
       
+      // player gameOver music
+      
       // Restart
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        
+        //reset game
+        this.reset();
+        controller.model.menuHomePage = false;
         controller.setGameStart(true);
         controller.setGameOver(false);
       }
+      
+      
   }
   //only work when game starts
   else{

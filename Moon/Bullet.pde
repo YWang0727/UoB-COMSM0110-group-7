@@ -8,7 +8,7 @@ public class Bullet extends ActionProp{
     //cause damage if alive
     //maybe two gifs, fly and die
     protected PVector target;
-   
+    
     Bullet(PVector location, PVector velocity, float w, float h, float dp){
        this.isAlive = true;
        this.w = (int)w;

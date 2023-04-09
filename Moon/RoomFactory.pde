@@ -38,9 +38,101 @@ public class RoomFactory extends Factory{
            r =  generateLR(this.id);
         }
         r.tint = random(360);
+        optimizeRoom(r);
         this.increaseId();
         return r;
-        
+    }
+    
+    public void optimizeRoom(Room r){
+       // 2 block path
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_WALL
+             && r.blockType[i - 1][j] == Type.BLOCK_EMPTY
+             && r.blockType[i - 2][j] == Type.BLOCK_WALL
+            ){
+               r.blockType[i - 2][j] = Type.BLOCK_EMPTY;
+            }
+         }
+       }
+      
+      //empty upon crate
+      for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_CRATE){
+              r.blockType[i - 1][j] = Type.BLOCK_EMPTY;
+              r.blockType[i - 1][j - 1] = Type.BLOCK_EMPTY;
+              r.blockType[i - 1][j + 1] = Type.BLOCK_EMPTY;
+            }
+         }
+       }
+      
+      //more platform
+      for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_WALL
+            && r.blockType[i][j + 1] == Type.BLOCK_EMPTY
+            && r.blockType[i][j + 2] == Type.BLOCK_WALL
+            && r.blockType[i - 1][j + 1] == Type.BLOCK_EMPTY
+            ){
+              r.blockType[i][j + 1] = Type.BLOCK_PLATFORM;
+            }
+         }
+       }
+       
+       //more platform
+      //for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+      //   for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+      //      if(r.blockType[i][j] == Type.BLOCK_PLATFORM && r.blockType[i][j - 1] == Type.BLOCK_WALL && r.blockType[i][j + 1] == Type.BLOCK_WALL){
+      //        if(r.blockType[i][j - 1] == Type.BLOCK_WALL && r.blockType[i + 1][j - 1] == Type.BLOCK_EMPTY){
+      //           r.blockType[i][j - 1] = Type.BLOCK_PLATFORM;
+      //        }
+      //        if(r.blockType[i][j + 1] == Type.BLOCK_WALL && r.blockType[i + 1][j + 1] == Type.BLOCK_EMPTY){
+      //           r.blockType[i][j + 1] = Type.BLOCK_PLATFORM;
+      //        } 
+              
+      //      }
+      //   }
+      // }
+      
+      
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if((r.blockType[i][j] == Type.BLOCK_SPIKE || r.blockType[i][j] == Type.BLOCK_CRATE) && r.blockType[i + 1][j] != Type.BLOCK_WALL){
+              r.blockType[i][j] = Type.BLOCK_EMPTY;
+            }
+         }
+       }
+       
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_PORTAL && r.blockType[i - 2][j] != Type.BLOCK_EMPTY){
+              r.blockType[i - 2][j] = Type.BLOCK_EMPTY;
+            }
+         }
+       }
+       
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_WALL){
+              //8 block around
+              if(r.blockType[i - 1][j - 1] == Type.BLOCK_EMPTY
+               && r.blockType[i - 1][j] == Type.BLOCK_EMPTY
+               && r.blockType[i - 1][j + 1] == Type.BLOCK_EMPTY
+               && r.blockType[i][j - 1] == Type.BLOCK_EMPTY
+               && r.blockType[i][j + 1] == Type.BLOCK_EMPTY
+               && r.blockType[i + 1][j - 1] == Type.BLOCK_EMPTY
+               && r.blockType[i + 1][j] == Type.BLOCK_EMPTY
+               && r.blockType[i + 1][j + 1] == Type.BLOCK_EMPTY
+              ){
+                 r.blockType[i][j] = Type.BLOCK_EMPTY;
+              }
+              
+            }
+         }
+       }
+      
+       
     }
     
     protected Room generateStart(int id){
@@ -62,6 +154,7 @@ public class RoomFactory extends Factory{
            r = roomType4();
            r.type = 4;
         }
+        optimizeRoom(r);
         r.index = id;
         return r;
     }

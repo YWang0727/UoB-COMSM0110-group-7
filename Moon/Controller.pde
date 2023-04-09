@@ -32,10 +32,19 @@ public class Controller{
           
           //boss and player
           collision.checkBossAndPlayer(model.map, model.player);
-          
           dif.increaseByTime(model.player);
-      
+          
+          if(p.hp <= 0){
+             model.gameStart = false;
+             model.gameOver = true;
+          }
+          
       }
+      
+      //if(model.gameOver){
+         
+      
+      //}
 
      
    }
@@ -232,22 +241,28 @@ public class Controller{
      if(keyType == Type.KEY_A){
         if(mousePressed == false) p.left = true;
         p.velocity.x = -Type.PLAYER_SPEED_X;
+        p.velocity3.x = -p.spInc;
      }
     
      //move right by set speedX
      if(keyType == Type.KEY_D){
         if(mousePressed == false) p.left = false;
         p.velocity.x = Type.PLAYER_SPEED_X;
+        p.velocity3.x = p.spInc;
      }
      
      //stop move left/right
      if(keyType == Type.KEY_RELEASED_AD){
         p.velocity.x = 0;
         p.velocity2.x = 0;
+        p.velocity3.x = 0;
      }
      
      //activate or cancel fly mode
+     /*
      if(keyType == Type.KEY_F){
+       if(p.showFlyTrigger == false) p.showFlyTrigger = true;
+       else return;
        //cancel fly mode
        if(p.fly){
           p.fly = false;
@@ -259,13 +274,7 @@ public class Controller{
           p.fall = false;
           p.velocity.y = 0;
        }
-       
-       if(p.fly){
-          println("fly mode activated");
-       }else{
-          println("fly mode cancelled");
-       }
-     }
+     }*/
      
      //stop move up/down
      if(keyType == Type.KEY_RELEASED_WS){

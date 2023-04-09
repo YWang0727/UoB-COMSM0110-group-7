@@ -26,6 +26,7 @@ static abstract class Type {
   static final float PLAYER_SPEED_INCREMENT = (float)BOARD_GRIDSIZE / 100;
   static final float PLAYER_SPEED_X = BOARD_GRIDSIZE / 9;
   static final float PLAYER_SPEED_Y = BOARD_GRIDSIZE / 4;
+  static final float PLAYER_SPEEDINC = BOARD_GRIDSIZE / 18;
   
   static final int FALL_DAMAGE = 20;
   static final int FALL_DAMAGE_DIST = BOARD_GRIDSIZE * 2;
@@ -95,7 +96,7 @@ static abstract class Type {
   static final int KEY_S_SPACE = 200;
 
   //temporarily for activate fly
-  static final int KEY_F = 102;
+  //static final int KEY_F = 102;
 
   //room - indices for room generation
   static final int TO_LEFT = 2;
@@ -150,5 +151,7 @@ static abstract class Type {
   static final int POTION_HP_EFFECT = 10;
   
   static final int POTION_SP = 1;
+
+  static final int POTION_FLY = 2;
   
 }

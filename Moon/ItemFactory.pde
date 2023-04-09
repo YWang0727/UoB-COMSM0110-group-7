@@ -13,6 +13,10 @@ public class ItemFactory extends Factory{
     protected ArrayList<PImage> weaponImgs;
     protected ArrayList<PImage> potionImgs;
     //protected ArrayList<PImage> outfitImgs;
+    
+    protected Timer spTimer;
+    protected Timer flyTimer;
+    protected boolean isActive;
 
     public ItemFactory(){
        this.id = 0;
@@ -20,6 +24,10 @@ public class ItemFactory extends Factory{
        this.potionImgs = new ArrayList();
        //this.coinImgs = new ArrayList();
        this.init(); 
+       
+       this.spTimer = new Timer();
+       this.flyTimer = new Timer();
+       this.isActive = false;
     }
     
     /**
@@ -48,6 +56,7 @@ public class ItemFactory extends Factory{
        // imgs of consumables
        potionImgs.add(loadImage("imgs/items/potion/0.png"));
        potionImgs.add(loadImage("imgs/items/potion/1.png"));
+       potionImgs.add(loadImage("imgs/items/potion/2.png"));       
        
 
     }
@@ -63,11 +72,47 @@ public class ItemFactory extends Factory{
          
          if(t.category == Type.ITEM_POTION){
             if(t.type == Type.POTION_HP){
-                p.hp += Type.POTION_HP_EFFECT;
-                println("use potion, id: " + t.id + ", playerHp: " + p.hp);
+                if(p.hp + Type.POTION_HP_EFFECT >= p.maxHp){
+                   p.hp = p.maxHp; 
+                }else{
+                   p.hp += Type.POTION_HP_EFFECT;
+                }
+                println("use hp potion, id: " + t.id + ", playerHp: " + p.hp);
+            }else if(t.type == Type.POTION_SP){
+                println("use sp potion, id: " + t.id);
+                if(!isActive){
+                   isActive = true;
+                   p.spInc = Type.PLAYER_SPEEDINC;
+                   spTimer.schedule(new TimerTask(){
+                     @Override
+                     public void run(){
+                       p.spInc = 0;
+                       println("sp off");
+                       isActive = false;
+                     }
+                  }, 5000);
+               }
             }else{
-                //speed increment to be added...
-                println("use potion, id: " + t.id);
+               println("use fly potion, id: " + t.id);
+                if(!isActive){
+                   isActive = true;
+                   p.fly = true;
+                   p.jump = false;
+                   p.fall = false;
+                   p.velocity.y = 0;
+                   if(p.showFlyTrigger == false) p.showFlyTrigger = true;
+                   else return;
+                   flyTimer.schedule(new TimerTask(){
+                     @Override
+                     public void run(){
+                       p.fly = false;
+                       p.jump = true;
+                       p.fall = true;
+                       println("fly off");
+                       isActive = false;
+                     }
+                  }, 8000);
+               }
             }
          }
          p.removeCurrentItem();
@@ -187,16 +232,29 @@ public class ItemFactory extends Factory{
     public Item newPotion(){
        //randomly generate a potion
        int r = (int)random(10);
+       r = 2;
        Item t = null;
-       if(r >=0 && r <= 5){
+       if(r >=0 && r <= 3){ 
           t =  potionHp();
-       }else{
+       }else if(r > 3 && r <= 6){
           t =  potionSp();
-       } 
+       }else{
+          t =  potionFly(); 
+       }
        
        //set category
        t.category = Type.ITEM_POTION;
        return t; 
+    }
+    
+    public Item potionFly(){
+        Item t = new Item();
+        t.type = Type.POTION_FLY;
+        t.w = Type.BOARD_GRIDSIZE;
+        t.h = Type.BOARD_GRIDSIZE;
+        t.setImgs(potionImgs.get(t.type));
+
+        return t;
     }
     
     public Item potionHp(){

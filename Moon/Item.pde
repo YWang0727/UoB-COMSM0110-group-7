@@ -191,6 +191,7 @@ public class Item extends BasicProp{
          showEffect(playerLoction);
          
          if(showTimer == null) {showTimer = new Timer();};
+         
           showTimer.schedule(new TimerTask(){
             @Override
             public void run() {
@@ -208,12 +209,13 @@ public class Item extends BasicProp{
       textSize(20); 
       textAlign(CENTER, TOP);
       String s = "";
-      //if(this.type == xxxx){
-      //   s = "";
-      //}else{
-      //   s = "";
-      //}
-      
+      if(this.type == 0){
+         s = "+ HP";
+      }else if(this.type == 1){
+         s = "+ SP";
+      }else{
+         s = "FLY mode";
+      }
       text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
       noStroke();
       noFill();

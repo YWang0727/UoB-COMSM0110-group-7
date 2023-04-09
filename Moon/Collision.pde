@@ -171,6 +171,7 @@ public class Collision{
       }
       checkAround(p, r);
       checkDecorations(p, r);
+      checkSpikes(p, r);
    }
    
    
@@ -180,21 +181,36 @@ public class Collision{
            Decoration d = iterator.next();
            if(d.type ==  Type.GIF_HP || d.type ==  Type.GIF_CRYSTAL){
               if(detect(p, d)){
+                 println(d.type);
                  if(d.type == Type.GIF_HP){
                    if(p.hp < p.maxHp){
+                      ding.play(2);
                       p.hp += 10;
                       if(p.hp > p.maxHp) p.hp = p.maxHp;
                       iterator.remove();
                    }
                  }else{
                    p.value += 200;
+                   ding.play(2);
                    iterator.remove();
                  }
               }
            }
            
         }
-
+   }
+   
+   public void checkSpikes(ActionProp p, Room r){
+       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+         for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+            if(r.blockType[i][j] == Type.BLOCK_SPIKE && detect(p, i, j) && !p.isInvincible){
+                stab.play(2);
+                p.attacked(5, null);
+                p.isKnockBack = true;
+                p.velocity3 = new PVector(p.left ? 5 : -5, -10);
+            }
+         }
+       }
    }
    
    

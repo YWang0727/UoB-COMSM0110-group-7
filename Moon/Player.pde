@@ -19,7 +19,11 @@ public class Player extends ActionProp{
   protected PImage[] hpGif;
   protected float hpGifCount;
   
-  protected Timer portalTimer;
+  protected Timer portalTimer, showFlyTriggerTimer;
+  protected boolean showFlyTrigger;
+  
+  protected float spInc;
+  
   
   public Player(){
     this.type = Type.PLAYER;    
@@ -31,6 +35,7 @@ public class Player extends ActionProp{
     this.bSpeed = dif.bSpeed;
     this.bDp = dif.bDp;
     this.bNum = dif.bNum;
+    this.spInc = 0;
     
     //Timer and blink effects
     this.invincibleTimer = new Timer();
@@ -69,17 +74,19 @@ public class Player extends ActionProp{
   
   
   public void changeItem(){
-     if(items.size() == 0){
-        
+     if(items.size() == 0){  
         println("no items");
-        
-        
         return;
      }
+     println(this.currentItemIndex);
      this.currentItemIndex = (this.currentItemIndex + 1) % items.size();
      //println("change items: " + currentItemIndex);
-     this.items.get(currentItemIndex).showMe = true;
-     
+     Item cur = this.items.get(currentItemIndex);
+     if(cur.showMe == true){
+         cur.showMe = false;
+         cur.showTimer = new Timer();
+     }
+     cur.showMe = true;
   }
   
   public void showCurrentItem(){
@@ -178,7 +185,6 @@ public class Player extends ActionProp{
         }
       } else {
         drawPlayerAndWeapon();
-
         blinkCount = 0;
       }
     } else {
@@ -187,20 +193,36 @@ public class Player extends ActionProp{
     }
     drawHp();
     drawScore();
+    showFly();
     showCurrentItem();
   }
   
   
-  //public void drawWeapon(){
-  //   Item w = weapons[currentWeaponIndex];
-  //   int offset = this.left ? 1 : 0;
-  //   image(w.imgs[1 - offset], this.location.x - w.w * offset + this.w/2, this.location.y + this.h/3);
-  //}
- 
+  public void showFly(){
+    
+    if(this.showFlyTrigger){
+        if(showFlyTriggerTimer == null) showFlyTriggerTimer = new Timer();
+        showFlyTriggerTimer.schedule(new TimerTask(){
+          @Override
+          public void run() {
+            showFlyTrigger = false;
+          }
+       }, 2000);
+    }
+    
+     if(this.showFlyTrigger){
+        noTint();
+        stroke(0); 
+        strokeWeight(1); 
+        fill(100, 255,255);
+        textSize(32); 
+        text(this.fly ? "Fly mode activated! Use W/A/S/D to move" : "Fly mode invalid!", width/3, height/2); 
+     }
+  
+  }
   
   
   public void drawHp(){
-      translate(0, 0);
       
       for(int j = 0; j <= this.maxHp; j += Type.PLAYER_HEART){
          image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
@@ -214,11 +236,10 @@ public class Player extends ActionProp{
   }
   
    public void drawScore(){
-      translate(0, 0);
       noTint();
       stroke(0); 
       strokeWeight(1); 
-      fill(255);
+      fill(50, 255,255);
       textSize(32); 
       textAlign(LEFT, TOP);
       text("Score: " + this.value, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
