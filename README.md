@@ -51,7 +51,7 @@ During the implementation of our game, we found below 3 main challenges :
 ### 5.1 Randomly generated map and elements:
 The main problem we faced in that session was how to ensure that the randomly generated map was sensible, rules compliant and player moveable.
 
-We therefore chose to use a pseudo-random generation approach. set the board size to 1160*800, and made it 29*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
+We therefore chose to use a pseudo-random generation approach. set the board size to 1160\*800, and made it 29\*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
 
 We also preset the type of specific block in each section so that the location and probability of various blocks appearing is reasonable.In summary, we randomly select the sections to be joined together when generating the room, and then load the blocks for each corresponding position.
 
