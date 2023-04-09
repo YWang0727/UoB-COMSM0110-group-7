@@ -17,7 +17,7 @@ PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
 
 Difficulty dif;
-ArrayList<String> globalList = new ArrayList();
+ArrayList<String> rank = new ArrayList();
 String playerName = "";
 
 /**
