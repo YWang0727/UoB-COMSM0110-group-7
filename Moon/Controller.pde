@@ -232,18 +232,21 @@ public class Controller{
      if(keyType == Type.KEY_A){
         if(mousePressed == false) p.left = true;
         p.velocity.x = -Type.PLAYER_SPEED_X;
+        p.velocity3.x = -p.spInc;
      }
     
      //move right by set speedX
      if(keyType == Type.KEY_D){
         if(mousePressed == false) p.left = false;
         p.velocity.x = Type.PLAYER_SPEED_X;
+        p.velocity3.x = p.spInc;
      }
      
      //stop move left/right
      if(keyType == Type.KEY_RELEASED_AD){
         p.velocity.x = 0;
         p.velocity2.x = 0;
+        p.velocity3.x = 0;
      }
      
      //activate or cancel fly mode

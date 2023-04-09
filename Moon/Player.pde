@@ -22,6 +22,8 @@ public class Player extends ActionProp{
   protected Timer portalTimer, showFlyTriggerTimer;
   protected boolean showFlyTrigger;
   
+  protected float spInc;
+  
   
   public Player(){
     this.type = Type.PLAYER;    
@@ -33,6 +35,7 @@ public class Player extends ActionProp{
     this.bSpeed = dif.bSpeed;
     this.bDp = dif.bDp;
     this.bNum = dif.bNum;
+    this.spInc = 0;
     
     //Timer and blink effects
     this.invincibleTimer = new Timer();

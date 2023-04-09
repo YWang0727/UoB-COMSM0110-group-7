@@ -13,6 +13,9 @@ public class ItemFactory extends Factory{
     protected ArrayList<PImage> weaponImgs;
     protected ArrayList<PImage> potionImgs;
     //protected ArrayList<PImage> outfitImgs;
+    
+    protected Timer spTimer;
+    protected boolean isActive;
 
     public ItemFactory(){
        this.id = 0;
@@ -20,6 +23,9 @@ public class ItemFactory extends Factory{
        this.potionImgs = new ArrayList();
        //this.coinImgs = new ArrayList();
        this.init(); 
+       
+       this.spTimer = new Timer();
+       this.isActive = false;
     }
     
     /**
@@ -66,8 +72,19 @@ public class ItemFactory extends Factory{
                 p.hp += Type.POTION_HP_EFFECT;
                 println("use potion, id: " + t.id + ", playerHp: " + p.hp);
             }else{
-                //speed increment to be added...
                 println("use potion, id: " + t.id);
+                if(!isActive){
+                   isActive = true;
+                   p.spInc = Type.PLAYER_SPEEDINC;
+                   spTimer.schedule(new TimerTask(){
+                     @Override
+                     public void run(){
+                       p.spInc = 0;
+                       println("sp off");
+                       isActive = false;
+                     }
+                  }, 5000);
+               }
             }
          }
          p.removeCurrentItem();
@@ -188,7 +205,7 @@ public class ItemFactory extends Factory{
        //randomly generate a potion
        int r = (int)random(10);
        Item t = null;
-       if(r >=0 && r <= 5){
+       if(r >=0 && r <= 5){ 
           t =  potionHp();
        }else{
           t =  potionSp();
