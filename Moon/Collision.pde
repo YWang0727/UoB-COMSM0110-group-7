@@ -181,6 +181,7 @@ public class Collision{
            Decoration d = iterator.next();
            if(d.type ==  Type.GIF_HP || d.type ==  Type.GIF_CRYSTAL){
               if(detect(p, d)){
+                 println(d.type);
                  if(d.type == Type.GIF_HP){
                    if(p.hp < p.maxHp){
                       ding.play(2);

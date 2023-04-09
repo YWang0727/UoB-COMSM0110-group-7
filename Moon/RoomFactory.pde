@@ -98,7 +98,7 @@ public class RoomFactory extends Factory{
       
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-            if(r.blockType[i][j] == Type.BLOCK_SPIKE && r.blockType[i + 1][j] != Type.BLOCK_WALL){
+            if((r.blockType[i][j] == Type.BLOCK_SPIKE || r.blockType[i][j] == Type.BLOCK_CRATE) && r.blockType[i + 1][j] != Type.BLOCK_WALL){
               r.blockType[i][j] = Type.BLOCK_EMPTY;
             }
          }

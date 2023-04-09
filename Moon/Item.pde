@@ -191,6 +191,7 @@ public class Item extends BasicProp{
          showEffect(playerLoction);
          
          if(showTimer == null) {showTimer = new Timer();};
+         
           showTimer.schedule(new TimerTask(){
             @Override
             public void run() {

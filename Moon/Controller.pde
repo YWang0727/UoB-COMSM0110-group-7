@@ -32,10 +32,19 @@ public class Controller{
           
           //boss and player
           collision.checkBossAndPlayer(model.map, model.player);
-          
           dif.increaseByTime(model.player);
-      
+          
+          if(p.hp <= 0){
+             model.gameStart = false;
+             model.gameOver = true;
+          }
+          
       }
+      
+      //if(model.gameOver){
+         
+      
+      //}
 
      
    }

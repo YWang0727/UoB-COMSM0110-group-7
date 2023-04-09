@@ -52,7 +52,7 @@ public class DecorationFactory extends Factory{
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
             if(legalPosition(r, new int[]{i,j})){
                  int rd = (int)random(20);
-                 if(rd > 10){
+                 if(rd > 13){
                      Decoration d = newDecoration(new int[]{j,i});
                      r.decorations.add(d);       
                  }
@@ -167,21 +167,24 @@ public class DecorationFactory extends Factory{
     
     public Decoration newDecoration(int[] pos){
        Decoration d = new Decoration(pos);
+       
        int rd = (int)random(4, 7);
-       d.imgs = this.decorationGifs.get(rd);
        if(rd == 4 || rd == 5){
         int rd2 = (int)random(0, 10);
-        if(rd2 <= 2) rd = 5;
+        if(rd2 <= 3) rd = 5;
          else rd = 4;
-         
+         d.imgs = this.decorationGifs.get(rd);
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
-         d.type = rd == 4 ? Type.GIF_CRYSTAL : Type.GIF_HP;
+         d.type = rd;
          d.w = Type.BOARD_GRIDSIZE/2;
          d.h = Type.BOARD_GRIDSIZE/2;
        }else{
+         d.imgs = this.decorationGifs.get(rd);
          d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE);
          d.type = Type.GIF_LIGHT;
        }
+       
+
        
        return d;
     }
