@@ -51,15 +51,29 @@ We have weekly meeting to summarize what we have done for the project, discussed
 During the implementation of our game, we found below 3 main challenges :
 
     1. Randomly generated map and elements:
-        Loads of things (enemies , spikes ,items , player ) required to be generated randomly in the map, they should be arranged logically ( enemies or player can not be stuck in rocks, items can be mined by player , a possible entrace for player to escape , spikes damage player, spring allows player to jump high etc.)
+        The main problem we faced in that session was how to ensure that the randomly generated map was sensible, rules compliant and player moveable.
 
-    2. A lot of items and enemies to be design:
-        A varieties of items and enermies had to be designed to make the game much more fun.
-        different enemy has diffrent behaviors:Gunners shoot gun , ghost floats around, spiders move up and down while worms move left and right.
-        different item has diffrent effect: Jetpack allows player to fly, potions allow player to boost its speed ,heart restore health, ropes allow player to climb down to escape , various weapons allow player to deal with various enemies .
+        We therefore chose to use a pseudo-random generation approach. set the board size to 1160*800, and made it 29*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
 
-    3. Enemies AI
-        Different enemy has its own AI, when / how they move, how they interact with player, how they display when they are knocked back or killed , what damage they might have on player etc.
+        We also preset the type of specific block in each section so that the location and probability of various blocks appearing is reasonable.In summary, we randomly select the sections to be joined together when generating the room, and then load the blocks for each corresponding position.
+
+        On randomly generating various other elements (such as props, etc.), we first scan the entire room to determine which locations make sense. The probability is then set to randomly generate locations to put props in.
+
+    2. Collision detection:
+        Collision detection is one of the most important aspects of our game. We are always looking for better ways of collision detection and keep it constantly updated.
+
+        In the beginning, basic collision detection was based on rectangular and rectangular collisions. At that stage, the position and size depended on the floats x, y, width, height and then, for ease of development, it was modified to be determined by the PVector location. We have rewritten the detect method to meet the collision detection of each type of object according to different needs.
+
+        For example, if a room in the game is made up of blocks based on matrix coordinates, our algorithm only needs to detect the walls around the object to reduce performance consumption. Also, the improved algorithm can match objects of arbitrary position and size. The effect of a moving object (e.g. player, enemy) being blocked by a wall is achieved by resetting the PVector location of the object and clearing the PVector velocity in the corresponding direction. If the object is blocked by a wall below, then the jump and fall states of the moving object are reset. Different strategies are used for collision detection for the player and the enemy, so that the enemy does not cross the boundary and cause a bug.
+
+        It is fair to say that we have spent considerable effort on collision detection and have achieved more than satisfactory results, which have greatly enhanced the gaming experience.
+
+    3. Performance effects：
+        We have spent a lot of time and effort on the presentation to make everything as perfect as possible, like a full-fledged game.
+
+        In many cases, we have replaced single image effects with gifs, so that many of the effects are played in a continuous motion picture. By using the DecorationFactory, we can add both temporary and permanent gifs to the room, and set duration, speed, size and location of gifs by using different constructors. For example, when the player dies, the player does not suddenly fall, but has a complete set of movements. There are also different matching gifs for the player and the enemy in different states: for example, when the player or the enemy is attacked, there is a knockback effect; when the player is injured, there is an invincibility time as well as a blinking effect.
+
+        Another notable mention is our shooting system. We have used the PVector system instead of the traditional x, y and speed coordinate system. We used the PVector to make the weapon follow the rotation of the mouse position, as well as to ensure that the bullets are fired from the muzzle, again contributing to the hitting effect in the previous section.
 
 ## 6. Evaluation (15% ~750 words)
 
