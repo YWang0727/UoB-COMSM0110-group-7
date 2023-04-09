@@ -210,8 +210,10 @@ public class Item extends BasicProp{
       String s = "";
       if(this.type == 0){
          s = "+ HP";
-      }else{
+      }else if(this.type == 1){
          s = "+ SP";
+      }else{
+         s = "FLY mode";
       }
       text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
       noStroke();

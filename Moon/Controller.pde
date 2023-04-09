@@ -250,6 +250,7 @@ public class Controller{
      }
      
      //activate or cancel fly mode
+     /*
      if(keyType == Type.KEY_F){
        if(p.showFlyTrigger == false) p.showFlyTrigger = true;
        else return;
@@ -264,7 +265,7 @@ public class Controller{
           p.fall = false;
           p.velocity.y = 0;
        }
-     }
+     }*/
      
      //stop move up/down
      if(keyType == Type.KEY_RELEASED_WS){

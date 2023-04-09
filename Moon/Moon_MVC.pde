@@ -256,9 +256,9 @@ public void keyReleased(){
     if(key == 'w' || key == 's'){
       controller.controlPlayer(Type.KEY_RELEASED_WS);
     }
-    if(key == 'f'){
-      controller.controlPlayer(Type.KEY_F);
-    }
+    //if(key == 'f'){
+    //  controller.controlPlayer(Type.KEY_F);
+    //}
     if(key == 'e'){
       controller.controlPlayer(Type.KEY_E);
     }
