@@ -127,7 +127,7 @@ Yes, we used various software introduced from the lecture.
     <br>Screenshot of using Jira to assign tasks and monitor progress
 </p>
   <br></br>
-Also please follow below link if you want to check how we collaborate in Jira.
+<br>Also please follow below link if you want to check how we collaborate in Jira.</br>
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
 <br></br>
 Did you have team roles?
