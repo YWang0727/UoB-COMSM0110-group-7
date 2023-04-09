@@ -74,17 +74,19 @@ public class Player extends ActionProp{
   
   
   public void changeItem(){
-     if(items.size() == 0){
-        
+     if(items.size() == 0){  
         println("no items");
-        
-        
         return;
      }
+     println(this.currentItemIndex);
      this.currentItemIndex = (this.currentItemIndex + 1) % items.size();
      //println("change items: " + currentItemIndex);
-     this.items.get(currentItemIndex).showMe = true;
-     
+     Item cur = this.items.get(currentItemIndex);
+     if(cur.showMe == true){
+         cur.showMe = false;
+         cur.showTimer = new Timer();
+     }
+     cur.showMe = true;
   }
   
   public void showCurrentItem(){

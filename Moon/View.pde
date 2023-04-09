@@ -114,11 +114,12 @@ public class View{
       noTint();
       stroke(0); 
       strokeWeight(1); 
-      fill(255);
+      fill(125, 255, 255);
       textSize(32); 
-      textAlign(RIGHT, TOP);
-      text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
-  
+      textAlign(LEFT, TOP);
+      //text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
+     text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
+
   }
 
 
