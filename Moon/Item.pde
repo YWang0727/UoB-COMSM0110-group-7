@@ -208,12 +208,11 @@ public class Item extends BasicProp{
       textSize(20); 
       textAlign(CENTER, TOP);
       String s = "";
-      //if(this.type == xxxx){
-      //   s = "";
-      //}else{
-      //   s = "";
-      //}
-      
+      if(this.type == 0){
+         s = "+ HP";
+      }else{
+         s = "+ SP";
+      }
       text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
       noStroke();
       noFill();
