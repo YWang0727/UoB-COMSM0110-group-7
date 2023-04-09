@@ -49,15 +49,17 @@ We have weekly meeting to summarize what we have done for the project, discussed
 During the implementation of our game, we found below 3 main challenges :
 
 ### 5.1 Randomly generated map and elements:
+
 The main problem we faced in that session was how to ensure that the randomly generated map was sensible, rules compliant and player moveable.
 
-We therefore chose to use a pseudo-random generation approach. set the board size to 1160\*800, and made it 29\*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
+We therefore chose to use a pseudo-random generation approach. set the board size to 1160\*800, and made it 29\*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9\*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
 
 We also preset the type of specific block in each section so that the location and probability of various blocks appearing is reasonable.In summary, we randomly select the sections to be joined together when generating the room, and then load the blocks for each corresponding position.
 
 On randomly generating various other elements (such as props, etc.), we first scan the entire room to determine which locations make sense. The probability is then set to randomly generate locations to put props in.
 
 ### 5.2 Collision detection:
+
 Collision detection is one of the most important aspects of our game. We are always looking for better ways of collision detection and keep it constantly updated.
 
 In the beginning, basic collision detection was based on rectangular and rectangular collisions. At that stage, the position and size depended on the floats x, y, width, height and then, for ease of development, it was modified to be determined by the PVector location. We have rewritten the detect method to meet the collision detection of each type of object according to different needs.
@@ -67,6 +69,7 @@ For example, if a room in the game is made up of blocks based on matrix coordina
 It is fair to say that we have spent considerable effort on collision detection and have achieved more than satisfactory results, which have greatly enhanced the gaming experience.
 
 ### 5.3 Performance effects：
+
 We have spent a lot of time and effort on the presentation to make everything as perfect as possible, like a full-fledged game.
 
 In many cases, we have replaced single image effects with gifs, so that many of the effects are played in a continuous motion picture. By using the DecorationFactory, we can add both temporary and permanent gifs to the room, and set duration, speed, size and location of gifs by using different constructors. For example, when the player dies, the player does not suddenly fall, but has a complete set of movements. There are also different matching gifs for the player and the enemy in different states: for example, when the player or the enemy is attacked, there is a knockback effect; when the player is injured, there is an invincibility time as well as a blinking effect.
@@ -166,3 +169,26 @@ Meanwhile, apart from the game, there are some works have been done by different
 ## 8. Conclusion (10% ~500 words)
 
 o Reflect on project as a whole. Lessons learned. Reflect on challenges. Future work.
+
+Overall, the game is basically a 2D platform adventure game and is inspired by Spelunky. But we re-designed the game to make it more originally made by our own. for example, extraterrestrial planet background setting, all elements shown in the game are consistent with the game storyline , completely random generated maps, items, enemies to make the game more fun to play.
+
+From software quality perspective,we think we have met the requirements of game development. Firstly, the game is fun to play. Secondly, the codes have been conformed with our conventions, it's readable and maintainable, and had been tested and reviewed again and again to make it as concise and accurate as we can.
+
+The project is absolutely challenging and here are some tricky challenges that we had in the process:
+
+- Enemies and rooms are generated randomly, it's difficult to make sure enemies were generated legally in the right place
+- Various enemy AI
+- Collision detection between player and creatures and spikes
+- Dynamically display player and enemies
+
+Basically, our approach to solve question is that We brought the questions to meeting and devided them into smaller parts.We proposed a potential viable solution , tested it and revised it , conquered them step by step. Our strategy is that we try to complete the basics of the game and made it functional. Then we improved it and added new features and beatify characters and game interface by each round's sprint.
+
+Thus, we are very proud of the game we have developed, it is thrilling to present our final game for end users to play.
+During the process,we not just have gained valuable experience to develop a new game , but also learnt to collaborate as a team. Meanwhile, learnt to make full use of various software to improve efficiency.
+
+Finally, we decided to put below features to our future work as time is limited:
+
+- Validate the game for two players , it might be more fun if players can help and interact with each other in space exploration
+- Validate the game for connecting internet, so players can share their scores
+- More various bosses for player to challenge
+- More enemies and more items that allow player to create new playing methods and play more flexibly
