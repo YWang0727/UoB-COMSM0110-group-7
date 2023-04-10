@@ -247,8 +247,8 @@ public class Player extends ActionProp{
   
   public void drawPlayerAndWeapon(){
     drawGif();
-    Item w = weapons[currentWeaponIndex];
-     w.display(this);
+    //Item w = weapons[currentWeaponIndex];
+    // w.display(this);
 
   }
   
@@ -284,8 +284,54 @@ public class Player extends ActionProp{
        drawGif(gifType);
   }
   
+  public void drawGif(int gifType){
+       //stand = 0
+       PImage[] imgs = this.gifsImgs.get(0);
+       //pushMatrix();
+       //translate(location.x, location.y);
+       
+       showImgByDirection(imgs);
+       
+       //if (!this.left) {
+       //     scale(-1, 1);
+       //    image(imgs[(int)this.gifsImgsCount[gifType]], -imgs[0].width, 0);
+       //}
+       //else {
+       //    image(imgs[(int)this.gifsImgsCount[gifType]], 0, 0);
+       //}
+       //popMatrix();
+       //this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
+  }
   
+  public void showImgByDirection(PImage[] gif){
+  
+    PVector mousePos = new PVector(mouseX, mouseY);
+    
+    PVector dir = PVector.sub(mousePos, new PVector(location.x + w/2, location.y + h/2)).normalize();
+    
+    float angle = degrees(dir.heading());
+    
+    int frameIndex = round(map(angle, -180, 180, 0, 47));
+    //if(this.left){
+    //  scale(0, 1);
+    //}
+    //pushMatrix();
+    //translate(location.x + w/2, location.y + h/2);
+    image(gif[frameIndex], location.x, location.y, w, h);
+    //popMatrix();
+  }
 
-  
+  public void addGifsImgs(PImage[]... gifs){
+    if(this.gifsImgs == null) this.gifsImgs = new ArrayList();
+    int cnt = 0;
+    for(PImage[] gif : gifs){
+       cnt++;
+      for(int i = 0; i < gif.length; i++){
+          gif[i].resize(this.w, this.h);
+       }
+       this.gifsImgs.add(gif);
+    }
+    this.gifsImgsCount = new float[cnt];
+  }
   
 }
