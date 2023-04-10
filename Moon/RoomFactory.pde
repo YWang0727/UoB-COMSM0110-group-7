@@ -40,11 +40,13 @@ public class RoomFactory extends Factory{
         r.tint = random(360);
         optimizeRoom(r);
         addElementsToStartRoom(r);
+        //addTutorialToStartRoom(r);
         this.increaseId();
         return r;
     }
     
     public void optimizeRoom(Room r){
+       //println("optimizeRoom");
        // 2 block path
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
@@ -139,7 +141,7 @@ public class RoomFactory extends Factory{
            r = roomType4();
            r.type = 4;
         }
-        optimizeRoom(r);
+        //optimizeRoom(r);
         r.index = id;
         return r;
     }
@@ -472,14 +474,6 @@ public class RoomFactory extends Factory{
             }
          }
          
-         if(cnt_crate < 4){
-           addCrateToRoom(r, cnt_crate);
-         }
-         
-         if(cnt_spike < 4){
-           addSpikeToRoom(r, cnt_spike);
-         }
-         
          if(cnt_crystal < 6){
            addCrystalToRoom(r, cnt_crystal);
          }
@@ -488,6 +482,19 @@ public class RoomFactory extends Factory{
             addPortalToRoom(r);
             println("add portal");
          }
+         
+         if(cnt_spike < 4){
+           addSpikeToRoom(r, cnt_spike);
+         }
+         
+         if(cnt_crate < 4){
+           addCrateToRoom(r, cnt_crate);
+         }
+         
+
+         
+
+         
          
          
     }
@@ -500,7 +507,11 @@ public class RoomFactory extends Factory{
        while(b1_i == 0 || b2_i == 0){
           int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
           int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
-           if(r.blockType[i][j] == Type.BLOCK_WALL){
+           if(r.blockType[i][j] == Type.BLOCK_WALL
+             && r.blockType[i-1][j] == Type.BLOCK_EMPTY
+            && r.blockType[i-2][j] == Type.BLOCK_EMPTY
+           ){
+                  
                  if(b1_i == 0){
                    b1_i = i;
                    b1_j = j;
@@ -573,5 +584,9 @@ public class RoomFactory extends Factory{
            }
        }
     }
+    
+    
+
+    
 
 }

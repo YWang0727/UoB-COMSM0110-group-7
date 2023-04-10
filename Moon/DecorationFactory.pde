@@ -69,33 +69,7 @@ public class DecorationFactory extends Factory{
          addPathArrow(r);
     }
     
-    //public void addTutorialToStartRoom(Room r){
-    //     addElementsToStartRoom(r);
-         
-    
-    //}
-    
-    public void addCrystalHelp(int i, int j){
-      noTint();
-      stroke(0); 
-      strokeWeight(1); 
-      fill(50, 255,255);
-      textSize(32); 
-      textAlign(LEFT, TOP);
-      text("use E " , j * Type.BOARD_GRIDSIZE, (i-1)* Type.BOARD_GRIDSIZE); 
-    }
-    
-    public void drawHelp(int i, int j, String s){
-      noTint();
-      stroke(0); 
-      strokeWeight(1); 
-      fill(50, 255,255);
-      textSize(32); 
-      textAlign(LEFT, TOP);
-      text(s, j * Type.BOARD_GRIDSIZE, (i-1)* Type.BOARD_GRIDSIZE); 
-    }
-    
-    
+
   
 
     /*

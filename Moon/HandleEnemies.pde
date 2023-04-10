@@ -22,7 +22,7 @@ public class HandleEnemies{
        for(int i = 0; i < enemies.size(); i++){
            if(enemies.get(i).id == id){
               enemies.remove(i);
-              println("remove" + id);
+              //println("remove" + id);
               return;
            }
        }

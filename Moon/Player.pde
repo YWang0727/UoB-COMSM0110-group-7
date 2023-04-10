@@ -78,7 +78,7 @@ public class Player extends ActionProp{
         println("no items");
         return;
      }
-     println(this.currentItemIndex);
+     //println(this.currentItemIndex);
      this.currentItemIndex = (this.currentItemIndex + 1) % items.size();
      //println("change items: " + currentItemIndex);
      Item cur = this.items.get(currentItemIndex);
@@ -161,7 +161,7 @@ public class Player extends ActionProp{
        
        
        super.attacked(dp);
-       println(dp);
+       //println(dp);
         
        //twinkle
        isInvincible = true;

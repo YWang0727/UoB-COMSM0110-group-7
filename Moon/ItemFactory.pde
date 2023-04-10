@@ -155,7 +155,7 @@ public class ItemFactory extends Factory{
        if(t != null){
          //t.pos = pos;
          t.location = new PVector(pos[1] * Type.BOARD_GRIDSIZE, pos[0] * Type.BOARD_GRIDSIZE);
-         println(t.location);
+         //println(t.location);
          t.id = this.id;
          this.increaseId();
        }

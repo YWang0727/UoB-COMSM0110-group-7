@@ -83,12 +83,12 @@ public class View{
       noTint();
       //colorMode(RGB);
       r.display(model.player);
-      //if(r.index == 0){
-      //     image(this.help,0,40);
-      //}
-      
       //remove crystal
       r.removeBlockByPos(model.player);
+      
+      if(r.index == 0){
+         addTutorialToStartRoom(r);
+      }
       
   }
 
@@ -117,7 +117,6 @@ public class View{
       fill(125, 255, 255);
       textSize(32); 
       textAlign(LEFT, TOP);
-      //text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
      text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
 
   }
@@ -266,6 +265,50 @@ public class View{
      image(inGamePause, 1030, 10, 53, 37);
      image(inGameMute, 960, 10, 53, 37);
    }
+   
+   public void addTutorialToStartRoom(Room r){
+       
+       for(int i = 1; i < Type.BOARD_MAX_HEIGHT - 1; i++){
+           for(int j = 1; j < Type.BOARD_MAX_WIDTH - 1; j++){
+              if(r.blockType[i][j] == Type.BLOCK_CRYSTAL && r.blockType[i - 1][j] != Type.BLOCK_SPIKE){
+                 fill(120, 255,255);
+                 drawHelp(i,j, "crystal");
+              }
+              else if(r.blockType[i][j] == Type.BLOCK_SPIKE && r.blockType[i][j - 1] != Type.BLOCK_SPIKE){
+                 fill(120, 0,255);
+                 drawHelp(i,j, "spike");
+              }
+              else if(r.blockType[i][j] == Type.BLOCK_CRATE){
+                 fill(60, 255,255);
+                 drawHelp(i,j, "crate");
+              }
+              else if(r.blockType[i][j] == Type.BLOCK_PORTAL){
+                  fill(190, 255,255);
+                  drawHelp(i,j, "portal");
+              }else if(r.blockType[i][j] == Type.BLOCK_PLATFORM && r.blockType[i][j - 1] != Type.BLOCK_PLATFORM){
+                  fill(120, 0,255);
+                  drawHelp(i,j, "platfrom");
+              }
+              
+          }
+       }
+        
+    }
+    
+    
+    public void drawHelp(int i, int j, String s){
+      //stroke(3,255,255); 
+      //strokeWeight(5); 
+      //fill(200, 0,255);
+      
+      textSize(18); 
+      textAlign(LEFT, TOP);
+      
+      text(s, j * Type.BOARD_GRIDSIZE, (i-1)* Type.BOARD_GRIDSIZE); 
+      noStroke();
+      noFill();
+    }
+   
    
 }
   
