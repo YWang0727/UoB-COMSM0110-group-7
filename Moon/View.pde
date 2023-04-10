@@ -110,15 +110,11 @@ public class View{
   }
   
   public void drawDifficultyLevel(){
-      translate(0, 0);
-      noTint();
-      stroke(0); 
-      strokeWeight(1); 
       fill(125, 255, 255);
       textSize(32); 
       textAlign(LEFT, TOP);
-     text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
-
+      text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
+      
   }
 
 

@@ -146,7 +146,7 @@ public class Item extends BasicProp{
       PVector control2 = PVector.add(center, PVector.fromAngle(random(TWO_PI)).mult(random(-controlMag, controlMag)));
       
       noFill();
-      stroke(255);
+      stroke(60, 255, 255);
       strokeWeight(3);
       beginShape();
       vertex(start.x, start.y);

@@ -22,7 +22,7 @@ public class Player extends ActionProp{
   
   protected Timer portalTimer, showFlyTriggerTimer;
   protected boolean showFlyTrigger;
-  
+  protected boolean isMinning;
   protected float spInc;
   
   public Player(){
@@ -107,6 +107,7 @@ public class Player extends ActionProp{
   
   public void switchWeapon(){
      this.currentWeaponIndex = (this.currentWeaponIndex + 1) % 2;
+     this.isMinning = this.isMinning ? false : true;
   }
   
 
@@ -298,7 +299,7 @@ public class Player extends ActionProp{
   }
   
   public void drawUpper(){
-    PImage[] gif = this.gifsImgs.get(0);
+    PImage[] gif = this.gifsImgs.get(isMinning ? 7 : 0);
     PVector mousePos = new PVector(mouseX, mouseY);
     PVector dir = PVector.sub(mousePos, new PVector(location.x + w/2, location.y + h/2)).normalize();
     float angle = degrees(dir.heading());
