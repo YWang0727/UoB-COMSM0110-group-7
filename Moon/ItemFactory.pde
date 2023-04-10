@@ -14,9 +14,16 @@ public class ItemFactory extends Factory{
     protected ArrayList<PImage> potionImgs;
     //protected ArrayList<PImage> outfitImgs;
     
+    protected int potionCd;
     protected Timer spTimer;
     protected Timer flyTimer;
     protected boolean isActive;
+    
+    /* for potion CD if needed
+    protected int lastTime0 = 0;
+    protected int lastTime1 = 0;
+    protected int lastTime2 = 0;
+    */
 
     public ItemFactory(){
        this.id = 0;
@@ -25,6 +32,7 @@ public class ItemFactory extends Factory{
        //this.coinImgs = new ArrayList();
        this.init(); 
        
+       this.potionCd = 5000;
        this.spTimer = new Timer();
        this.flyTimer = new Timer();
        this.isActive = false;
@@ -61,6 +69,16 @@ public class ItemFactory extends Factory{
 
     }
     
+    /*
+    public boolean checkCD(int lastTime){
+       int currentTime = millis();
+       int elapsed = currentTime - lastTime;
+       if (elapsed < potionCd) {
+          println("Item is on cooldown. Remaining time: " + (potionCd - elapsed) + "ms");
+          return false;
+       }
+       return true;
+    }*/
     
     //all effects of items can be written here
     public void useItemByPlayer(Player p){
@@ -69,10 +87,13 @@ public class ItemFactory extends Factory{
             println("no items");
             return;
          }
-         
          if(t.category == Type.ITEM_POTION){
             if(t.type == Type.POTION_HP){
-                p.hp += Type.POTION_HP_EFFECT;
+                if(p.hp + Type.POTION_HP_EFFECT >= p.maxHp){
+                   p.hp = p.maxHp; 
+                }else{
+                   p.hp += Type.POTION_HP_EFFECT;
+                }
                 println("use hp potion, id: " + t.id + ", playerHp: " + p.hp);
             }else if(t.type == Type.POTION_SP){
                 println("use sp potion, id: " + t.id);
@@ -228,7 +249,7 @@ public class ItemFactory extends Factory{
     public Item newPotion(){
        //randomly generate a potion
        int r = (int)random(10);
-       r = 7;
+       r = 2;
        Item t = null;
        if(r >=0 && r <= 3){ 
           t =  potionHp();
