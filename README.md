@@ -188,7 +188,13 @@ During the process,we not just have gained valuable experience to develop a new 
 
 Finally, we decided to put below features to our future work as time is limited:
 
+- Phase in user login system which can allow to store users information, play records and rank their scores
 - Validate the game for two players , it might be more fun if players can help and interact with each other in space exploration
 - Validate the game for connecting internet, so players can share their scores
 - More various bosses for player to challenge
+- Generate more interesting various secret maps, so players can unlock it and get unexpected bonus
 - More enemies and more items that allow player to create new playing methods and play more flexibly
+- Provide more items for player to use, like immute death , summon NPC to attack emermies , special shield to help user to reflect the damage etc..
+- Provide a bag system so user to check current available items and instructions for them
+- A complete introduction of game storyline for user to better understand its background and goal
+- Phase in quests system, player can unlock quests to increase their scores or boost its effects
