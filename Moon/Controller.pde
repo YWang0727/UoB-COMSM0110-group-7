@@ -296,7 +296,6 @@ public class Controller{
      }
      //not in fly mode
      if(keyType == Type.KEY_SPACE && !p.fly){
-        //println(p.jump + "," + p.doubleJump  + "," + p.canDoubleJump);
         if(p.jump && p.doubleJump){
           return;
         };
@@ -317,6 +316,9 @@ public class Controller{
         }
      }
      
+     
+     
+     
      if(keyType == Type.KEY_RELEASED_SPACE){
          p.canDoubleJump = true;
      }
@@ -330,11 +332,25 @@ public class Controller{
        }
        //not fly, speed up
        else{
-         if(p.left && p.velocity.x != 0){
-             p.velocity2.x = -Type.PLAYER_SPEED_X * 1/3;
-         }else if(p.velocity.x != 0){
-             p.velocity2.x = Type.PLAYER_SPEED_X * 1/3;
-         }
+         //not in fly mode
+            if(p.jump && p.doubleJump){
+              return;
+            };
+            if(p.highJump){
+              trampoline.play(2);
+              model.decorationFactory.addJumpGif(model.getCurrentRoom());
+              p.velocity.y = -Type.PLAYER_HIGH_JUMP_SPEEDY;
+            }
+            else{
+              if(!p.jump){
+                p.jump = true;
+                p.velocity.y = -Type.PLAYER_JUMP_SPEEDY;
+              }else if(!p.doubleJump && p.canDoubleJump){
+                p.doubleJump = true;
+                p.velocity.y = -Type.PLAYER_JUMP_SPEEDY;
+              }
+              p.fall = true;
+            }
        }
      }
      
