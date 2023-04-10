@@ -242,6 +242,7 @@ public class Controller{
         if(mousePressed == false) p.left = true;
         p.velocity.x = -Type.PLAYER_SPEED_X;
         p.velocity3.x = -p.spInc;
+        p.isRun = true;
      }
     
      //move right by set speedX
@@ -249,6 +250,7 @@ public class Controller{
         if(mousePressed == false) p.left = false;
         p.velocity.x = Type.PLAYER_SPEED_X;
         p.velocity3.x = p.spInc;
+        p.isRun = true;
      }
      
      //stop move left/right
@@ -256,6 +258,7 @@ public class Controller{
         p.velocity.x = 0;
         p.velocity2.x = 0;
         p.velocity3.x = 0;
+        p.isRun = false;
      }
      
      //activate or cancel fly mode

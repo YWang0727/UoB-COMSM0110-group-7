@@ -109,11 +109,21 @@ void draw(){
 }
 
 public void GifsToPlayer(Player p){
-     PImage[] playerStand = Gif.getPImages(this, "imgs/player/playerStand.gif");
-     PImage[] playerRun = Gif.getPImages(this, "imgs/player/playerRun.gif");
-     PImage[] playerJump = Gif.getPImages(this, "imgs/player/playerJump.gif");
+  
+     //0 shoot, 1 stand_left, 2 stand_right,  3 run_left, 4 run_right, 5 jump_left, 6 jump_right
+     PImage[] playerShoot = Gif.getPImages(this, "imgs/player/shoot.gif");
+     
+     PImage[] playerStand = Gif.getPImages(this, "imgs/player/stand_left.gif");
+     PImage[] playerStand2 = Gif.getPImages(this, "imgs/player/stand_right.gif");
 
-     p.addGifsImgs(playerStand, playerRun, playerJump);
+     PImage[] playerRun = Gif.getPImages(this, "imgs/player/run_left.gif");
+     PImage[] playerRun2 = Gif.getPImages(this, "imgs/player/run_right.gif");
+
+     PImage[] playerJump = Gif.getPImages(this, "imgs/player/jump_left.gif");
+     PImage[] playerJump2 = Gif.getPImages(this, "imgs/player/jump_right.gif");
+
+
+     p.addGifsImgs(playerShoot, playerStand, playerStand2, playerRun, playerRun2, playerJump, playerJump2);
      
      PImage[] hpGif = Gif.getPImages(this, "imgs/player/hp.gif");
      for(PImage hp : hpGif){

@@ -15,6 +15,7 @@ public class Player extends ActionProp{
   protected int currentWeaponIndex;
   protected int currentItemIndex;
   protected boolean isShoot;
+  protected boolean isRun;
   
   protected PImage[] hpGif;
   protected float hpGifCount;
@@ -24,12 +25,11 @@ public class Player extends ActionProp{
   
   protected float spInc;
   
-  
   public Player(){
     this.type = Type.PLAYER;    
     this.location = new PVector(width/2, height/2);
-    this.w = Type.BOARD_GRIDSIZE - 10;
-    this.h = Type.BOARD_GRIDSIZE - 5;
+    this.w = 24;
+    this.h = 34;
     this.hp = 100;
     this.maxHp = hp;
     this.bSpeed = dif.bSpeed;
@@ -259,66 +259,51 @@ public class Player extends ActionProp{
   }
   
   public PVector getBulletLocation() {
-    float r = 10 + this.weapons[currentWeaponIndex].w;
-    PVector pivot = new PVector(location.x + w /2, location.y + h * 1/4);
-    float x = pivot.x + r * cos(getAngle());
-    float y = pivot.y + r * sin(getAngle());
-    return new PVector(x, y);
+   
+    PVector direction = new PVector(mouseX - (this.location.x + this.w / 2), mouseY - (this.location.y + 14));
+
+    direction.setMag(17);
+    
+    PVector target = new PVector(this.location.x + this.w / 2, this.location.y + 14);
+    
+    target.add(direction);
+    
+    return target;
   }
   
   public void drawGif(){
-       int gifType;
-       //println(jump + ","+ fall + "," + getFullVelocityY());
-       //if(getFullVelocityY() != 0 && getFullVelocityX() != 0){
-       //   gifType = 2;
-       //}else 
-       if(this.jump && this.fall && abs(getFullVelocityY()) > 1){
-          gifType = 2;
-       }
-       
-       else if(getFullVelocityX() == 0){
-           gifType = 0;
+       drawLower();
+       drawUpper();
+  }
+  
+  //0 shoot, 1 stand_left, 2 stand_right,  3 run_left, 4 run_right, 5 jump_left, 6 jump_right
+  public void drawLower(){
+       int gifType = 0;
+       if(Math.abs(getFullVelocityY()) > 1){
+         //jump 
+         gifType = this.left ? 5 : 6;
+         image(this.gifsImgs.get(gifType)[0], location.x - 4, location.y - 3, 32, 37);
+       }else 
+       if(this.isRun){
+         gifType = this.left ? 3 : 4;
+         //run
+         image(this.gifsImgs.get(gifType)[(int)this.gifsImgsCount[gifType]], location.x - 4, location.y - 3, 32, 37);
+         this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)this.gifsImgs.get(gifType).length;
        }else{
-           gifType = 1;
+         //stand
+         gifType = this.left ? 1 : 2;
+         image(this.gifsImgs.get(gifType)[0], location.x - 4, location.y - 3, 32, 37);
        }
-       drawGif(gifType);
+       
   }
   
-  public void drawGif(int gifType){
-       //stand = 0
-       PImage[] imgs = this.gifsImgs.get(0);
-       //pushMatrix();
-       //translate(location.x, location.y);
-       
-       showImgByDirection(imgs);
-       
-       //if (!this.left) {
-       //     scale(-1, 1);
-       //    image(imgs[(int)this.gifsImgsCount[gifType]], -imgs[0].width, 0);
-       //}
-       //else {
-       //    image(imgs[(int)this.gifsImgsCount[gifType]], 0, 0);
-       //}
-       //popMatrix();
-       //this.gifsImgsCount[gifType] = (this.gifsImgsCount[gifType] + Type.GIF_PLAY_SPEED) % (float)imgs.length;
-  }
-  
-  public void showImgByDirection(PImage[] gif){
-  
+  public void drawUpper(){
+    PImage[] gif = this.gifsImgs.get(0);
     PVector mousePos = new PVector(mouseX, mouseY);
-    
     PVector dir = PVector.sub(mousePos, new PVector(location.x + w/2, location.y + h/2)).normalize();
-    
     float angle = degrees(dir.heading());
-    
     int frameIndex = round(map(angle, -180, 180, 0, 47));
-    //if(this.left){
-    //  scale(0, 1);
-    //}
-    //pushMatrix();
-    //translate(location.x + w/2, location.y + h/2);
-    image(gif[frameIndex], location.x, location.y, w, h);
-    //popMatrix();
+    image(gif[frameIndex], location.x - 4, location.y - 3, 32, 37);
   }
 
   public void addGifsImgs(PImage[]... gifs){
@@ -327,7 +312,8 @@ public class Player extends ActionProp{
     for(PImage[] gif : gifs){
        cnt++;
       for(int i = 0; i < gif.length; i++){
-          gif[i].resize(this.w, this.h);
+          //player 26, 34, gif 32, 37
+          gif[i].resize(32, 37);
        }
        this.gifsImgs.add(gif);
     }
