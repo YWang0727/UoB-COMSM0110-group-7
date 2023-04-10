@@ -110,10 +110,6 @@ static abstract class Type {
   static final int ROOM_LR = 3;
   
   //gifs - get gifs of enemies or player from model by order
-  //static final int ENEMY_GHOST = 0;
-  //static final int ENEMY_WORM = 1;
-  //static final int ENEMY_GUNNER = 2;
-  //static final int ENEMY_JUMPER = 3;
   static final int ENEMY_GUNNER = 0;
   static final int ENEMY_FLY = 1;
   static final int ENEMY_SPIDER = 2;

@@ -6,12 +6,12 @@
 */
 public class View{
   protected Model model;
-  PImage help;
+  //PImage help;
   
   public View(Model mod){
      this.model = mod;
-     help = loadImage("imgs/menu/help.png");
-     help.resize(width, height/2);
+     //help = loadImage("imgs/menu/help.png");
+     //help.resize(width, height/2);
   }
   
   /**
@@ -83,9 +83,9 @@ public class View{
       noTint();
       //colorMode(RGB);
       r.display(model.player);
-      if(r.index == 0){
-           image(this.help,0,40);
-      }
+      //if(r.index == 0){
+      //     image(this.help,0,40);
+      //}
       
       //remove crystal
       r.removeBlockByPos(model.player);

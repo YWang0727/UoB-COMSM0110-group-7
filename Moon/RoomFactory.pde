@@ -39,6 +39,7 @@ public class RoomFactory extends Factory{
         }
         r.tint = random(360);
         optimizeRoom(r);
+        addElementsToStartRoom(r);
         this.increaseId();
         return r;
     }
@@ -80,22 +81,6 @@ public class RoomFactory extends Factory{
          }
        }
        
-       //more platform
-      //for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
-      //   for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-      //      if(r.blockType[i][j] == Type.BLOCK_PLATFORM && r.blockType[i][j - 1] == Type.BLOCK_WALL && r.blockType[i][j + 1] == Type.BLOCK_WALL){
-      //        if(r.blockType[i][j - 1] == Type.BLOCK_WALL && r.blockType[i + 1][j - 1] == Type.BLOCK_EMPTY){
-      //           r.blockType[i][j - 1] = Type.BLOCK_PLATFORM;
-      //        }
-      //        if(r.blockType[i][j + 1] == Type.BLOCK_WALL && r.blockType[i + 1][j + 1] == Type.BLOCK_EMPTY){
-      //           r.blockType[i][j + 1] = Type.BLOCK_PLATFORM;
-      //        } 
-              
-      //      }
-      //   }
-      // }
-      
-      
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
             if((r.blockType[i][j] == Type.BLOCK_SPIKE || r.blockType[i][j] == Type.BLOCK_CRATE) && r.blockType[i + 1][j] != Type.BLOCK_WALL){
@@ -461,6 +446,132 @@ public class RoomFactory extends Factory{
         r.blockType[19][16] = Type.BLOCK_BORDER;
         fillLevel(r);
         return r;
+    }
+    
+      //make sure there are all elements in startRoom
+    public void addElementsToStartRoom(Room r){
+         int cnt_crate = 0;
+         int cnt_spike = 0;
+         int cnt_crystal = 0;
+         int cnt_portal = 0;
+         
+         for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
+             for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
+                if(r.blockType[i][j] == Type.BLOCK_CRYSTAL){
+                   cnt_crystal ++;
+                }
+                else if(r.blockType[i][j] == Type.BLOCK_SPIKE){
+                   cnt_spike ++;
+                }
+                else if(r.blockType[i][j] == Type.BLOCK_CRATE){
+                   cnt_crate ++;
+                }
+                else if(r.blockType[i][j] == Type.BLOCK_PORTAL){
+                   cnt_portal ++;
+                }
+            }
+         }
+         
+         if(cnt_crate < 4){
+           addCrateToRoom(r, cnt_crate);
+         }
+         
+         if(cnt_spike < 4){
+           addSpikeToRoom(r, cnt_spike);
+         }
+         
+         if(cnt_crystal < 6){
+           addCrystalToRoom(r, cnt_crystal);
+         }
+         
+         if(cnt_portal == 0){
+            addPortalToRoom(r);
+            println("add portal");
+         }
+         
+         
+    }
+    
+    public void addPortalToRoom(Room r){
+       
+       int b1_i = 0, b1_j = 0, b2_i = 0, b2_j = 0;
+       
+       
+       while(b1_i == 0 || b2_i == 0){
+          int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
+          int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
+           if(r.blockType[i][j] == Type.BLOCK_WALL){
+                 if(b1_i == 0){
+                   b1_i = i;
+                   b1_j = j;
+                 }else{
+                   if(b1_i != i){
+                      b2_i = i;
+                      b2_j = j;
+                   }
+                 }
+           }
+       }
+       
+       r.blockType[b1_i][b1_j] = Type.BLOCK_PORTAL;
+       r.blockType[b2_i][b2_j] = Type.BLOCK_PORTAL;
+       
+      Block b1 = blockFactory.newBlock(Type.BLOCK_PORTAL);
+      b1.setPos(b1_i, b1_j);
+      b1.setPortal(b2_i, b2_j);
+      
+      r.blocks.add(b1);
+      
+      Block b2 = blockFactory.newBlock(Type.BLOCK_PORTAL);
+      b2.setPos(b2_i, b2_j);
+      b2.setPortal(b1_i, b1_j);
+      r.blocks.add(b2);
+      
+    }
+    
+    public void addCrystalToRoom(Room r, int cnt){
+       int flag = 0;
+       while(cnt < 6 && flag < 1000){
+          int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
+          int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
+           if(r.blockType[i][j] == Type.BLOCK_WALL){
+                 r.blockType[i][j] = Type.BLOCK_CRYSTAL;
+                 cnt++;
+                 flag++;
+           }
+       }
+    }
+    
+    public void addSpikeToRoom(Room r, int cnt){
+       int flag = 0;
+       while(cnt < 4 && flag < 1000){
+          int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
+          int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
+           if(r.blockType[i][j] == Type.BLOCK_WALL
+              && r.blockType[i-1][j] == Type.BLOCK_EMPTY
+              && r.blockType[i-2][j] == Type.BLOCK_EMPTY
+           ){
+                 r.blockType[i-1][j] = Type.BLOCK_SPIKE;
+                 cnt++;
+                 flag++;
+           }
+       }
+    }
+    
+    public void addCrateToRoom(Room r, int cnt){
+       int flag = 0;
+       while(cnt < 4 && flag < 1000){
+          int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
+          int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
+           if(r.blockType[i][j] == Type.BLOCK_WALL
+              && r.blockType[i-1][j] == Type.BLOCK_EMPTY
+              && r.blockType[i-2][j] == Type.BLOCK_EMPTY
+           ){
+                 r.blockType[i-1][j] = Type.BLOCK_CRATE ;
+                 cnt++;
+                 flag++;
+           }
+       }
     }
 
 }

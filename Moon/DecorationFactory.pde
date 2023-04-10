@@ -48,6 +48,12 @@ public class DecorationFactory extends Factory{
    }
    
     public void addDecorationToRoom(Room r){
+        
+       //if(r.index == 0){
+       //   addTutorialToStartRoom(r);
+       //}
+      
+      
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
             if(legalPosition(r, new int[]{i,j})){
@@ -61,18 +67,45 @@ public class DecorationFactory extends Factory{
          }
          
          addPathArrow(r);
-         
-         
     }
     
+    //public void addTutorialToStartRoom(Room r){
+    //     addElementsToStartRoom(r);
+         
+    
+    //}
+    
+    public void addCrystalHelp(int i, int j){
+      noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(50, 255,255);
+      textSize(32); 
+      textAlign(LEFT, TOP);
+      text("use E " , j * Type.BOARD_GRIDSIZE, (i-1)* Type.BOARD_GRIDSIZE); 
+    }
+    
+    public void drawHelp(int i, int j, String s){
+      noTint();
+      stroke(0); 
+      strokeWeight(1); 
+      fill(50, 255,255);
+      textSize(32); 
+      textAlign(LEFT, TOP);
+      text(s, j * Type.BOARD_GRIDSIZE, (i-1)* Type.BOARD_GRIDSIZE); 
+    }
+    
+    
+  
+
     /*
       static final int GIF_ARROW_DOWN = 7;
       static final int GIF_ARROW_LEFT = 8;
       static final int GIF_ARROW_RIGHT = 9;
       static final int GIF_ARROW_UP = 10;
       
-        static final int BOARD_MAX_HEIGHT = 20;
-  static final int BOARD_MAX_WIDTH = 29;
+      static final int BOARD_MAX_HEIGHT = 20;
+      static final int BOARD_MAX_WIDTH = 29;
     */
     
     public void addPathArrow(Room r){
