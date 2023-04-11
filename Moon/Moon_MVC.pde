@@ -2,6 +2,7 @@
 import gifAnimation.*;
 import ddf.minim.*;
 
+
 Controller controller;
 View view;
 
@@ -18,7 +19,7 @@ PImage inGameHome, inGameMute, inGamePause;
 
 Difficulty dif;
 ArrayList<String> rank = new ArrayList();
-String playerName = "";
+String playerName = "Arlo:100;Cedric:100;";
 
 /**
 * Initialize all project, run once
@@ -55,13 +56,13 @@ void setup(){
     controller = new Controller(model);
     //Collision c = new Collision(g);
     //controller.collision = c;
-    view = new View(model);
+    view = new View(this, model);
 
 }
 
 void reset(){
     
-    playerName = "";
+    playerName = "Arlo:100;Cedric:100";
   
     Model newModel = new Model();
     
@@ -335,6 +336,14 @@ public void mouseReleased(){
     
   if(controller.getMenuHomePage()){
     //check mouse position, if in position and released, change booleans in model
+    
+    // Game over test TO BE DELETED!!!!!!!
+    if (mouseX > 0 && mouseX < 400 && mouseY > 0 && mouseY < 200) {
+      controller.setMenuHomePage(false);
+      controller.setGameOver(true);
+    }
+    
+    
     // Clicked on Start
     if (mouseX > 201 && mouseX < 433 && mouseY > 156 && mouseY < 253) {
       click.play(2);
@@ -407,6 +416,9 @@ public void mouseReleased(){
       // player gameOver music
       
       // Restart
+      
+      
+      /*
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
         
         //reset game
@@ -415,6 +427,7 @@ public void mouseReleased(){
         controller.setGameStart(true);
         controller.setGameOver(false);
       }
+      */
       
       
   }
@@ -463,6 +476,11 @@ public void mouseReleased(){
 
 public void mousePressed(){
   
+}
+
+
+public void setRankingData(String newRanking){
+  this.playerName += newRanking;
 }
 
 void stop(){

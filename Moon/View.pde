@@ -4,12 +4,20 @@
 * Class for painting. This class will draw everything for each frame by getting data from Model.class.
 * Next stage: finish draw*() methods behind
 */
+import controlP5.*;
+
+ControlP5 cp5;
+Textfield playerNameInput;
+boolean inputFieldCreated = false;
+
 public class View{
   protected Model model;
+  Moon_MVC mvc; 
   //PImage help;
   
-  public View(Model mod){
-     this.model = mod;
+  public View(Moon_MVC mvc, Model model){
+     this.model = model;
+     this.mvc = mvc;
      //help = loadImage("imgs/menu/help.png");
      //help.resize(width, height/2);
   }
@@ -237,24 +245,148 @@ public class View{
      
      image(gameoverImg, 0, 0, width, height);
      
-   // Restart
-     rect(width/2, height/4, 200, 60);
-      fill(255);
-      textSize(16);
-      text("Restart?", width/2, height*3/4);
+     // Create input field for entering the player's name
+    if (!inputFieldCreated) {
+      cp5 = new ControlP5(mvc);
+      playerNameInput = cp5.addTextfield("Please input your name")
+         .setPosition(width / 2 - 100, height / 2-80)
+         .setSize(200, 40)
+         .setAutoClear(false)
+         .setColorBackground(color(255, 255, 255)) // Set background color to white
+         .setColorForeground(color(240, 240, 240)) // Set foreground color to light gray
+         .setColorActive(color(200, 200, 200)) // Set active color to gray
+         .setColorValue(color(0, 0, 0)) // Set text color to black
+         //.setTextAlign(LEFT) // Align text to the left side of the input field
+         .setFont(createFont("Arial", 24)) // Set the font to Arial and make it larger (24pt)
+         .setVisible(false); // Initially hide the input field
+      inputFieldCreated = true;
+    }
+    
+    playerNameInput.setVisible(true); // Show the input field when game over
+      
+   //// Restart
+   //   rect(width/2, height*3/4, 200, 60);
+   //   fill(255);
+   //   textSize(16);
+   //   text("Restart?", width/2, height*3/4);
      
 
    
    // Check Global Ranking
    
    // Quit
+     // Detect click on the "Restart" button
+   
+   // RESTART
+   if (mousePressed && mouseX > 460 && mouseX < 727 && mouseY > 439 && mouseY < 477) {
+      // Save the player's name and score to the ranking string
+      String playerName = playerNameInput.getText();
+      playerNameInput.clear();
+      String updatedRankingData = playerName + ":" + "100" + ";";
+      //playerName += updatedRankingData;
+      setRankingData(updatedRankingData);
+      
+      controller.setGameOver(false);
+      controller.setGameStart(true);
+      playerNameInput.setVisible(false); // Hide the input field after restarting
+    }
+    
+    // HOME PAGE
+   if (mousePressed && mouseX > 460 && mouseX < 727 && mouseY > 543 && mouseY < 581) {
+     // Save the player's name and score to the ranking string
+      String playerName = playerNameInput.getText();
+      playerNameInput.clear();
+      String updatedRankingData = playerName + ":" + "100" + ";";
+      //playerName += updatedRankingData;
+      setRankingData(updatedRankingData);
+      
+      controller.setGameOver(false);
+      controller.setMenuHomePage(true);
+      playerNameInput.setVisible(false); // Hide the input field after restarting
+    }
+     
+    /* 
+  if (mousePressed && dist(mouseX, mouseY, width / 2, height * 3 / 4) < 100) {
+    // Save the player's name and score to the ranking string
+    String playerName = playerNameInput.getText();
+    playerNameInput.clear();
+    String updatedRankingData = playerName + ":" + "100" + ";";
+    //playerName += updatedRankingData;
+    setRankingData(updatedRankingData);
+
+    // Restart the game or go to the homepage
+    // ...
+    controller.setGameOver(false);
+    controller.setMenuHomePage(true);
+    playerNameInput.setVisible(false); // Hide the input field after restarting
+  }
+  */
+   
    }
    
    // Afer game finished, the marking ranking
    // Also can be accessed from Home Page Menu
+
    public void drawGlobalList(){
-     image(rankImg, 0, 0, width, height);
-   }
+    image(rankImg, 0, 0, width, height);
+    
+    //String rankingData = "Arlo:100;Cedric:100";
+    String[] entries = playerName.split(";");
+    
+    textAlign(CENTER, CENTER);
+    textSize(32); // Increase font size
+    fill(255); // Text color
+    
+    float x = width / 2;
+    float startY = height * 0.3f;
+    float padding = 10; // Padding around the text
+
+    // Find maximum text width
+    float maxTextWidth = 0;
+    for (String entry : entries) {
+      String[] nameAndScore = entry.split(":");
+      String name = nameAndScore[0];
+      int score = Integer.parseInt(nameAndScore[1]);
+      String text = String.format("%d. %s: %d", 1, name, score);
+      float textWidth = textWidth(text);
+      if (textWidth > maxTextWidth) {
+        maxTextWidth = textWidth;
+      }
+    }
+    
+    // Draw rankings
+    float currentY = startY;
+    for (int i = 0; i < entries.length; i++) {
+      String entry = entries[i];
+      String[] nameAndScore = entry.split(":");
+      String name = nameAndScore[0];
+      int score = Integer.parseInt(nameAndScore[1]);
+      String text = String.format("%d. %s: %d", i + 1, name, score);
+    
+      // Calculate text height and line height
+      float textHeight = textAscent() + textDescent() + 2 * padding;
+      float lineHeight = textHeight * 1.2f; // Add 20% extra space
+    
+    /*
+      // Draw light grey background with half transparency
+      fill(220, 220, 220, 127); // Light grey color with half transparency
+      noStroke(); // Remove border around the background
+      rect(x - (maxTextWidth + 2 * padding) / 2, currentY - textHeight / 2, maxTextWidth + 2 * padding, textHeight, 5);
+    */
+    
+      // Draw text
+      fill(255); // Text color
+      text(text, x, currentY);
+    
+      // Update the Y position for the next entry
+      currentY += lineHeight;
+    }
+
+
+
+
+  }
+
    
    public void drawInGameMenu(){
      image(inGameHome, 1100, 10, 53, 37);
