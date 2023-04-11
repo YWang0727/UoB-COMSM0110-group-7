@@ -9,36 +9,46 @@ public class Bullet extends ActionProp{
     //maybe two gifs, fly and die
     protected PVector target;
     
+    protected ArrayList<PImage> bulletImgs;
+    
+    protected PImage img;
+    
     Bullet(PVector location, PVector velocity, float w, float h, float dp){
+       this.bulletImgs = new ArrayList();
+       this.init();
        this.isAlive = true;
        this.w = (int)w;
        this.h = (int)h;
        this.dp = dp;
        this.location = location;
        this.velocity = velocity;
-       this.type = Type.BULLET_TYPE_CIRCLE;
+       this.type = Type.BULLET_TYPE_PISTOL;
+    }
+    
+    protected void init(){
+       bulletImgs.add(loadImage("imgs/items/bullet/00.png")); 
+       bulletImgs.add(loadImage("imgs/items/bullet/10.png")); 
+       bulletImgs.add(loadImage("imgs/items/bullet/20.png")); 
     }
         
-    /**
-    * Currently, bullet can only move left and right
-    * we can change this method to let it move in all directions
-    * by changing speedY
-    */
     public void move(){
         this.location.add(this.velocity);
     }
      
     public void paint(){
-      if(this.type == Type.BULLET_TYPE_CIRCLE){
-           fill(60,60,100);
-           ellipse(this.location.x, this.location.y, this.w, this.h);
-           noFill();
+      this.w = Type.BOARD_GRIDSIZE*1/4;
+      this.h = Type.BOARD_GRIDSIZE*1/4;
+      if(this.type == Type.BULLET_TYPE_PISTOL){
+           this.img = bulletImgs.get(0);
+           //fill(60,60,100);
+           //ellipse(this.location.x, this.location.y, this.w, this.h);
+           //noFill();
+      } else if(this.type == Type.BULLET_TYPE_SHOT){
+           this.img = bulletImgs.get(1);
       } else{
-           stroke(0, 0, 100);
-           strokeWeight(5);
-           line(this.location.x, this.location.y, this.location.x + this.getFullVelocityX() * 3, this.location.y +  this.getFullVelocityY() * 3);
-           strokeWeight(0);
-           noStroke();      
+           this.img = bulletImgs.get(2);
       }
+      this.img.resize(this.w, this.h);
+      image(img, location.x, location.y);
     }
 }

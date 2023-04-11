@@ -45,9 +45,10 @@ static abstract class Type {
   static final int BULLET_CD_NORMAL = 20;
   static final int BULLET_CD_SHORT = 10;
   
-  static final int BULLET_TYPE_CIRCLE = 0;
-  static final int BULLET_TYPE_LINE = 1;
-  static final int BULLET_TYPE_MINER = 2;
+  static final int BULLET_TYPE_PISTOL = 0;
+  static final int BULLET_TYPE_MINER = 1;
+  static final int BULLET_TYPE_SHOT = 2;
+  static final int BULLET_TYPE_LASER = 3;
   
   static final float BULLET_ANGLE = 50;
 
@@ -139,9 +140,10 @@ static abstract class Type {
   static final int CRYSTAL = 0;
   // weapons
   static final int WEAPON_PISTOL= 0;
+  static final int WEAPON_MINER = 3;
   static final int WEAPON_SHOTGUN = 1;
   static final int WEAPON_LASER = 2;
-  static final int WEAPON_MINER = 3;
+
   // potions
   static final int POTION_HP = 0;
   static final int POTION_HP_EFFECT = 10;

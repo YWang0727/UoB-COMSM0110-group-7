@@ -43,23 +43,22 @@ public class ItemFactory extends Factory{
     */
     protected void init(){
        // imgs of weapons
-       weaponImgs.add(loadImage("imgs/items/weapon/0_1.png")); 
-       weaponImgs.add(loadImage("imgs/items/weapon/0_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/0_1.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/0_2.png")); 
        //weaponImgs.add(loadImage("imgs/items/weapon/0_3.png")); 
+       weaponImgs.add(loadImage("imgs/items/bullet/01.png")); 
 
-       weaponImgs.add(loadImage("imgs/items/weapon/1_1.png")); 
-       weaponImgs.add(loadImage("imgs/items/weapon/1_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/1_1.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/1_2.png")); 
        //weaponImgs.add(loadImage("imgs/items/weapon/1_3.png")); 
+       weaponImgs.add(loadImage("imgs/items/bullet/11.png")); 
 
    
-       weaponImgs.add(loadImage("imgs/items/weapon/2_1.png")); 
-       weaponImgs.add(loadImage("imgs/items/weapon/2_2.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/2_1.png")); 
+       //weaponImgs.add(loadImage("imgs/items/weapon/2_2.png")); 
        //weaponImgs.add(loadImage("imgs/items/weapon/2_3.png")); 
+       weaponImgs.add(loadImage("imgs/items/bullet/21.png")); 
 
-       
-       weaponImgs.add(loadImage("imgs/items/weapon/3_1.png")); 
-       weaponImgs.add(loadImage("imgs/items/weapon/3_2.png")); 
-       //weaponImgs.add(loadImage("imgs/items/weapon/3_3.png")); 
 
        // imgs of consumables
        potionImgs.add(loadImage("imgs/items/potion/0.png"));
@@ -137,7 +136,7 @@ public class ItemFactory extends Factory{
     
     public Item newItem(int[] pos){
        int r = (int)random(10);
-       r = 5;
+       r = 0;
        Item t = null; 
        if(r >= 0 && r <= 3){   
            t = newWeapon();
@@ -166,16 +165,16 @@ public class ItemFactory extends Factory{
     public Item weaponPistol(){
        //overload shot method
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 1, 500, Type.BULLET_TYPE_CIRCLE);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 1, 500, Type.BULLET_TYPE_PISTOL);
        //set category and type
        t.category = Type.ITEM_WEAPON;
        t.type = Type.WEAPON_PISTOL;
        
        //remember to set width and height
-       t.w = Type.BOARD_GRIDSIZE/2;
-       t.h = Type.BOARD_GRIDSIZE/2;
+       t.w = Type.BOARD_GRIDSIZE*2/3;
+       t.h = Type.BOARD_GRIDSIZE*2/3;
        //set PImage and resize them
-       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+       t.setImgs(weaponImgs.get(t.type));
 
        //setId
        t.id = this.id;
@@ -184,6 +183,7 @@ public class ItemFactory extends Factory{
        return t;
     }
     
+   
     //new-hand weapon
     public Item weaponMinergun(){  //Player comes with own miner gun initially
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
@@ -193,9 +193,9 @@ public class ItemFactory extends Factory{
 
        //Type must be set
        //get PImage and resize them
-       t.w = Type.BOARD_GRIDSIZE * 2/3;
-       t.h = Type.BOARD_GRIDSIZE/2;
-       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+       t.w = Type.BOARD_GRIDSIZE*2/3;
+       t.h = Type.BOARD_GRIDSIZE*2/3;
+       //t.setImgs(weaponImgs.get(t.type));
        t.id = this.id;
        this.increaseId();
        return t;
@@ -205,7 +205,7 @@ public class ItemFactory extends Factory{
     public Item newWeapon( ){
        //randomly generate a weapon
        int r = (int)random(10);
-       
+       //r = 
        Item t = null;
        if(r >=0 && r <= 5){     
           t =  weaponShotgun();
@@ -222,25 +222,25 @@ public class ItemFactory extends Factory{
 
     public Item weaponShotgun(){
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 3, 750, Type.BULLET_TYPE_CIRCLE);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 3, 750, Type.BULLET_TYPE_SHOT);
        t.type = Type.WEAPON_SHOTGUN;
-       t.w = Type.BOARD_GRIDSIZE;
-       t.h = Type.BOARD_GRIDSIZE/3;
-       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+       t.w = Type.BOARD_GRIDSIZE*2/3;
+       t.h = Type.BOARD_GRIDSIZE*2/3;
+       t.setImgs(weaponImgs.get(t.type));
 
        return t;
     }
     
     public Item weaponLaser(){
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 300, Type.BULLET_TYPE_LINE);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 300, Type.BULLET_TYPE_LASER);
        t.type = Type.WEAPON_LASER;
 
-       t.w = Type.BOARD_GRIDSIZE;
-       t.h = Type.BOARD_GRIDSIZE/3;
+       t.w = Type.BOARD_GRIDSIZE*2/3;
+       t.h = Type.BOARD_GRIDSIZE*2/3;
 
        //get PImage and resize them
-       t.setImgs(weaponImgs.get(t.type * 2),weaponImgs.get(t.type * 2 + 1));
+       t.setImgs(weaponImgs.get(t.type));
 
 
        return t;
@@ -249,7 +249,7 @@ public class ItemFactory extends Factory{
     public Item newPotion(){
        //randomly generate a potion
        int r = (int)random(10);
-       r = 2;
+       //r = 2;
        Item t = null;
        if(r >=0 && r <= 3){ 
           t =  potionHp();
@@ -267,8 +267,8 @@ public class ItemFactory extends Factory{
     public Item potionFly(){
         Item t = new Item();
         t.type = Type.POTION_FLY;
-        t.w = Type.BOARD_GRIDSIZE;
-        t.h = Type.BOARD_GRIDSIZE;
+        t.w = Type.BOARD_GRIDSIZE*2/3;
+        t.h = Type.BOARD_GRIDSIZE*2/3;
         t.setImgs(potionImgs.get(t.type));
 
         return t;
@@ -278,7 +278,7 @@ public class ItemFactory extends Factory{
         Item t = new Item();
         t.type = Type.POTION_HP;
         t.w = Type.BOARD_GRIDSIZE * 2/3;
-        t.h = Type.BOARD_GRIDSIZE;
+        t.h = Type.BOARD_GRIDSIZE*2/3;
         t.setImgs(potionImgs.get(t.type));
 
         return t;
@@ -288,7 +288,7 @@ public class ItemFactory extends Factory{
         Item t = new Item();
         t.type = Type.POTION_SP;
         t.w = Type.BOARD_GRIDSIZE * 2/3;
-        t.h = Type.BOARD_GRIDSIZE;
+        t.h = Type.BOARD_GRIDSIZE*2/3;
         t.setImgs(potionImgs.get(t.type));
         return t;
     }

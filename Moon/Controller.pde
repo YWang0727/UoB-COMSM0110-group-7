@@ -205,12 +205,13 @@ public class Controller{
               p.value += t.value;
               continue;
             }
+            /*
             //change weapon
             if(t.category == Type.ITEM_WEAPON){
                Item tmp = p.weapons[0];
                tmp.location = t.location;
                items.add(tmp);
-            }
+            }*/
             p.addItem(t);
             break;
          }

@@ -52,7 +52,7 @@ public class Item extends BasicProp{
     }
   
   public void display(){
-      image(imgs[0], location.x,  location.y);
+      image(imgs[0], location.x, location.y);
   }
   
   //if item is weapon
@@ -219,8 +219,7 @@ public class Item extends BasicProp{
       text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
       noStroke();
       noFill();
-   
    }
-    
+   
     
 }
