@@ -13,6 +13,8 @@ public class Bullet extends ActionProp{
     
     protected PImage img;
     
+    protected boolean split;
+    
     Bullet(PVector location, PVector velocity, float w, float h, float dp){
        this.bulletImgs = new ArrayList();
        this.init();
@@ -23,6 +25,7 @@ public class Bullet extends ActionProp{
        this.location = location;
        this.velocity = velocity;
        this.type = Type.BULLET_TYPE_PISTOL;
+       this.split = false;
     }
     
     protected void init(){

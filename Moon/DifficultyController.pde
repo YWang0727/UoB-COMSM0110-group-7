@@ -42,7 +42,7 @@ class Difficulty{
      //player bullets status
      this.bSpeed = 3;
      this.bDp = 3;   
-     this.bNum = 2;
+     this.bNum = 0;
      
      //enemy status
      this.eInitRatio = 0.6;
@@ -68,7 +68,7 @@ class Difficulty{
      //player bullets status
      this.bSpeed = 1.5;
      this.bDp = 1.5;   
-     this.bNum = 1;
+     this.bNum = 0;
      
      //enemy status
      this.eInitRatio = 1.0;

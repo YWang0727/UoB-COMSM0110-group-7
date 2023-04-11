@@ -205,7 +205,7 @@ public class ItemFactory extends Factory{
     public Item newWeapon( ){
        //randomly generate a weapon
        int r = (int)random(10);
-       //r = 
+       r = 6; 
        Item t = null;
        if(r >=0 && r <= 5){     
           t =  weaponShotgun();
