@@ -431,7 +431,7 @@ public void mouseReleased(){
   }
   else if(controller.getGlobalList()){
      //there should be a return button in this menu
-   if (mouseX > 485 && mouseX < 675 && mouseY > 631 && mouseY < 710) {
+   if (mouseX > 462 && mouseX < 696 && mouseY > 620 && mouseY < 717) {
       click.play(2);
       controller.setGlobalList(false);
       controller.setMenuHomePage(true);

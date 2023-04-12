@@ -410,6 +410,8 @@ public class View{
       // Update the Y position for the next entry
       currentY += lineHeight;
     }
+    
+    image(returnBtn, 462, 620);
 
 
 
