@@ -19,7 +19,7 @@ public class Model{
    protected boolean gamePause = false;
    protected boolean gameOver = false;
    protected boolean globalList = false;
-   protected Integer difficulty = 0;
+   protected Integer difficulty = 1;
    
    protected boolean addBoss = false;
 

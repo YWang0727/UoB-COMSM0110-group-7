@@ -480,14 +480,14 @@ public class RoomFactory extends Factory{
          
          if(cnt_portal == 0){
             addPortalToRoom(r);
-            println("add portal");
+            //println("add portal");
          }
          
          if(cnt_spike < 4){
            addSpikeToRoom(r, cnt_spike);
          }
          
-         if(cnt_crate < 4){
+         if(cnt_crate < 3){
            addCrateToRoom(r, cnt_crate);
          }
          
@@ -571,7 +571,7 @@ public class RoomFactory extends Factory{
     
     public void addCrateToRoom(Room r, int cnt){
        int flag = 0;
-       while(cnt < 4 && flag < 1000){
+       while(cnt < 3 && flag < 1000){
           int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
           int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
            if(r.blockType[i][j] == Type.BLOCK_WALL

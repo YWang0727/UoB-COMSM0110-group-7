@@ -103,7 +103,7 @@ public class Collision{
    * player and blocks
    */
    public void checkAllAround(Player p, Room r){
-     
+      
       //collision detection between enemies and blocks, enemies and player,enemies and bullets
       ArrayList<Enemy> enemies = r.enemies;
       ArrayList<Bullet> bullets = r.playerBullets;
@@ -118,9 +118,21 @@ public class Collision{
 
       for(int i = enemies.size() - 1; i >= 0; i--){
          Enemy e = enemies.get(i);
+         
+         //legal position
+         if(e.location.x <= 0 || e.location.x + e.w >= width
+          || e.location.y <= 0 || e.location.y + e.h >= height
+         ){
+           e.isAlive = false;
+           e.canRemove = true;
+           println("out of bound");
+         }
+         
+         
          if(!e.isAlive &&  e.canRemove){
              p.value += e.value;
              enemies.remove(i);
+             continue;
          }
          if(isEnemyNeedDetect(e.type)){
              checkAround(e, r);
