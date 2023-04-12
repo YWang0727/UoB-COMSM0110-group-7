@@ -243,6 +243,10 @@ public class View{
    // When player lose all HP
    public void drawGameOver(){
      
+     bgMusic.pause();
+
+     gameOver.play();
+
      image(gameoverImg, 0, 0, width, height);
      
      // Create input field for entering the player's name
@@ -287,7 +291,13 @@ public class View{
       setRankingData(updatedRankingData);
       
       controller.setGameOver(false);
+      gameOver.pause();
+     if (gameOver.position() > 0){
+       gameOver.rewind();
+     }
       controller.setGameStart(true);
+      bgMusic.rewind();
+      bgMusic.play();
       playerNameInput.setVisible(false); // Hide the input field after restarting
     }
     
@@ -301,7 +311,13 @@ public class View{
       setRankingData(updatedRankingData);
       
       controller.setGameOver(false);
+      gameOver.pause();
+     if (gameOver.position() > 0){
+       gameOver.rewind();
+     }
       controller.setMenuHomePage(true);
+      bgMusic.rewind();
+      bgMusic.play();
       playerNameInput.setVisible(false); // Hide the input field after restarting
     }
      

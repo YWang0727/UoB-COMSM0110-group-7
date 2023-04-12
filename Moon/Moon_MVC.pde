@@ -11,7 +11,7 @@ IntList pkeys = new IntList();
 // Menu
 Minim minim;
 AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab, 
-playerHurt, mining, enemyShoot, touchGround, ding;
+playerHurt, mining, enemyShoot, touchGround, ding, gameOver;
 
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
@@ -205,6 +205,10 @@ public void initMenu(){
     minim = new Minim(this);
     bgMusic = minim.loadFile("Data/music/bgmusic.mp3");
     bgMusic.setGain(-10);
+    
+    gameOver = minim.loadFile("Data/music/gameOver.mp3");
+    gameOver.setGain(-5);
+    
     click = minim.loadFile("Data/music/click.mp3");
     click.setGain(-8);
     shoot = minim.loadFile("Data/music/shoot.mp3");
@@ -411,9 +415,12 @@ public void mouseReleased(){
   }
   
   else if(controller.getGameOver()){
+      
       //there should be a restart button in this menu
       
       // player gameOver music
+
+      
       
       // Restart
       
