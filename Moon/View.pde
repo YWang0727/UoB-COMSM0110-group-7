@@ -393,7 +393,7 @@ public class View{
     //fill(128,128,128,128);
     //rect(380, 0, 400, height);
 
-    fill(255); // Set text color to black
+    fill(0); // Set text color to black
     textSize(40); // Set text size to 24 pixels
     textAlign(CENTER, CENTER);
   
