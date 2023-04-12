@@ -206,12 +206,25 @@ public class View{
      textAlign(CENTER, CENTER);
      textSize(64);
       // Draw background Image
+      image(optionImg, 0, 0, width, height);
+      
+      // Draw Difficulty btn
+      if (controller.getDifficulty()==0){
+        image(easy, 462, 209);
+      } else if (controller.getDifficulty()==1){
+        image(normal, 462, 209);
+      } else {
+        image(hard, 462, 209);
+      }
       
       if (model.isMusicPlaying){
-        image(optionImg, 0, 0, width, height);
+        image(musicOn, 462, 329);
       } else {
-        image(optionMuteImg, 0, 0, width, height);
+        image(musicOff, 462, 329);
       }
+      
+      image(returnBtn, 462, 448);
+      
      /*
      // Draw Music control Button
       rectMode(CENTER);

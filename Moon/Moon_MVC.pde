@@ -16,6 +16,7 @@ playerHurt, mining, enemyShoot, touchGround, ding, gameOver;
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
 PImage inGameHome, inGameMute, inGamePause;
+PImage easy, normal, hard,musicOn, musicOff, returnBtn;
 
 Difficulty dif;
 ArrayList<String> rank = new ArrayList();
@@ -202,6 +203,14 @@ public void initMenu(){
     inGameHome = loadImage("Data/imgs/menu/home.png");
     inGameMute = loadImage("Data/imgs/menu/music.png");
     inGamePause = loadImage("Data/imgs/menu/pause.png");
+    
+    easy = loadImage("Data/imgs/menu/easy.png");
+    normal = loadImage("Data/imgs/menu/normal.png");
+    hard = loadImage("Data/imgs/menu/hard.png");
+    musicOn = loadImage("Data/imgs/menu/music_on.png");
+    musicOff = loadImage("Data/imgs/menu/music_off.png");
+    returnBtn = loadImage("Data/imgs/menu/return.png");
+    
     minim = new Minim(this);
     bgMusic = minim.loadFile("Data/music/bgmusic.mp3");
     bgMusic.setGain(-10);
@@ -376,10 +385,30 @@ public void mouseReleased(){
     }
     
   } else if(controller.getMenuControl()){
-     //there should be a return button in this menu
+     // Difficulty switch
+    if (mouseX > 462 && mouseX < 696 && mouseY > 209 && mouseY < 306) {
+      controller.setDifficulty();
+      switch (controller.getDifficulty()){
+        case 0: 
+          dif.easyMode();
+          println("easy");
+          break;
+        case 1:
+          dif.normalMode();
+          println("normal");
+          break;
+        case 2:
+          dif.hardMode();
+          println("hard");
+          break;
+        default:
+          println("ERROR????");
+          break;
+      }
+    }
          
     // Switch Music ON/OFF
-    if (mouseX > 485 && mouseX < 676 && mouseY > 306 && mouseY < 386) {
+    if (mouseX > 462 && mouseX < 696 && mouseY > 329 && mouseY < 426) {
       if (controller.getIsMusicPlaying()) {
         click.play(2);
         bgMusic.pause();
@@ -393,7 +422,7 @@ public void mouseReleased(){
     }
     
     // Return button
-    if (mouseX > 485 && mouseX < 676 && mouseY > 414 && mouseY < 494) {
+    if (mouseX > 462 && mouseX < 696 && mouseY > 448 && mouseY < 545) {
       click.play(2);
       controller.setMenuControl(false);
       controller.setMenuHomePage(true);

@@ -474,4 +474,12 @@ public class Controller{
        return model.globalList;
    }
    
+   public void setDifficulty(){
+     model.difficulty = (model.difficulty+1)%3;
+   }
+   
+   public Integer getDifficulty(){
+       return model.difficulty;
+   }
+   
 }
