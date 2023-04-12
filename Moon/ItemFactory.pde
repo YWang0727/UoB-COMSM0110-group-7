@@ -135,12 +135,12 @@ public class ItemFactory extends Factory{
     }
     
     public Item newItem(int[] pos){
-       int r = (int)random(10);
-       r = 0;
+       int r = (int)random(14);
+       //r = 0;
        Item t = null; 
        if(r >= 0 && r <= 3){   
            t = newWeapon();
-       }else if(r > 3 && r <= 6){
+       }else if(r > 3 && r <= 9){
             //randomly generate a new potion
            t = newPotion();
        }else{
@@ -205,7 +205,7 @@ public class ItemFactory extends Factory{
     public Item newWeapon( ){
        //randomly generate a weapon
        int r = (int)random(10);
-       r = 6; 
+       //r = 6; 
        Item t = null;
        if(r >=0 && r <= 5){     
           t =  weaponShotgun();

@@ -25,7 +25,7 @@ class Difficulty{
     this.flyDp = 5;
     this.gunnerDp = 10;
     this.spiderDp = 8;
-    this.bossV = 1;
+    this.bossV = 0.8;
     this.bossDp = 20;
     
     this.eInitRatio = 1.0;
@@ -40,14 +40,14 @@ class Difficulty{
   public void easyMode(){
     
      //player bullets status
-     this.bSpeed = 3;
-     this.bDp = 3;   
+     this.bSpeed = 2;
+     this.bDp = 2;   
      this.bNum = 0;
      
      //enemy status
      this.eInitRatio = 0.6;
      this.eIncRatio = 1.1;
-     this.scoreRatio = 0.6;
+     this.scoreRatio = 0.8;
      this.bossIncRatio = 1.1;
 
      this.flyDp *= eInitRatio;
@@ -58,16 +58,14 @@ class Difficulty{
      this.gunnerHp *= eInitRatio;
      this.spiderHp *= eInitRatio;
      
-     this.bossV *= eInitRatio;
-     this.bossDp *= eInitRatio;
      
   }
   
   public void normalMode(){
     
      //player bullets status
-     this.bSpeed = 1.5;
-     this.bDp = 1.5;   
+     this.bSpeed = 1;
+     this.bDp = 1;   
      this.bNum = 0;
      
      //enemy status
@@ -84,8 +82,6 @@ class Difficulty{
      this.gunnerHp *= eInitRatio;
      this.spiderHp *= eInitRatio;
      
-     this.bossV *= 0.8;
-     this.bossDp *= 0.8;
      
   }
   
@@ -99,8 +95,8 @@ class Difficulty{
      //enemy status
      this.eInitRatio = 1.3;
      this.eIncRatio = 1.2;
-     this.scoreRatio = 1.0;
-     this.bossIncRatio = 1.2;
+     this.scoreRatio = 1.5;
+     this.bossIncRatio = 1.1;
 
      this.flyDp *= eInitRatio;
      this.gunnerDp *= eInitRatio;
@@ -109,7 +105,6 @@ class Difficulty{
      this.flyHp *= eInitRatio;
      this.gunnerHp *= eInitRatio;
      this.spiderHp *= eInitRatio;
-     
      
      
   }
@@ -124,8 +119,8 @@ class Difficulty{
      this.gunnerHp *= eIncRatio;
      this.spiderHp *= eIncRatio;
      
-     this.bossV *= eIncRatio;
-     this.bossDp *= eIncRatio;
+     this.bossV *= bossIncRatio;
+     this.bossDp *= bossIncRatio;
 
   }
   
