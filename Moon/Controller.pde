@@ -434,6 +434,14 @@ public class Controller{
        return model.menuHomePage;
    }
    
+   public void setHelpPage(boolean flag){
+       model.helpPage = flag;
+   }
+   
+   public boolean getHelpPage(){
+       return model.helpPage;
+   }
+   
    public void setMenuControl(boolean flag){
        model.menuControl = flag;
    }

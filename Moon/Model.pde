@@ -13,6 +13,7 @@ public class Model{
    
    protected boolean isMusicPlaying = true;
    protected boolean menuHomePage = true;
+   protected boolean helpPage = false;
    protected boolean menuControl = false;
    protected boolean gameStart = false;
    protected boolean gamePause = false;

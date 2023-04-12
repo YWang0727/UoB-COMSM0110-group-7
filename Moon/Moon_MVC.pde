@@ -14,19 +14,35 @@ AudioPlayer bgMusic, click, shoot, enemyHurt,  trampoline, portal, stab,
 playerHurt, mining, enemyShoot, touchGround, ding, gameOver;
 
 // SoundFile bgMusic;
-PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg;
+PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg, helpImg;
 PImage inGameHome, inGameMute, inGamePause;
 PImage easy, normal, hard,musicOn, musicOff, returnBtn;
 
 Difficulty dif;
-ArrayList<String> rank = new ArrayList();
-String playerName = "Arlo:100;Cedric:100;";
+
+ArrayList<Record> records = new ArrayList();
+
+
+
 
 /**
 * Initialize all project, run once
 */
 void setup(){
     
+    //records.add(new Record("Arlo", 100));
+    //records.add(new Record("Cla", 200));
+    //records.add(new Record("Eva", 990));
+    //records.add(new Record("Arlo", 100));
+    //records.add(new Record("Cedric", 200));
+    //records.add(new Record("Eva", 50));
+    //records.add(new Record("David", 120));
+    //records.add(new Record("Nina", 90));
+    //records.add(new Record("Cedric", 200));
+    //records.add(new Record("Eva", 50));
+    //records.add(new Record("David", 120));
+    //records.add(new Record("Nina", 90));
+ 
     size(1160,800);
     dif = new Difficulty();
         
@@ -57,14 +73,12 @@ void setup(){
     controller = new Controller(model);
     //Collision c = new Collision(g);
     //controller.collision = c;
-    view = new View(this, model);
+    view = new View(this, model,p);
 
 }
 
 void reset(){
     
-    playerName = "Arlo:100;Cedric:100";
-  
     Model newModel = new Model();
     
     EnemyFactory e = new EnemyFactory();
@@ -93,6 +107,8 @@ void reset(){
     controller.collision.decorationFactory = newModel.decorationFactory;
     
     view.model = newModel;
+    view.mvc = this;
+    view.p = p;
 
 }
 
@@ -196,6 +212,7 @@ public void initMenu(){
 
     // Menu
     bgImg = loadImage("Data/imgs/menu/background.png");
+    helpImg = loadImage("Data/imgs/menu/helpPage.png");
     optionImg = loadImage("Data/imgs/menu/option.png");
     gameoverImg = loadImage("Data/imgs/menu/gameover.png");
     optionMuteImg = loadImage("Data/imgs/menu/option_mute.png");
@@ -350,36 +367,43 @@ public void mouseReleased(){
   if(controller.getMenuHomePage()){
     //check mouse position, if in position and released, change booleans in model
     
-    // Game over test TO BE DELETED!!!!!!!
-    if (mouseX > 0 && mouseX < 400 && mouseY > 0 && mouseY < 200) {
-      controller.setMenuHomePage(false);
-      controller.setGameOver(true);
-    }
+    //// Game over test TO BE DELETED!!!!!!!
+    //if (mouseX > 0 && mouseX < 400 && mouseY > 0 && mouseY < 200) {
+    //  controller.setMenuHomePage(false);
+    //  controller.setGameOver(true);
+    //}
     
     
     // Clicked on Start
-    if (mouseX > 201 && mouseX < 433 && mouseY > 156 && mouseY < 253) {
+    if (mouseX > 192 && mouseX < 420 && mouseY > 100 && mouseY < 197) {
       click.play(2);
       controller.setMenuHomePage(false);
       controller.setGameStart(true);
       
     }
+    // Clicked on help
+    if (mouseX > 192 && mouseX < 420 && mouseY > 228 && mouseY < 325) {
+      click.play(2);
+      controller.setMenuHomePage(false);
+      controller.setHelp(true);
+      
+    }
     // Click Option
-    if (mouseX > 201 && mouseX < 433 && mouseY > 281 && mouseY < 378) {
+    if (mouseX > 192 && mouseX < 420 && mouseY > 355 && mouseY < 452) {
       click.play(2);
       controller.setMenuHomePage(false);
       controller.setMenuControl(true);
     }
     
     // Click history ranking
-    if (mouseX > 201 && mouseX < 433 && mouseY > 406 && mouseY < 503) {
+    if (mouseX > 192 && mouseX < 420 && mouseY > 478 && mouseY < 574) {
       click.play(2);
       controller.setMenuHomePage(false);
       controller.setGlobalList(true);
     }
     
     // Click Quit
-    if (mouseX > 201 && mouseX < 433 && mouseY > 531 && mouseY < 628) {
+    if (mouseX > 192 && mouseX < 420 && mouseY > 602 && mouseY < 698) {
       click.play(2);
       exit();
     }
@@ -387,22 +411,19 @@ public void mouseReleased(){
   } else if(controller.getMenuControl()){
      // Difficulty switch
     if (mouseX > 462 && mouseX < 696 && mouseY > 209 && mouseY < 306) {
+      click.play(2);
       controller.setDifficulty();
       switch (controller.getDifficulty()){
         case 0: 
           dif.easyMode();
-          println("easy");
           break;
         case 1:
           dif.normalMode();
-          println("normal");
           break;
         case 2:
           dif.hardMode();
-          println("hard");
           break;
         default:
-          println("ERROR????");
           break;
       }
     }
@@ -470,12 +491,14 @@ public void mouseReleased(){
   //only work when game starts
   else{
     
+    
     // In game menu
     // Homepage button
     if (mouseX > 1100 && mouseX < 1153 && mouseY > 10 && mouseY < 47) {
       click.play(2);
       controller.setGameStart(false);
       controller.setMenuHomePage(true);
+      reset();
     }
     // Pause
     if (mouseX > 1030 && mouseX < 1083 && mouseY > 10 && mouseY < 47) {
@@ -515,8 +538,8 @@ public void mousePressed(){
 }
 
 
-public void setRankingData(String newRanking){
-  this.playerName += newRanking;
+public void setRankingData(String name, Integer score){
+  this.records.add(new Record(name, score));
 }
 
 void stop(){

@@ -4,7 +4,9 @@
 * Class for painting. This class will draw everything for each frame by getting data from Model.class.
 * Next stage: finish draw*() methods behind
 */
+
 import controlP5.*;
+
 
 ControlP5 cp5;
 Textfield playerNameInput;
@@ -13,11 +15,13 @@ boolean inputFieldCreated = false;
 public class View{
   protected Model model;
   Moon_MVC mvc; 
+  Player p;
   //PImage help;
   
-  public View(Moon_MVC mvc, Model model){
+  public View(Moon_MVC mvc, Model model, Player p){
      this.model = model;
      this.mvc = mvc;
+     this.p = p;
      //help = loadImage("imgs/menu/help.png");
      //help.resize(width, height/2);
   }
@@ -28,6 +32,8 @@ public class View{
   public void paint(){
     if(model.menuHomePage){
        drawMenuHomePage();
+    }else if(model.helpPage){
+      drawHelpPage();
     }else if(model.menuControl){
        drawMenuControl();
     }else if(model.globalList){
@@ -200,6 +206,11 @@ public class View{
      // Quit
    }
    
+   public void drawHelpPage(){
+     image(helpImg, 0, 0, width, height);
+     
+   }
+   
    
    // Appear during game when press "ESC"?
    public void drawMenuControl(){
@@ -262,19 +273,23 @@ public class View{
 
      image(gameoverImg, 0, 0, width, height);
      
+     textSize(32);
+     textAlign(CENTER, CENTER);
+     String scoreString = str(p.value);
+     text(scoreString, width/2, height/2-30);
+     
      // Create input field for entering the player's name
     if (!inputFieldCreated) {
       cp5 = new ControlP5(mvc);
-      playerNameInput = cp5.addTextfield("Please input your name")
-         .setPosition(width / 2 - 100, height / 2-80)
-         .setSize(200, 40)
+      playerNameInput = cp5.addTextfield("")
+         .setPosition(width / 2 - 100, 520)
+         .setSize(200, 50)
          .setAutoClear(false)
          .setColorBackground(color(255, 255, 255)) // Set background color to white
          .setColorForeground(color(240, 240, 240)) // Set foreground color to light gray
          .setColorActive(color(200, 200, 200)) // Set active color to gray
          .setColorValue(color(0, 0, 0)) // Set text color to black
-         //.setTextAlign(LEFT) // Align text to the left side of the input field
-         .setFont(createFont("Arial", 24)) // Set the font to Arial and make it larger (24pt)
+         .setFont(createFont("Arial", 32)) // Set the font to Arial and make it larger (24pt)
          .setVisible(false); // Initially hide the input field
       inputFieldCreated = true;
     }
@@ -287,51 +302,56 @@ public class View{
    //   textSize(16);
    //   text("Restart?", width/2, height*3/4);
      
-
-   
    // Check Global Ranking
    
    // Quit
      // Detect click on the "Restart" button
    
    // RESTART
-   if (mousePressed && mouseX > 460 && mouseX < 727 && mouseY > 439 && mouseY < 477) {
-      // Save the player's name and score to the ranking string
-      String playerName = playerNameInput.getText();
-      playerNameInput.clear();
-      String updatedRankingData = playerName + ":" + "100" + ";";
-      //playerName += updatedRankingData;
-      setRankingData(updatedRankingData);
+   //if (mousePressed && mouseX > 460 && mouseX < 727 && mouseY > 439 && mouseY < 477) {
+   //   // Save the player's name and score to the ranking string
+   //   String playerName = playerNameInput.getText();
+   //   playerNameInput.clear();
+   //   String updatedRankingData = playerName + ":" + "100" + ";";
+   //   //playerName += updatedRankingData;
+   //   setRankingData(updatedRankingData);
       
-      controller.setGameOver(false);
-      gameOver.pause();
-     if (gameOver.position() > 0){
-       gameOver.rewind();
-     }
-      controller.setGameStart(true);
-      bgMusic.rewind();
-      bgMusic.play();
-      playerNameInput.setVisible(false); // Hide the input field after restarting
-    }
+   //   controller.setGameOver(false);
+   //   gameOver.pause();
+   //  if (gameOver.position() > 0){
+   //    gameOver.rewind();
+   //  }
+   //   controller.setGameStart(true);
+   //   bgMusic.rewind();
+   //   bgMusic.play();
+   //   playerNameInput.setVisible(false); // Hide the input field after restarting
+   // }
     
-    // HOME PAGE
-   if (mousePressed && mouseX > 460 && mouseX < 727 && mouseY > 543 && mouseY < 581) {
+    // SUBMIT
+   if (mousePressed && mouseX > 447 && mouseX < 711 && mouseY > 628 && mouseY < 716) {
+      click.play(2);
+
      // Save the player's name and score to the ranking string
       String playerName = playerNameInput.getText();
-      playerNameInput.clear();
-      String updatedRankingData = playerName + ":" + "100" + ";";
-      //playerName += updatedRankingData;
-      setRankingData(updatedRankingData);
-      
-      controller.setGameOver(false);
-      gameOver.pause();
-     if (gameOver.position() > 0){
-       gameOver.rewind();
-     }
-      controller.setMenuHomePage(true);
-      bgMusic.rewind();
-      bgMusic.play();
-      playerNameInput.setVisible(false); // Hide the input field after restarting
+      if (playerName.length()>0){
+        playerNameInput.clear();
+        // String updatedRankingData = playerName + ":" + scoreString + ";";
+        
+        //playerName += updatedRankingData;
+        setRankingData(playerName, p.value);
+        
+        controller.setGameOver(false);
+        mvc.reset();
+        gameOver.pause();
+       if (gameOver.position() > 0){
+         gameOver.rewind();
+       }
+        controller.setMenuHomePage(true);
+        bgMusic.rewind();
+        bgMusic.play();
+        playerNameInput.setVisible(false); // Hide the input field after restarting        
+      }
+
     }
      
     /* 
@@ -357,66 +377,53 @@ public class View{
    // Also can be accessed from Home Page Menu
 
    public void drawGlobalList(){
-    image(rankImg, 0, 0, width, height);
     
-    //String rankingData = "Arlo:100;Cedric:100";
-    String[] entries = playerName.split(";");
-    
-    textAlign(CENTER, CENTER);
-    textSize(32); // Increase font size
-    fill(255); // Text color
-    
-    float x = width / 2;
-    float startY = height * 0.3f;
-    float padding = 10; // Padding around the text
-
-    // Find maximum text width
-    float maxTextWidth = 0;
-    for (String entry : entries) {
-      String[] nameAndScore = entry.split(":");
-      String name = nameAndScore[0];
-      int score = Integer.parseInt(nameAndScore[1]);
-      String text = String.format("%d. %s: %d", 1, name, score);
-      float textWidth = textWidth(text);
-      if (textWidth > maxTextWidth) {
-        maxTextWidth = textWidth;
-      }
-    }
-    
-    // Draw rankings
-    float currentY = startY;
-    for (int i = 0; i < entries.length; i++) {
-      String entry = entries[i];
-      String[] nameAndScore = entry.split(":");
-      String name = nameAndScore[0];
-      int score = Integer.parseInt(nameAndScore[1]);
-      String text = String.format("%d. %s: %d", i + 1, name, score);
-    
-      // Calculate text height and line height
-      float textHeight = textAscent() + textDescent() + 2 * padding;
-      float lineHeight = textHeight * 1.2f; // Add 20% extra space
-    
-    /*
-      // Draw light grey background with half transparency
-      fill(220, 220, 220, 127); // Light grey color with half transparency
-      noStroke(); // Remove border around the background
-      rect(x - (maxTextWidth + 2 * padding) / 2, currentY - textHeight / 2, maxTextWidth + 2 * padding, textHeight, 5);
-    */
-    
-      // Draw text
-      fill(255); // Text color
-      text(text, x, currentY);
-    
-      // Update the Y position for the next entry
-      currentY += lineHeight;
-    }
+    ArrayList<Record> sortedRecords = sortRecordsByMarksDescending(mvc.records);
+    drawTop10Records(sortedRecords);
     
     image(returnBtn, 462, 620);
 
-
-
-
   }
+    
+  void drawTop10Records(ArrayList<Record> sortedRecords) {
+    
+    image(rankImg, 0, 0, width, height);
+
+    noStroke(); 
+    fill(128,128,128,128);
+    rect(380, 0, 400, height);
+
+    fill(255); // Set text color to black
+    textSize(40); // Set text size to 24 pixels
+    textAlign(CENTER, CENTER);
+  
+    int counter = 0;
+    float lineHeight = 50;
+    
+    float startY = height / 2 - (Math.min(sortedRecords.size(), 10) * lineHeight) / 2-20;
+    
+    if (sortedRecords.size()==0){
+      text("No records", width / 2, startY + (counter * lineHeight));
+    }
+    for (Record record : sortedRecords) {
+      if (counter >= 10) {
+        break;
+      }
+      String text = (counter + 1) + ": " + record.name + " " + record.marks;
+      text(text, width / 2, startY + (counter * lineHeight));
+      counter++;
+    }
+  }
+  
+  ArrayList<Record> sortRecordsByMarksDescending(ArrayList<Record> records) {
+    Collections.sort(records, new Comparator<Record>() {
+      public int compare(Record r1, Record r2) {
+        return Integer.compare(r2.marks, r1.marks);
+      }
+    });
+    return records;
+  }
+    
 
    
    public void drawInGameMenu(){
