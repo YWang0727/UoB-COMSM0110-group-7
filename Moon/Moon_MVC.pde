@@ -385,8 +385,7 @@ public void mouseReleased(){
     if (mouseX > 192 && mouseX < 420 && mouseY > 228 && mouseY < 325) {
       click.play(2);
       controller.setMenuHomePage(false);
-      controller.setHelp(true);
-      
+      controller.setHelpPage(true);
     }
     // Click Option
     if (mouseX > 192 && mouseX < 420 && mouseY > 355 && mouseY < 452) {
@@ -408,6 +407,13 @@ public void mouseReleased(){
       exit();
     }
     
+  } else if (controller.getHelpPage()){
+    if (mouseX > 825 && mouseX < 1059 && mouseY > 625 && mouseY < 722) {
+      click.play(2);
+      controller.setHelpPage(false);
+      controller.setMenuHomePage(true);
+    }
+  
   } else if(controller.getMenuControl()){
      // Difficulty switch
     if (mouseX > 462 && mouseX < 696 && mouseY > 209 && mouseY < 306) {

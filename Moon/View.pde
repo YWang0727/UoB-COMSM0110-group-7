@@ -208,7 +208,7 @@ public class View{
    
    public void drawHelpPage(){
      image(helpImg, 0, 0, width, height);
-     
+     image(returnBtn, 825, 625);
    }
    
    
@@ -389,9 +389,9 @@ public class View{
     
     image(rankImg, 0, 0, width, height);
 
-    noStroke(); 
-    fill(128,128,128,128);
-    rect(380, 0, 400, height);
+    //noStroke(); 
+    //fill(128,128,128,128);
+    //rect(380, 0, 400, height);
 
     fill(255); // Set text color to black
     textSize(40); // Set text size to 24 pixels
