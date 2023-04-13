@@ -222,7 +222,7 @@ public class ItemFactory extends Factory{
 
     public Item weaponShotgun(){
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 3, 750, Type.BULLET_TYPE_SHOT);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 5, 3, 600, Type.BULLET_TYPE_SHOT);
        t.type = Type.WEAPON_SHOTGUN;
        t.w = Type.BOARD_GRIDSIZE*2/3;
        t.h = Type.BOARD_GRIDSIZE*2/3;
@@ -233,7 +233,7 @@ public class ItemFactory extends Factory{
     
     public Item weaponLaser(){
        //basic props of bullets: int bW, int bH, int bSpeed, int bDp, int bNum, int bCd, int bType
-       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 300, Type.BULLET_TYPE_LASER);
+       Item t = new Item(5, 5, Type.BULLET_SPEED_SLOW, 10, 1, 500, Type.BULLET_TYPE_LASER);
        t.type = Type.WEAPON_LASER;
 
        t.w = Type.BOARD_GRIDSIZE*2/3;
