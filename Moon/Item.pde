@@ -210,11 +210,11 @@ public class Item extends BasicProp{
       textAlign(CENTER, TOP);
       String s = "";
       if(this.type == 0){
-         s = "+ HP";
+         s = "HP + 1";
       }else if(this.type == 1){
-         s = "+ SP";
+         s = "SPEED UP: 5s";
       }else{
-         s = "FLY mode";
+         s = "FLY mode: 8s";
       }
       text("Effect: " + s, playerLoction.x, playerLoction.y - Type.BOARD_GRIDSIZE * 2); 
       noStroke();
