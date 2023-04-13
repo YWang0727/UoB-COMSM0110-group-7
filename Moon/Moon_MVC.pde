@@ -22,7 +22,7 @@ Difficulty dif;
 
 ArrayList<Record> records = new ArrayList();
 
-
+boolean canReset = false;
 
 
 /**
@@ -78,6 +78,7 @@ void setup(){
 }
 
 void reset(){
+    canReset = false;
     
     Model newModel = new Model();
     
@@ -110,6 +111,8 @@ void reset(){
     view.mvc = this;
     view.p = p;
 
+    pkeys = new IntList(); 
+    
 }
 
 
@@ -303,6 +306,8 @@ public void keyPressed(){
         return;
     }
     
+    key = Character.toLowerCase(key);
+    
     //use WASD to move
     if(!pkeys.hasValue(int(key))) {
       pkeys.append(int(key));
@@ -311,6 +316,8 @@ public void keyPressed(){
 }
 
 public void keyReleased(){
+  
+   key = Character.toLowerCase(key);
 
    if(key == 'p'){
       controller.setGamePause(controller.getGamePause() ? false : true);
@@ -514,7 +521,9 @@ public void mouseReleased(){
       click.play(2);
       controller.setGameStart(false);
       controller.setMenuHomePage(true);
-      reset();
+      if(canReset){
+            reset();
+      }
     }
     // Pause
     if (mouseX > 1030 && mouseX < 1083 && mouseY > 10 && mouseY < 47) {

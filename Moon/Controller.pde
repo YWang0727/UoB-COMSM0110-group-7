@@ -37,6 +37,7 @@ public class Controller{
           if(p.hp <= 0){
              model.gameStart = false;
              model.gameOver = true;
+             canReset = true;
           }
           
       }
