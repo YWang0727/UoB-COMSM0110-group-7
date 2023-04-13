@@ -80,7 +80,7 @@ public class Collision{
            Bullet b = iterator.next();
            if(detect(boss, b)){
               if(boss.isAlive){
-                  boss.attacked(b.dp, b);
+                  //boss.attacked(b.dp, b);
                   decorationFactory.addBulletRemoveGif(r, b);
                   iterator.remove();
               }
