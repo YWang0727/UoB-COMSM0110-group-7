@@ -22,7 +22,7 @@ Difficulty dif;
 
 ArrayList<Record> records = new ArrayList();
 
-
+boolean canReset = false;
 
 
 /**
@@ -78,6 +78,7 @@ void setup(){
 }
 
 void reset(){
+    canReset = false;
     
     Model newModel = new Model();
     
@@ -510,7 +511,9 @@ public void mouseReleased(){
       click.play(2);
       controller.setGameStart(false);
       controller.setMenuHomePage(true);
-      reset();
+      if(canReset){
+            reset();
+      }
     }
     // Pause
     if (mouseX > 1030 && mouseX < 1083 && mouseY > 10 && mouseY < 47) {
