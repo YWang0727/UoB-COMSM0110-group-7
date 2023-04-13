@@ -15,14 +15,14 @@ playerHurt, mining, enemyShoot, touchGround, ding, gameOver;
 
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg, helpImg;
-PImage inGameHome, inGameMute, inGamePause;
+PImage inGameHome, inGameMute, inGamePause,inGameHelp, inGamePausePage;
 PImage easy, normal, hard,musicOn, musicOff, returnBtn;
 
 Difficulty dif;
 
 ArrayList<Record> records = new ArrayList();
 
-boolean canReset = false;
+
 
 
 /**
@@ -78,7 +78,6 @@ void setup(){
 }
 
 void reset(){
-    canReset = false;
     
     Model newModel = new Model();
     
@@ -110,8 +109,6 @@ void reset(){
     view.model = newModel;
     view.mvc = this;
     view.p = p;
-    
-    pkeys = new IntList(); 
 
 }
 
@@ -220,9 +217,11 @@ public void initMenu(){
     gameoverImg = loadImage("Data/imgs/menu/gameover.png");
     optionMuteImg = loadImage("Data/imgs/menu/option_mute.png");
     rankImg = loadImage("Data/imgs/menu/rank.png");
-    inGameHome = loadImage("Data/imgs/menu/home.png");
+    inGameHome = loadImage("Data/imgs/menu/exit.png");
+    inGameHelp = loadImage("Data/imgs/menu/helpBtn.png");
     inGameMute = loadImage("Data/imgs/menu/music.png");
     inGamePause = loadImage("Data/imgs/menu/pause.png");
+    inGamePausePage = loadImage("Data/imgs/menu/pausePage.png");
     
     easy = loadImage("Data/imgs/menu/easy.png");
     normal = loadImage("Data/imgs/menu/normal.png");
@@ -270,6 +269,7 @@ public void keyListener(){
     }
   
     if(pkeys.size()== 0) return;
+    
     for(int i=pkeys.size()-1; i>=0; i--){
       if(validKey(pkeys.get(i))){
         if(pkeys.hasValue(Type.KEY_S) && pkeys.hasValue(Type.KEY_SPACE)){
@@ -284,7 +284,6 @@ public void keyListener(){
 }
 
 public boolean validKey(int value){
-  
   if(value == Type.KEY_D 
   || value == Type.KEY_A 
   || value == Type.KEY_SPACE
@@ -296,15 +295,13 @@ public boolean validKey(int value){
   return false;
 }
 
+
 public void keyPressed(){
-  
   
     //only work when game starts
     if(!controller.getGameStart()){
         return;
     }
-    
-    key = Character.toLowerCase(key);
     
     //use WASD to move
     if(!pkeys.hasValue(int(key))) {
@@ -314,8 +311,6 @@ public void keyPressed(){
 }
 
 public void keyReleased(){
-  
-  key = Character.toLowerCase(key);
 
    if(key == 'p'){
       controller.setGamePause(controller.getGamePause() ? false : true);
@@ -386,7 +381,7 @@ public void mouseReleased(){
       click.play(2);
       controller.setMenuHomePage(false);
       controller.setGameStart(true);
-      
+      controller.setInGame(true);
     }
     // Clicked on help
     if (mouseX > 192 && mouseX < 420 && mouseY > 228 && mouseY < 325) {
@@ -417,8 +412,14 @@ public void mouseReleased(){
   } else if (controller.getHelpPage()){
     if (mouseX > 825 && mouseX < 1059 && mouseY > 625 && mouseY < 722) {
       click.play(2);
-      controller.setHelpPage(false);
-      controller.setMenuHomePage(true);
+      // In game
+      if (controller.getInGame()){
+        controller.setHelpPage(false);
+        controller.setGameStart(true);
+      } else{
+        controller.setHelpPage(false);
+        controller.setMenuHomePage(true);
+      }
     }
   
   } else if(controller.getMenuControl()){
@@ -474,19 +475,19 @@ public void mouseReleased(){
   
   else if(controller.getGamePause()){
       //there should be a restart button in this menu
-
+      if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        click.play(2);
+        controller.setGameStart(true);
+        controller.setGamePause(false);
+      }
   }
   
   else if(controller.getGameOver()){
-      
       //there should be a restart button in this menu
       
       // player gameOver music
 
-      
-      
       // Restart
-      
       
       /*
       if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
@@ -497,31 +498,33 @@ public void mouseReleased(){
         controller.setGameStart(true);
         controller.setGameOver(false);
       }
-      */
-      
-      
+      */  
   }
   //only work when game starts
   else{
-    
-    
     // In game menu
+    // Help
+    if (mouseX > 890 && mouseX < 943 && mouseY > 10 && mouseY < 47) {
+      click.play(2);
+      controller.setGameStart(false);
+      controller.setHelpPage(true);
+    }
     // Homepage button
     if (mouseX > 1100 && mouseX < 1153 && mouseY > 10 && mouseY < 47) {
       click.play(2);
       controller.setGameStart(false);
       controller.setMenuHomePage(true);
-      if(canReset){
-            reset();
-      }
+      reset();
     }
     // Pause
     if (mouseX > 1030 && mouseX < 1083 && mouseY > 10 && mouseY < 47) {
       click.play(2);
       if (controller.getGameStart()){
         controller.setGameStart(false);
+        controller.setGamePause(true);
       } else {
         controller.setGameStart(true);
+        controller.setGamePause(false);
       }
     }
     // Music ON/OFF

@@ -261,7 +261,9 @@ public class View{
    
    // Menu when game is paused 
    public void drawGamePause(){
-
+    tint(255, 6);
+    image(inGamePausePage,0,0);
+    noTint();
    }
    
    // When player lose all HP
@@ -347,6 +349,7 @@ public class View{
          gameOver.rewind();
        }
         controller.setMenuHomePage(true);
+        controller.setInGame(false);
         bgMusic.rewind();
         bgMusic.play();
         playerNameInput.setVisible(false); // Hide the input field after restarting        
@@ -427,9 +430,11 @@ public class View{
 
    
    public void drawInGameMenu(){
+
      image(inGameHome, 1100, 10, 53, 37);
      image(inGamePause, 1030, 10, 53, 37);
      image(inGameMute, 960, 10, 53, 37);
+     image(inGameHelp, 890, 10, 53, 37);
    }
    
    public void addTutorialToStartRoom(Room r){

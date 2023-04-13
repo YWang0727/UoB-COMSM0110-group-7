@@ -37,7 +37,6 @@ public class Controller{
           if(p.hp <= 0){
              model.gameStart = false;
              model.gameOver = true;
-             canReset = true;
           }
           
       }
@@ -489,6 +488,14 @@ public class Controller{
    
    public Integer getDifficulty(){
        return model.difficulty;
+   }
+   
+    public void setInGame(boolean flag){
+       model.inGame = flag;
+   }
+   
+   public boolean getInGame(){
+       return model.inGame;
    }
    
 }
