@@ -109,6 +109,8 @@ void reset(){
     view.model = newModel;
     view.mvc = this;
     view.p = p;
+    
+    pkeys = new IntList(); 
 
 }
 

@@ -33,8 +33,8 @@ public class Model{
    public void addPlayer(Player p){
       // better spawn
       Room r = this.map.rooms.get(0);
-      for(int i = 3; i < Type.BOARD_MAX_HEIGHT - 3; i++){
-         for(int j = 3; j < Type.BOARD_MAX_WIDTH - 3; j++){
+      for(int i = 6; i < Type.BOARD_MAX_HEIGHT - 6; i++){
+         for(int j = 10; j < Type.BOARD_MAX_WIDTH - 10; j++){
             if(r.blockType[i][j] == Type.BLOCK_WALL
              && r.blockType[i - 1][j] == Type.BLOCK_EMPTY
              && r.blockType[i - 2][j] == Type.BLOCK_EMPTY
