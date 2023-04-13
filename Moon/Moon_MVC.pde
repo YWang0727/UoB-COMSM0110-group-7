@@ -521,9 +521,10 @@ public void mouseReleased(){
       click.play(2);
       controller.setGameStart(false);
       controller.setMenuHomePage(true);
-      if(canReset){
-            reset();
-      }
+      reset();
+      //if(canReset){
+      //      reset();
+      //}
     }
     // Pause
     if (mouseX > 1030 && mouseX < 1083 && mouseY > 10 && mouseY < 47) {
