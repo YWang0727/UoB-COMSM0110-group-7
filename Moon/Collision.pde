@@ -149,19 +149,19 @@ public class Collision{
                     decorationFactory.addBulletRemoveGif(r, b);
                                if(b.type == Type.BULLET_TYPE_LASER && b.split == false){
                                  float sp = sqrt(b.velocity.x * b.velocity.x + b.velocity.y * b.velocity.y);
-                                 Bullet b1 = new Bullet(new PVector(b.location.x + b.w * 2, b.location.y), new PVector(sp, 0), b.w, b.h, b.dp);
+                                 Bullet b1 = new Bullet(new PVector(b.location.x + b.w * 2, b.location.y), new PVector(sp, 0), b.w, b.h, b.dp/3);
                                  b1.type = Type.BULLET_TYPE_LASER;
                                  b1.split = true;
                                  bullets.add(b1);
-                                 Bullet b2 = new Bullet(new PVector(b.location.x - b.w * 2, b.location.y), new PVector(-sp, 0), b.w, b.h, b.dp);
+                                 Bullet b2 = new Bullet(new PVector(b.location.x - b.w * 2, b.location.y), new PVector(-sp, 0), b.w, b.h, b.dp/3);
                                  b2.type = Type.BULLET_TYPE_LASER;
                                  b2.split = true;
                                  bullets.add(b2);
-                                 Bullet b3 = new Bullet(new PVector(b.location.x, b.location.y + b.h * 2), new PVector(0, sp), b.w, b.h, b.dp);
+                                 Bullet b3 = new Bullet(new PVector(b.location.x, b.location.y + b.h * 2), new PVector(0, sp), b.w, b.h, b.dp/3);
                                  b3.type = Type.BULLET_TYPE_LASER;
                                  b3.split = true;
                                  bullets.add(b3);
-                                 Bullet b4 = new Bullet(new PVector(b.location.x, b.location.y - b.h * 2), new PVector(0, -sp), b.w, b.h, b.dp);
+                                 Bullet b4 = new Bullet(new PVector(b.location.x, b.location.y - b.h * 2), new PVector(0, -sp), b.w, b.h, b.dp/3);
                                  b4.type = Type.BULLET_TYPE_LASER;
                                  b4.split = true;
                                  bullets.add(b4);
@@ -184,19 +184,19 @@ public class Collision{
                             if(detect(b, i, j)){
                                if(b.type == Type.BULLET_TYPE_LASER && b.split == false){
                                  float sp = sqrt(b.velocity.x * b.velocity.x + b.velocity.y * b.velocity.y);
-                                 Bullet b1 = new Bullet(new PVector(b.location.x + b.w * 2, b.location.y), new PVector(sp, 0), b.w, b.h, b.dp);
+                                 Bullet b1 = new Bullet(new PVector(b.location.x + b.w * 2, b.location.y), new PVector(sp, 0), b.w, b.h, b.dp/3);
                                  b1.type = Type.BULLET_TYPE_LASER;
                                  b1.split = true;
                                  bullets.add(b1);
-                                 Bullet b2 = new Bullet(new PVector(b.location.x - b.w * 2, b.location.y), new PVector(-sp, 0), b.w, b.h, b.dp);
+                                 Bullet b2 = new Bullet(new PVector(b.location.x - b.w * 2, b.location.y), new PVector(-sp, 0), b.w, b.h, b.dp/3);
                                  b2.type = Type.BULLET_TYPE_LASER;
                                  b2.split = true;
                                  bullets.add(b2);
-                                 Bullet b3 = new Bullet(new PVector(b.location.x, b.location.y + b.h * 2), new PVector(0, sp), b.w, b.h, b.dp);
+                                 Bullet b3 = new Bullet(new PVector(b.location.x, b.location.y + b.h * 2), new PVector(0, sp), b.w, b.h, b.dp/3);
                                  b3.type = Type.BULLET_TYPE_LASER;
                                  b3.split = true;
                                  bullets.add(b3);
-                                 Bullet b4 = new Bullet(new PVector(b.location.x, b.location.y - b.h * 2), new PVector(0, -sp), b.w, b.h, b.dp);
+                                 Bullet b4 = new Bullet(new PVector(b.location.x, b.location.y - b.h * 2), new PVector(0, -sp), b.w, b.h, b.dp/3);
                                  b4.type = Type.BULLET_TYPE_LASER;
                                  b4.split = true;
                                  bullets.add(b4);

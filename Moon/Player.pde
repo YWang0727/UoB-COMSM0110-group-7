@@ -280,12 +280,12 @@ public class Player extends ActionProp{
   //0 shoot, 1 stand_left, 2 stand_right,  3 run_left, 4 run_right, 5 jump_left, 6 jump_right
   public void drawLower(){
        int gifType = 0;
-       if(Math.abs(getFullVelocityY()) > 1){
-         //jump 
-         gifType = this.left ? 5 : 6;
-         image(this.gifsImgs.get(gifType)[0], location.x - 4, location.y - 3, 32, 37);
-       }else 
-       if(this.isRun){
+       //if(Math.abs(getFullVelocityY()) > 2){
+       //  //jump 
+       //  gifType = this.left ? 5 : 6;
+       //  image(this.gifsImgs.get(gifType)[0], location.x - 4, location.y - 3, 32, 37);
+       //}else 
+       if(this.isRun && !this.fly){
          gifType = this.left ? 3 : 4;
          //run
          image(this.gifsImgs.get(gifType)[(int)this.gifsImgsCount[gifType]], location.x - 4, location.y - 3, 32, 37);
