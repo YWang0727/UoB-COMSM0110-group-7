@@ -267,7 +267,6 @@ public void keyListener(){
     }
   
     if(pkeys.size()== 0) return;
-    
     for(int i=pkeys.size()-1; i>=0; i--){
       if(validKey(pkeys.get(i))){
         if(pkeys.hasValue(Type.KEY_S) && pkeys.hasValue(Type.KEY_SPACE)){
@@ -282,6 +281,7 @@ public void keyListener(){
 }
 
 public boolean validKey(int value){
+  
   if(value == Type.KEY_D 
   || value == Type.KEY_A 
   || value == Type.KEY_SPACE
@@ -293,13 +293,15 @@ public boolean validKey(int value){
   return false;
 }
 
-
 public void keyPressed(){
+  
   
     //only work when game starts
     if(!controller.getGameStart()){
         return;
     }
+    
+    key = Character.toLowerCase(key);
     
     //use WASD to move
     if(!pkeys.hasValue(int(key))) {
@@ -309,6 +311,8 @@ public void keyPressed(){
 }
 
 public void keyReleased(){
+  
+  key = Character.toLowerCase(key);
 
    if(key == 'p'){
       controller.setGamePause(controller.getGamePause() ? false : true);
