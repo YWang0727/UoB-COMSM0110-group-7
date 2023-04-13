@@ -43,14 +43,17 @@ public class View{
     }else if(model.gameOver){
       drawGameOver();
     }else if(model.gameStart){
+         
          drawRoom();
          //drawGhost();
          drawBoss();
          drawPlayer();
+         
          //showAround(model.player);
          drawRoomBeforePlayer();
          // Draw in game menu
          drawInGameMenu();
+         
          //image(this.instructionImg,0,0);
          //drawRoomNumber();
          drawDifficultyLevel();
@@ -124,6 +127,15 @@ public class View{
   }
   
   public void drawDifficultyLevel(){
+      // Draw Difficulty btn
+      if (controller.getDifficulty()==0){
+        image(easy, 170, 60, 64, 30);
+      } else if (controller.getDifficulty()==1){
+        image(normal, 170, 60, 64, 30);
+      } else {
+        image(hard, 170, 60, 64, 30);
+      }
+        
       fill(125, 255, 255);
       textSize(32); 
       textAlign(LEFT, TOP);

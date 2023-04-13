@@ -15,7 +15,7 @@ playerHurt, mining, enemyShoot, touchGround, ding, gameOver;
 
 // SoundFile bgMusic;
 PImage bgImg, optionImg, optionMuteImg, rankImg, gameoverImg, helpImg;
-PImage inGameHome, inGameMute, inGamePause,inGameHelp, inGamePausePage;
+PImage inGameHome, inGameMute, inGamePause,inGameHelp, inGamePausePage, score;
 PImage easy, normal, hard,musicOn, musicOff, returnBtn;
 
 Difficulty dif;
@@ -225,6 +225,7 @@ public void initMenu(){
     inGameMute = loadImage("Data/imgs/menu/music.png");
     inGamePause = loadImage("Data/imgs/menu/pause.png");
     inGamePausePage = loadImage("Data/imgs/menu/pausePage.png");
+    score = loadImage("Data/imgs/menu/score.png");
     
     easy = loadImage("Data/imgs/menu/easy.png");
     normal = loadImage("Data/imgs/menu/normal.png");

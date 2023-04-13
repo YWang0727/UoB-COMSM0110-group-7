@@ -241,9 +241,11 @@ public class Player extends ActionProp{
       stroke(0); 
       strokeWeight(1); 
       fill(50, 255,255);
-      textSize(32); 
+      textSize(28); 
       textAlign(LEFT, TOP);
-      text("Score: " + this.value, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
+      image(score, Type.BOARD_GRIDSIZE/2-10, 50);
+      //text("Score: " + this.value, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
+      text(this.value, Type.BOARD_GRIDSIZE/2+50, Type.BOARD_GRIDSIZE *3/2-5); 
   }
   
   public void drawPlayerAndWeapon(){
