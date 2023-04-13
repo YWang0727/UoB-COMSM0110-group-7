@@ -418,7 +418,7 @@ public void mouseReleased(){
     }
     
   } else if (controller.getHelpPage()){
-    if (mouseX > 825 && mouseX < 1059 && mouseY > 625 && mouseY < 722) {
+    if (mouseX > 827 && mouseX < 1061 && mouseY > 598 && mouseY < 695) {
       click.play(2);
       // In game
       if (controller.getInGame()){

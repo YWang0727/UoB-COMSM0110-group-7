@@ -220,7 +220,7 @@ public class View{
    
    public void drawHelpPage(){
      image(helpImg, 0, 0, width, height);
-     image(returnBtn, 825, 625);
+     //image(returnBtn, 825, 625);
    }
    
    
