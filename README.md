@@ -80,15 +80,12 @@ As a developer I want to design menus for different settings so that the player 
 
 
 
-o Early stages design
+o Early stages design and ideation process. How did you decide as a team what to develop?
 
-o Ideation process. How did you decide as a team what to develop?
+At early stages, each member in the team brought up at least 2 games ideas to develop. We discussed and evaluated all ideas from a wide range of aspects which game we are going to build, for example, the possibilities of twists for each game, potential game users, a more original game, how it works (interactions between enemies and player) etc.
 
+Finally, we reached a consensus of which game to develop as we all agreed on a rough-like game and clearer picture of our game. Initially we have a general aim for our game, for example, game background setting, space mission and exploring, various landscapes (rooms), various enemies, score system, items system etc.
 
-
-For early stages, each member in the team brought up at least 2 desired games to develop . We discussed about a wide range of factors that which game we are going to build, for example, the possibilities of twists for each game, potential game users, a more original game , how it works (interactions between enermies and player) etc.
-
-Finally we reached consencus of which game to develop as we have a rough ideas but more clear picture of our game . Initially we have a general aim for our game, for example, game background setting, space mission and exploring , various lanscapes (rooms), various enermies ,score system, items system etc .
 
 ## 4. Design (15% ~750 words)
 
