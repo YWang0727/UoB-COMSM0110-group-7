@@ -89,6 +89,55 @@ Finally, we reached a consensus of which game to develop as we all agreed on a r
 
 ## 4. Design (15% ~750 words)
 
+o Design details:
+
+Concept and Theme: Start by developing a unique concept or theme for your game. This could be inspired by a specific setting, mythology, or an interesting twist on traditional rogue-like games. The theme will help guide the overall design and create a cohesive experience for the players.
+
+Game Mechanics: Define the core game mechanics, such as turn-based gameplay, combat system, character progression, and inventory management. Consider how these mechanics will interact and create a fun and challenging experience for the players. At this stage, it's important to decide on the level of complexity and depth that you want for your game.
+
+Procedural Generation: One of the key aspects of rogue-like games is procedurally generated levels. Plan the algorithms and techniques that will be used to create diverse and engaging dungeons, ensuring that each playthrough offers a unique experience. Consider how the procedural generation will affect the game's difficulty, pacing, and replayability.
+
+Character Creation and Progression: Design the system for creating and customizing player characters, including attributes, abilities, and appearance options. Decide on the character progression system, including experience points, leveling up, and unlocking new abilities. Consider incorporating permadeath and how it will affect the overall gameplay experience.
+
+Enemy Design: Plan the variety of enemies and bosses that the players will encounter throughout the game. Define their abilities, behaviors, and difficulty levels, ensuring that they provide an engaging and challenging experience for the players.
+
+Items and Equipment: Design a diverse set of items, weapons, and armor that players can discover and use throughout the game. Consider how these items will impact the player's strategy, progression, and overall gameplay experience.
+
+Visual and Audio Design: Develop the visual and audio style for the game, including character and environment art, animations, sound effects, and music. The visual and audio design should complement the game's theme and create an immersive and engaging experience for the players.
+
+User Interface and Controls: Design the user interface and control scheme for the game, ensuring that it's intuitive and accessible for the players. Consider how the interface will adapt to different platforms, such as PC, console, or mobile devices.
+
+Story and Lore: Although not always a focus in rogue-like games, you may want to develop a story or lore that adds depth and context to the game world. This can help create a more immersive experience and encourage players to explore the game world more thoroughly.
+
+Prototyping and Iteration: In the early stage of design, it's important to create prototypes and iterate on the game mechanics, level generation, and other aspects of the game. This allows you to test and refine your ideas, ensuring that the game is fun, balanced, and engaging for the players.
+
+
+
+o System architecture
+
+System architecture design is a critical aspect of game development, as it provides the structure and organization for the various components of the game. It helps to ensure that the game is scalable, maintainable, and can be developed efficiently. Here are some key elements to consider when designing the system architecture for a game:
+
+Game Engine: The game engine is the core software framework that powers the game. It provides essential features and tools, such as rendering, physics, animation, and artificial intelligence. You can either choose to use a pre-built engine like Unity or Unreal Engine or create a custom engine tailored to your specific needs.
+
+Game Logic: Design the game logic, which includes the rules and mechanics of the game, such as character progression, combat, and level generation. This should be separated from the rendering and engine systems, allowing for easier updates and modifications to the game's core functionality.
+
+Data Management: Design the data management system, which stores and organizes the game's data, such as level layouts, character attributes, and item properties. This may involve creating databases, file formats, or other data storage solutions, ensuring that data can be accessed and modified efficiently.
+
+Asset Management: Create a system for managing the game's assets, such as textures, models, animations, and sound files. This may involve developing a custom asset pipeline or using existing tools and libraries, ensuring that assets can be imported, organized, and utilized efficiently within the game.
+
+Networking: If your game includes multiplayer functionality, design the networking architecture, which involves setting up servers, managing connections, and synchronizing game states between players. This may also involve developing systems for matchmaking, leaderboards, and other online features.
+
+User Interface: Design the user interface (UI) system, which includes the layout, controls, and visual elements that the players interact with. This should be modular and flexible, allowing for easy updates and changes to the UI as needed.
+
+Input Handling: Create a system for handling player input, such as keyboard, mouse, or controller inputs. This should be adaptable to different platforms and devices, ensuring that the game can be played on a variety of systems.
+
+Scripting and Event Systems: Design the scripting and event systems, which allow for custom game logic, interactions, and behaviors to be implemented without modifying the core engine code. This may involve creating a custom scripting language or utilizing existing scripting languages like Lua or Python.
+
+Audio: Design the audio system, which includes managing sound effects, background music, and voiceovers. This may involve integrating middleware like FMOD or Wwise to handle audio playback, mixing, and spatialization.
+
+Performance and Optimization: Design the game's architecture with performance and optimization in mind, ensuring that the game runs smoothly on a variety of hardware configurations. This may involve implementing techniques like level-of-detail, culling, and asset streaming to improve performance.
+
+
 o System architecture
 
 o Class diagrams
