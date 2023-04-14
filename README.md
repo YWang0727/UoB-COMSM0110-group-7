@@ -22,17 +22,69 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 
 ## 3. Requirements (15% ~750 words)
 
+
 o Use case diagrams
 <br></br>
 <p align="center">
   <img width="70%" src="./ReportMaterials/UseCaseDiagram.png">
 </p>
-<br></br>
-o User stories. Early stages design. Ideation process. How did you decide as a team what to develop?
-
 Use case diagrams and user stories are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
 
 https://github.com/UoB-COMSM0110/2023-group-7/tree/main/ReportMaterials
+
+
+o User stories
+
+As a player I want to play a character with different combination of weapons so that have personalized game experience.
+
+As a player I want to explore different dungeons rooms so that experience the joy of unknown.
+
+As a player I want to encounter with different enemies with different skills and difficulty so that devote thought to planning survival routes and game strategies.
+
+As a player I want to discover different items to improve weapon power or make the survival easier so that pay attention to collect item while fighting with monsters and increase fun of the game.
+
+As a player I want to change game difficulties and there are some defined levels so that I can choose them according to my level and make game experience better.
+
+As a player I want to experience permadeath so that I need to make every decision carefully and compete with others for scores.
+
+As a player I want to experience different movement method so that the game has more possibilities and be unexpected rescued from a desperate situation
+
+As a player I want to interact with map elements such as portal so that the game become much more interesting, and I can make strategies with these things.
+
+As a player I want to heal my HP so that there still chances to survive even I make a strategy mistake.
+
+As a player I want to experience a game that the difficulty level increase by time so that the game become more interesting soul-stirring with time going by in the case that the play is used to current difficulty.
+
+As a player I want to pause the game while playing so that I could continue the game after I resolve emergency.
+
+As a player I want to store my game score and compare with other players so that I can be hungrier for score and feel fulfilled when I beat other players.
+
+As a player I want to turn off the game music so that I can focus on the game without being influenced by background music.
+
+As a player I want to check the game tutorial or help at the start menu as well as in the game so that I can learn the operation method when I first play it and check help tips when I forget some operations in game.
+
+As a player I want to be hurt by map elements so that I need to focus on every moment
+As a player I want to pick up items that could increase my score so that I'm more enthusiastic to explore the game.
+
+As a player I want to double jump in the game so that I can move more flexible.
+
+As a developer I want to design a game room and map generation algorithm so that the game has more possibilities and more interesting to explore.
+
+As a developer I want to design several weapons so that the game experience is personalized.
+
+As a developer I want to design background music and different sound effects so that the player could be more immersed into the game.
+
+As a developer I want to have different artistical art and animation design so that the player has better game experience.
+
+As a developer I want to design menus for different settings so that the player could personalize their playing easily.
+
+
+
+o Early stages design
+
+o Ideation process. How did you decide as a team what to develop?
+
+
 
 For early stages, each member in the team brought up at least 2 desired games to develop . We discussed about a wide range of factors that which game we are going to build, for example, the possibilities of twists for each game, potential game users, a more original game , how it works (interactions between enermies and player) etc.
 
