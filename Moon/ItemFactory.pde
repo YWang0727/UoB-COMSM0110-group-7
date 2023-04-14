@@ -88,10 +88,10 @@ public class ItemFactory extends Factory{
          }
          if(t.category == Type.ITEM_POTION){
             if(t.type == Type.POTION_HP){
-                if(p.hp + Type.POTION_HP_EFFECT >= p.maxHp){
-                   p.hp = p.maxHp; 
+                if(p.maxHp + Type.POTION_HP_EFFECT <= 200){
+                   p.maxHp = p.maxHp + Type.POTION_HP_EFFECT; 
                 }else{
-                   p.hp += Type.POTION_HP_EFFECT;
+                   p.hp = p.hp + Type.POTION_HP_EFFECT;
                 }
                 println("use hp potion, id: " + t.id + ", playerHp: " + p.hp);
             }else if(t.type == Type.POTION_SP){
@@ -251,9 +251,9 @@ public class ItemFactory extends Factory{
        int r = (int)random(10);
        //r = 2;
        Item t = null;
-       if(r >=0 && r <= 3){ 
+       if(r >= 0 && r <= 4){ 
           t =  potionHp();
-       }else if(r > 3 && r <= 6){
+       }else if(r > 4 && r <= 7){
           t =  potionSp();
        }else{
           t =  potionFly(); 

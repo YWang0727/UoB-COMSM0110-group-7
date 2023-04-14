@@ -225,11 +225,11 @@ public class Player extends ActionProp{
   
   public void drawHp(){
       
-      for(int j = 0; j <= this.maxHp; j += Type.PLAYER_HEART){
+      for(int j = 0; j < this.maxHp; j += Type.PLAYER_HEART){
          image(this.img, Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
       }
      
-     for(int j = 0; j <= this.hp; j += Type.PLAYER_HEART){
+     for(int j = 0; j < this.hp; j += Type.PLAYER_HEART){
          image(hpGif[(int)hpGifCount], Type.BOARD_GRIDSIZE/2 + (j/10) * Type.BOARD_GRIDSIZE * 4/5, Type.BOARD_GRIDSIZE/2);
          this.hpGifCount = (hpGifCount + 0.01) % (float)hpGif.length;
       }

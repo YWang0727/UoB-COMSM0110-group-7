@@ -235,10 +235,12 @@ public class Collision{
               if(detect(p, d)){
                  //println(d.type);
                  if(d.type == Type.GIF_HP){
+                   println(p.hp);
                    if(p.hp < p.maxHp){
                       ding.play(2);
                       p.hp += 10;
                       if(p.hp > p.maxHp) p.hp = p.maxHp;
+                   println(p.hp);
                       iterator.remove();
                    }
                  }else{
