@@ -162,13 +162,17 @@ During the implementation of our game, we found below 3 main challenges :
 
 ### 5.1 Randomly generated map and elements:
 
-The main problem we faced in that session was how to ensure that the randomly generated map was sensible, rules compliant and player moveable.
+Our goal with the random generation of rooms, was for every level to look and feel distinctly different. The main problems faced here were ensuring that every room has at least one path the player can follow, and that there are no areas where the player or enemies can get stuck. 
 
-We therefore chose to use a pseudo-random generation approach. set the board size to 1160\*800, and made it 29\*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9\*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
+Our solution was to use a pseudo-randomly generated approach. The board size is set to 1160 by 800 pixels and is divided into a grid of 29 by 20 blocks. Each room has a border or 1 block with 6 exits, and the remaining space is then divided into 6 sections, each of 9*9 blocks (see figure x). The sections are stored in CSV files, and dictate the placement of normal blocks, jump pads and portals. We carefully designed a large number of different sections and carried out user testing to ensure that they fit together in any combination without impending on the players movement. 
 
-We also preset the type of specific block in each section so that the location and probability of various blocks appearing is reasonable.In summary, we randomly select the sections to be joined together when generating the room, and then load the blocks for each corresponding position.
+When each room is generated, 6 sections are chosen at random and used to build the room. The logic for this generation is designed in such a way that no room can contain two identical sections. Next, we optimise the room, adding in some additional special platforms to make gameplay more dynamic. We then scan the room to find suitable locations for elements such as enemies and items. These elements are then added to randomly selected locations. 
 
-On randomly generating various other elements (such as props, etc.), we first scan the entire room to determine which locations make sense. The probability is then set to randomly generate locations to put props in.
+<br></br>
+<p align="center">
+  <img width="90%" src="./ReportMaterials/Map%20diagram.jpg">
+</p>
+<br></br>
 
 ### 5.2 Collision detection:
 
