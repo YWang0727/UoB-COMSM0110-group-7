@@ -146,7 +146,16 @@ o Class diagrams
   <img width="90%" src="./ReportMaterials/game_class_diagram.png">
 </p>
 <br></br>
-o behavioural diagrams.
+
+
+o Behavioural diagrams
+<br></br>
+<p align="center">
+  <img width="60%" src="./ReportMaterials/CommunicationDiagram.png">
+</p>
+Behavioural diagrams are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
+
+https://github.com/UoB-COMSM0110/2023-group-7/tree/main/ReportMaterials
 
 The game is based on MVC model to build. We worked and discussed as a team to decide what are the game mechanics , how the player might behave ( things that player does : exploring unknown areas , mining, using items to deal with various creatures etc.) , what should be displayed on the interface ( the way player communicate with game , HP system, score system , creatures AI etc.).
 
