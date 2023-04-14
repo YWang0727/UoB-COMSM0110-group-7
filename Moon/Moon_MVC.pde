@@ -80,6 +80,8 @@ void setup(){
 void reset(){
     canReset = false;
     
+    boolean music = controller.getIsMusicPlaying();
+    int difficulty = controller.getDifficulty();
     Model newModel = new Model();
     
     EnemyFactory e = new EnemyFactory();
@@ -100,11 +102,18 @@ void reset(){
     newModel.itemFactory = t;
     newModel.decorationFactory = d;
     
-    if (newModel.isMusicPlaying){
-      bgMusic.play();
-    }
+    //if (newModel.isMusicPlaying){
+    //  bgMusic.play();
+    //}
     
     controller.model = newModel;
+    controller.setIsMusicPlaying(music);
+    if (difficulty == 2){
+      controller.setDifficulty();
+    } else if (difficulty == 3){
+      controller.setDifficulty();
+      controller.setDifficulty();
+    }
     controller.collision.decorationFactory = newModel.decorationFactory;
     
     view.model = newModel;
