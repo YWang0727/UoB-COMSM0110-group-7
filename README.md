@@ -22,23 +22,121 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 
 ## 3. Requirements (15% ~750 words)
 
+
 o Use case diagrams
 <br></br>
 <p align="center">
   <img width="70%" src="./ReportMaterials/UseCaseDiagram.png">
 </p>
-<br></br>
-o User stories. Early stages design. Ideation process. How did you decide as a team what to develop?
-
 Use case diagrams and user stories are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
 
 https://github.com/UoB-COMSM0110/2023-group-7/tree/main/ReportMaterials
 
-For early stages, each member in the team brought up at least 2 desired games to develop . We discussed about a wide range of factors that which game we are going to build, for example, the possibilities of twists for each game, potential game users, a more original game , how it works (interactions between enermies and player) etc.
 
-Finally we reached consencus of which game to develop as we have a rough ideas but more clear picture of our game . Initially we have a general aim for our game, for example, game background setting, space mission and exploring , various lanscapes (rooms), various enermies ,score system, items system etc .
+o User stories
+
+As a player I want to play a character with different combination of weapons so that have personalized game experience.
+
+As a player I want to explore different dungeons rooms so that experience the joy of unknown.
+
+As a player I want to encounter with different enemies with different skills and difficulty so that devote thought to planning survival routes and game strategies.
+
+As a player I want to discover different items to improve weapon power or make the survival easier so that pay attention to collect item while fighting with monsters and increase fun of the game.
+
+As a player I want to change game difficulties and there are some defined levels so that I can choose them according to my level and make game experience better.
+
+As a player I want to experience permadeath so that I need to make every decision carefully and compete with others for scores.
+
+As a player I want to experience different movement method so that the game has more possibilities and be unexpected rescued from a desperate situation
+
+As a player I want to interact with map elements such as portal so that the game become much more interesting, and I can make strategies with these things.
+
+As a player I want to heal my HP so that there still chances to survive even I make a strategy mistake.
+
+As a player I want to experience a game that the difficulty level increase by time so that the game become more interesting soul-stirring with time going by in the case that the play is used to current difficulty.
+
+As a player I want to pause the game while playing so that I could continue the game after I resolve emergency.
+
+As a player I want to store my game score and compare with other players so that I can be hungrier for score and feel fulfilled when I beat other players.
+
+As a player I want to turn off the game music so that I can focus on the game without being influenced by background music.
+
+As a player I want to check the game tutorial or help at the start menu as well as in the game so that I can learn the operation method when I first play it and check help tips when I forget some operations in game.
+
+As a player I want to be hurt by map elements so that I need to focus on every moment
+As a player I want to pick up items that could increase my score so that I'm more enthusiastic to explore the game.
+
+As a player I want to double jump in the game so that I can move more flexible.
+
+As a developer I want to design a game room and map generation algorithm so that the game has more possibilities and more interesting to explore.
+
+As a developer I want to design several weapons so that the game experience is personalized.
+
+As a developer I want to design background music and different sound effects so that the player could be more immersed into the game.
+
+As a developer I want to have different artistical art and animation design so that the player has better game experience.
+
+As a developer I want to design menus for different settings so that the player could personalize their playing easily.
+
+
+
+o Early stages design and ideation process. How did you decide as a team what to develop?
+
+At early stages, each member in the team brought up at least 2 games ideas to develop. We discussed and evaluated all ideas from a wide range of aspects which game we are going to build, for example, the possibilities of twists for each game, potential game users, a more original game, how it works (interactions between enemies and player) etc.
+
+Finally, we reached a consensus of which game to develop as we all agreed on a rough-like game and clearer picture of our game. Initially we have a general aim for our game, for example, game background setting, space mission and exploring, various landscapes (rooms), various enemies, score system, items system etc.
+
 
 ## 4. Design (15% ~750 words)
+
+o Design details:
+
+Concept and Theme: Start by developing a unique concept or theme for your game. This could be inspired by a specific setting, mythology, or an interesting twist on traditional rogue-like games. The theme will help guide the overall design and create a cohesive experience for the players.
+
+Game Mechanics: Define the core game mechanics, such as turn-based gameplay, combat system, character progression, and inventory management. Consider how these mechanics will interact and create a fun and challenging experience for the players. At this stage, it's important to decide on the level of complexity and depth that you want for your game.
+
+Procedural Generation: One of the key aspects of rogue-like games is procedurally generated levels. Plan the algorithms and techniques that will be used to create diverse and engaging dungeons, ensuring that each playthrough offers a unique experience. Consider how the procedural generation will affect the game's difficulty, pacing, and replayability.
+
+Character Creation and Progression: Design the system for creating and customizing player characters, including attributes, abilities, and appearance options. Decide on the character progression system, including experience points, leveling up, and unlocking new abilities. Consider incorporating permadeath and how it will affect the overall gameplay experience.
+
+Enemy Design: Plan the variety of enemies and bosses that the players will encounter throughout the game. Define their abilities, behaviors, and difficulty levels, ensuring that they provide an engaging and challenging experience for the players.
+
+Items and Equipment: Design a diverse set of items, weapons, and armor that players can discover and use throughout the game. Consider how these items will impact the player's strategy, progression, and overall gameplay experience.
+
+Visual and Audio Design: Develop the visual and audio style for the game, including character and environment art, animations, sound effects, and music. The visual and audio design should complement the game's theme and create an immersive and engaging experience for the players.
+
+User Interface and Controls: Design the user interface and control scheme for the game, ensuring that it's intuitive and accessible for the players. Consider how the interface will adapt to different platforms, such as PC, console, or mobile devices.
+
+Story and Lore: Although not always a focus in rogue-like games, you may want to develop a story or lore that adds depth and context to the game world. This can help create a more immersive experience and encourage players to explore the game world more thoroughly.
+
+Prototyping and Iteration: In the early stage of design, it's important to create prototypes and iterate on the game mechanics, level generation, and other aspects of the game. This allows you to test and refine your ideas, ensuring that the game is fun, balanced, and engaging for the players.
+
+
+
+o System architecture
+
+System architecture design is a critical aspect of game development, as it provides the structure and organization for the various components of the game. It helps to ensure that the game is scalable, maintainable, and can be developed efficiently. Here are some key elements to consider when designing the system architecture for a game:
+
+Game Engine: The game engine is the core software framework that powers the game. It provides essential features and tools, such as rendering, physics, animation, and artificial intelligence. You can either choose to use a pre-built engine like Unity or Unreal Engine or create a custom engine tailored to your specific needs.
+
+Game Logic: Design the game logic, which includes the rules and mechanics of the game, such as character progression, combat, and level generation. This should be separated from the rendering and engine systems, allowing for easier updates and modifications to the game's core functionality.
+
+Data Management: Design the data management system, which stores and organizes the game's data, such as level layouts, character attributes, and item properties. This may involve creating databases, file formats, or other data storage solutions, ensuring that data can be accessed and modified efficiently.
+
+Asset Management: Create a system for managing the game's assets, such as textures, models, animations, and sound files. This may involve developing a custom asset pipeline or using existing tools and libraries, ensuring that assets can be imported, organized, and utilized efficiently within the game.
+
+Networking: If your game includes multiplayer functionality, design the networking architecture, which involves setting up servers, managing connections, and synchronizing game states between players. This may also involve developing systems for matchmaking, leaderboards, and other online features.
+
+User Interface: Design the user interface (UI) system, which includes the layout, controls, and visual elements that the players interact with. This should be modular and flexible, allowing for easy updates and changes to the UI as needed.
+
+Input Handling: Create a system for handling player input, such as keyboard, mouse, or controller inputs. This should be adaptable to different platforms and devices, ensuring that the game can be played on a variety of systems.
+
+Scripting and Event Systems: Design the scripting and event systems, which allow for custom game logic, interactions, and behaviors to be implemented without modifying the core engine code. This may involve creating a custom scripting language or utilizing existing scripting languages like Lua or Python.
+
+Audio: Design the audio system, which includes managing sound effects, background music, and voiceovers. This may involve integrating middleware like FMOD or Wwise to handle audio playback, mixing, and spatialization.
+
+Performance and Optimization: Design the game's architecture with performance and optimization in mind, ensuring that the game runs smoothly on a variety of hardware configurations. This may involve implementing techniques like level-of-detail, culling, and asset streaming to improve performance.
+
 
 o System architecture
 
@@ -64,13 +162,17 @@ During the implementation of our game, we found below 3 main challenges :
 
 ### 5.1 Randomly generated map and elements:
 
-The main problem we faced in that session was how to ensure that the randomly generated map was sensible, rules compliant and player moveable.
+Our goal with the random generation of rooms, was for every level to look and feel distinctly different. The main problems faced here were ensuring that every room has at least one path the player can follow, and that there are no areas where the player or enemies can get stuck. 
 
-We therefore chose to use a pseudo-random generation approach. set the board size to 1160\*800, and made it 29\*20 blocks. Each room will have an unbreakable border of 1 block, with gaps in to let the player move to adjacent rooms. And also each room will be divided into 6 sections of 9\*6 blocks. We designed a large number of different sections which can all fit together in any combination. When each room is generated, a random 6 sections will be chosen and used to build the random room. And rules had been added so that there would never have two identical sections in the same room.
+Our solution was to use a pseudo-randomly generated approach. The board size is set to 1160 by 800 pixels and is divided into a grid of 29 by 20 blocks. Each room has a border or 1 block with 6 exits, and the remaining space is then divided into 6 sections, each of 9*9 blocks (see figure x). The sections are stored in CSV files, and dictate the placement of normal blocks, jump pads and portals. We carefully designed a large number of different sections and carried out user testing to ensure that they fit together in any combination without impending on the players movement. 
 
-We also preset the type of specific block in each section so that the location and probability of various blocks appearing is reasonable.In summary, we randomly select the sections to be joined together when generating the room, and then load the blocks for each corresponding position.
+When each room is generated, 6 sections are chosen at random and used to build the room. The logic for this generation is designed in such a way that no room can contain two identical sections. Next, we optimise the room, adding in some additional special platforms to make gameplay more dynamic. We then scan the room to find suitable locations for elements such as enemies and items. These elements are then added to randomly selected locations. 
 
-On randomly generating various other elements (such as props, etc.), we first scan the entire room to determine which locations make sense. The probability is then set to randomly generate locations to put props in.
+<br></br>
+<p align="center">
+  <img width="90%" src="./ReportMaterials/Map%20diagram.jpg">
+</p>
+<br></br>
 
 ### 5.2 Collision detection:
 
