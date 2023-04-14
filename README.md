@@ -24,8 +24,9 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 
 o Use case diagrams
 <br></br>
-<img src="./ReportMaterials/UseCaseDiagram.png" alt="UseCaseDiagram" style="display: block; margin: 0 auto; max-width: 60%;">
-<br>UseCaseDiagram
+<p align="center">
+  <img width="70%" src="./ReportMaterials/UseCaseDiagram.png">
+</p>
 <br></br>
 o User stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
@@ -39,7 +40,15 @@ Finally we reached consencus of which game to develop as we have a rough ideas b
 
 ## 4. Design (15% ~750 words)
 
-o System architecture. Class diagrams, behavioural diagrams.
+o System architecture
+
+o Class diagrams
+<br></br>
+<p align="center">
+  <img width="90%" src="./ReportMaterials/game_class_diagram.png">
+</p>
+<br></br>
+o behavioural diagrams.
 
 The game is based on MVC model to build. We worked and discussed as a team to decide what are the game mechanics , how the player might behave ( things that player does : exploring unknown areas , mining, using items to deal with various creatures etc.) , what should be displayed on the interface ( the way player communicate with game , HP system, score system , creatures AI etc.).
 
