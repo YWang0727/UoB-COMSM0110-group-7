@@ -22,7 +22,12 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 
 ## 3. Requirements (15% ~750 words)
 
-o Use case diagrams, user stories. Early stages design. Ideation process. How did you decide as a team what to develop?
+o Use case diagrams
+<br></br>
+<img src="./ReportMaterials/UseCaseDiagram.png" alt="UseCaseDiagram" style="display: block; margin: 0 auto; max-width: 60%;">
+<br>UseCaseDiagram
+<br></br>
+o User stories. Early stages design. Ideation process. How did you decide as a team what to develop?
 
 Use case diagrams and user stories are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
 
