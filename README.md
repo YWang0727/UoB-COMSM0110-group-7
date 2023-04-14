@@ -25,7 +25,7 @@ Every map and its elements, including monsters, are randomly generated! Item dro
 o Use case diagrams
 <br></br>
 <p align="center">
-    <img src="./ReportMaterials/UseCaseDiagram.png" alt="UseCaseDiagram">
+    <img src="./ReportMaterials/UseCaseDiagram.png" alt="UseCaseDiagram" style="display: block; margin: 0 auto; max-width: 60%;">
     <br>UseCaseDiagram
      <br></br>
 </p>
