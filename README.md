@@ -89,7 +89,7 @@ Finally, we reached a consensus of which game to develop as we all agreed on a r
 
 ## 4. Design (15% ~750 words)
 
-o Design details:
+o Design details (OUTLINE)
 
 Concept and Theme: Start by developing a unique concept or theme for your game. This could be inspired by a specific setting, mythology, or an interesting twist on traditional rogue-like games. The theme will help guide the overall design and create a cohesive experience for the players.
 
@@ -113,7 +113,7 @@ Prototyping and Iteration: In the early stage of design, it's important to creat
 
 
 
-o System architecture
+o System architecture (OUTLINE)
 
 System architecture design is a critical aspect of game development, as it provides the structure and organization for the various components of the game. It helps to ensure that the game is scalable, maintainable, and can be developed efficiently. Here are some key elements to consider when designing the system architecture for a game:
 
@@ -137,8 +137,6 @@ Audio: Design the audio system, which includes managing sound effects, backgroun
 
 Performance and Optimization: Design the game's architecture with performance and optimization in mind, ensuring that the game runs smoothly on a variety of hardware configurations. This may involve implementing techniques like level-of-detail, culling, and asset streaming to improve performance.
 
-
-o System architecture
 
 o Class diagrams
 <br></br>
