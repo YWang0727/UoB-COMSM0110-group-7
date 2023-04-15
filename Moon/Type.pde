@@ -91,6 +91,7 @@ static abstract class Type {
   static final int KEY_RELEASED_AD = 1000;
   static final int KEY_RELEASED_WS = 1001;
   static final int KEY_RELEASED_SPACE = 1002;
+  
   static final int KEY_Q = 113;
   static final int KEY_R = 114;
   //press S and SPACE together, can throught blocks

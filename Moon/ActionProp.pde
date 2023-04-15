@@ -38,13 +38,17 @@ public class ActionProp extends BasicProp{
   * In each frame, player's position depends on x + speedX and y + speedY
   */
   public void move(){
-     this.location.x += this.velocity.x + this.velocity2.x;
+     println("v1:" + this.velocity.y);
+     println("v2:" + this.velocity2.y);
+     println("v3:" + this.velocity3.y);
+     
+     this.location.x += this.getFullVelocityX();
      if(this.fly){
-         this.location.y +=  this.velocity.y + this.velocity2.y;
+         this.location.y +=  this.getFullVelocityY();
      }else{
          if(this.jump){
-            this.location.y +=  this.velocity.y + this.velocity2.y;
-            if(this.velocity.y < Type.PLAYER_SPEED_Y) this.velocity.y += Type.PLAYER_SPEED_INCREMENT;
+            this.location.y +=  this.getFullVelocityY();
+            if(this.getFullVelocityY() < Type.PLAYER_SPEED_Y) this.velocity.y += Type.PLAYER_SPEED_INCREMENT;
          }
      }
   }

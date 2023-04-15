@@ -235,12 +235,12 @@ public class Collision{
               if(detect(p, d)){
                  //println(d.type);
                  if(d.type == Type.GIF_HP){
-                   println(p.hp);
+                   //println("check" + p.hp);
                    if(p.hp < p.maxHp){
                       ding.play(2);
                       p.hp += 10;
                       if(p.hp > p.maxHp) p.hp = p.maxHp;
-                   println(p.hp);
+                   //println("check" + p.hp);
                       iterator.remove();
                    }
                  }else{
@@ -387,21 +387,21 @@ public class Collision{
        }
       
       
-      if(!canFall && (y + h + o.getFullVelocityY()>= below * s)){
+      if(!canFall && (o.location.y + h + o.getFullVelocityY() >= below * s)){
             o.fall = false;
             o.jump = false;
             o.doubleJump = false;
             o.canDoubleJump = false;
             o.setAllVelocityY(0);
-            o.location.y = below * s - h - 1;
-             if(o.type == Type.PLAYER){
-                   if(o.fallDist > Type.FALL_DAMAGE_DIST){
-                       //o.attacked(Type.FALL_DAMAGE, null);
-                       o.fallDist = 0;
-                       touchGround.play(1);
-                       //playerHurt.play(2);
-                   }
-             }
+            o.location.y = below * s - o.h - 1;
+           if(o.type == Type.PLAYER){
+                 if(o.fallDist > Type.FALL_DAMAGE_DIST){
+                     //o.attacked(Type.FALL_DAMAGE, null);
+                     o.fallDist = 0;
+                     touchGround.play(1);
+                     //playerHurt.play(2);
+                 }
+           }
             
        }else{
              o.fall = true;

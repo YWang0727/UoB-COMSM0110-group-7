@@ -176,6 +176,8 @@ public class Player extends ActionProp{
   }
   
   public void display(){
+    
+
     if (isInvincible) {
       if (blinkCount < 2) {
         if (frameCount % 6 == 0) {

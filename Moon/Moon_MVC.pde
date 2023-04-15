@@ -348,6 +348,10 @@ public void keyReleased(){
         controller.controlPlayer(Type.KEY_RELEASED_SPACE);
     }
     
+    if(key == 'w'){
+        controller.controlPlayer(Type.KEY_RELEASED_SPACE);
+    }
+    
     if(key == 'a' || key == 'd'){
       controller.controlPlayer(Type.KEY_RELEASED_AD);
     }

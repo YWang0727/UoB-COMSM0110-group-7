@@ -297,7 +297,7 @@ public class Controller{
         p.throughDown = false;
      }
      //not in fly mode
-     if(keyType == Type.KEY_SPACE && !p.fly){
+     if((keyType == Type.KEY_SPACE || keyType == Type.KEY_W) && !p.fly){
         if(p.jump && p.doubleJump){
           return;
         };
@@ -319,10 +319,10 @@ public class Controller{
      }
      
      
-     
-     
      if(keyType == Type.KEY_RELEASED_SPACE){
-         p.canDoubleJump = true;
+         if(!p.fly){
+            p.canDoubleJump = true;
+         }
      }
      
      

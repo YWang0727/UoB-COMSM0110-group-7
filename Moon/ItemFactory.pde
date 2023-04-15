@@ -93,9 +93,9 @@ public class ItemFactory extends Factory{
                 }else{
                    p.hp = p.hp + Type.POTION_HP_EFFECT;
                 }
-                println("use hp potion, id: " + t.id + ", playerHp: " + p.hp);
+                //println("use hp potion, id: " + t.id + ", playerHp: " + p.hp);
             }else if(t.type == Type.POTION_SP){
-                println("use sp potion, id: " + t.id);
+                //println("use sp potion, id: " + t.id);
                 if(!isActive){
                    isActive = true;
                    p.spInc = Type.PLAYER_SPEEDINC;
