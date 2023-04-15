@@ -115,7 +115,7 @@ public class Collision{
               bullets.remove(j);
            }
        }
-
+      
       for(int i = enemies.size() - 1; i >= 0; i--){
          Enemy e = enemies.get(i);
          
@@ -178,7 +178,9 @@ public class Collision{
        //if b crash blocks, remove
          for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
             for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
-                if(cantThrough(r.blockType[i][j], false, null)){
+                if(cantThrough(r.blockType[i][j], false, null)
+                //&& b.type != Type.BULLETS_THROUGH_WALL
+                ){
                        for(int k = bullets.size() - 1; k >= 0 ; k--){
                             Bullet b = bullets.get(k);
                             if(detect(b, i, j)){

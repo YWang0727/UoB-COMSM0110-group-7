@@ -112,18 +112,23 @@ public class Player extends ActionProp{
   
 
   public void move(){
-     this.location.x += this.velocity.x + this.velocity2.x + velocity3.x;
+    
+    // println("v1:" + this.velocity.y);
+    // println("v2:" + this.velocity2.y);
+    // println("v3:" + this.velocity3.y);
+    
+     this.location.x += this.getFullVelocityX();
      if(this.fly){
-         this.location.y +=  this.velocity.y + this.velocity2.y + velocity3.y;
+         this.location.y +=  this.getFullVelocityY();
      }else{
          if(this.jump){
-            this.location.y +=  this.velocity.y + this.velocity2.y + velocity3.y;
-            if(this.velocity.y < Type.PLAYER_SPEED_Y) this.velocity.y += Type.PLAYER_SPEED_INCREMENT;
+            this.location.y +=  this.getFullVelocityY();
+            if(this.getFullVelocityX() < Type.PLAYER_SPEED_Y) this.velocity.y += Type.PLAYER_SPEED_INCREMENT;
          }
-         if(this.velocity.y == 0){
+         if(this.getFullVelocityY() == 0){
            this.fallDist = 0;
          }
-         float tmp = this.velocity.y + this.velocity2.y + velocity3.y;
+         float tmp = this.getFullVelocityY();
          if(tmp > 0){
             this.fallDist += tmp;
          }
@@ -171,7 +176,7 @@ public class Player extends ActionProp{
           public void run() {
             isInvincible = false;
           }
-       }, 1000);
+       }, 2000);
     }
   }
   
@@ -179,20 +184,22 @@ public class Player extends ActionProp{
     
 
     if (isInvincible) {
-      if (blinkCount < 2) {
-        if (frameCount % 6 == 0) {
-          tint(255, 240);
+      if (blinkCount < 8) {
+        //if (frameCount % 3 == 0) {
+          tint(0, 255, 255);
           drawPlayerAndWeapon();
           noTint();
           blinkCount++;
-        }
-      } else {
+        //}else{
+        //  drawPlayerAndWeapon();
+        //}
+      } 
+      else {
         drawPlayerAndWeapon();
         blinkCount = 0;
       }
     } else {
-          drawPlayerAndWeapon();
-
+       drawPlayerAndWeapon();
     }
     drawHp();
     drawScore();
