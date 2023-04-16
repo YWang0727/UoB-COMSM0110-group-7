@@ -9,6 +9,7 @@ public class Room extends HandleEnemies{
     protected int[][] blockType;
     protected String[] sections;
     protected ArrayList<Block> blocks;
+    protected boolean isTutorial = false;
     
     
     protected ArrayList<Bullet> playerBullets;
@@ -21,7 +22,7 @@ public class Room extends HandleEnemies{
     public Room(){
         this.blockType = new int[Type.BOARD_MAX_HEIGHT][Type.BOARD_MAX_WIDTH];
         this.adjacent = new int[4];
-         this.enemies = new ArrayList();
+        this.enemies = new ArrayList();
         this.playerBullets = new ArrayList();
         this.enemyBullets = new ArrayList();
         this.blocks = new ArrayList();
@@ -45,6 +46,10 @@ public class Room extends HandleEnemies{
         sections[11]="levels/section12.csv";
         sections[12]="levels/section13.csv";
         sections[13]="levels/section14.csv";
+    }
+    
+    public void setIsTutorial(boolean tutorial){
+      this.isTutorial = tutorial;
     }
     
     

@@ -222,10 +222,8 @@ public class Controller{
       for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
           for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
               if(r.blockType[i][j] == Type.BLOCK_CRATE && collision.detect(o, i, j)){
-                  //println("open crate");
-                  //should add something to player, like props or weapons, or golds(scores);
-                  r.items.add(model.newItem(new int[]{i, j}));
-                  r.blockType[i][j] = Type.BLOCK_CRATE_OPEN;
+                r.items.add(model.newItem(new int[]{i, j}));
+                r.blockType[i][j] = Type.BLOCK_CRATE_OPEN;
               }
           }
        }

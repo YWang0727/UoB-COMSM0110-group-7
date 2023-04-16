@@ -9,7 +9,6 @@
 public class DecorationFactory extends Factory{    
     
    protected ArrayList<PImage[]> decorationGifs;
-    
    protected int[] jumpBlock = new int[2];
    protected int[] portalBlock = new int[2];
    
@@ -52,7 +51,10 @@ public class DecorationFactory extends Factory{
        //if(r.index == 0){
        //   addTutorialToStartRoom(r);
        //}
-      
+       if(r.isTutorial){
+         addTutorialDecorations(r);
+         return;
+       }
       
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
@@ -65,12 +67,27 @@ public class DecorationFactory extends Factory{
               }
             }
          }
-         
          addPathArrow(r);
     }
     
-
-  
+    public void addTutorialDecorations(Room r){
+      int col = Type.tutorialCrystalCoord[0];
+      int row = Type.tutorialCrystalCoord[1];
+      for(int i=0; i<Type.tutorialCrystalNum; i++){
+        Decoration d = addDecoration(new int[]{col+i, row}, 4);
+        r.decorations.add(d);    
+      }
+    }
+    
+    public Decoration addDecoration(int[] pos, int decorationType){
+       Decoration d = new Decoration(pos);
+       d.imgs = this.decorationGifs.get(decorationType);
+       d.resizeGif(Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE/2);
+       d.type = decorationType;
+       d.w = Type.BOARD_GRIDSIZE/2;
+       d.h = Type.BOARD_GRIDSIZE/2;
+       return d;
+    }
 
     /*
       static final int GIF_ARROW_DOWN = 7;

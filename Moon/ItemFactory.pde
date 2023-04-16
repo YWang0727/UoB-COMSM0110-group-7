@@ -134,10 +134,13 @@ public class ItemFactory extends Factory{
          p.removeCurrentItem();
     }
     
-    public Item newItem(int[] pos){
+    public Item newItem(int[] pos, boolean tutorial){
        int r = (int)random(14);
        //r = 0;
-       Item t = null; 
+       Item t = null;
+       if (tutorial){
+         t = weaponShotgun();
+       }else 
        if(r >= 0 && r <= 3){   
            t = newWeapon();
        }else if(r > 3 && r <= 9){

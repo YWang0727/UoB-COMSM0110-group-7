@@ -103,7 +103,7 @@ public class View{
       //remove crystal
       r.removeBlockByPos(model.player);
       
-      if(r.index == 0){
+      if(r.index == 0 && !r.isTutorial){
          addTutorialToStartRoom(r);
       }
       
@@ -128,6 +128,9 @@ public class View{
   
   public void drawDifficultyLevel(){
       // Draw Difficulty btn
+      if(model.isTutorial){
+        return;
+      }
       if (controller.getDifficulty()==0){
         image(easy, 170, 60, 64, 30);
       } else if (controller.getDifficulty()==1){

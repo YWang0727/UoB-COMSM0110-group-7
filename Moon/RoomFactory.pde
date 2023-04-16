@@ -13,6 +13,7 @@ public class RoomFactory extends Factory{
     protected List<Integer> sectionIndex = new ArrayList<>(14);
     protected boolean portal;
     protected int[] portalCoordinates = new int[4];
+    public Tutorial tutorial;
    
     public RoomFactory(BlockFactory b){
       //this.enemyFactory = e;

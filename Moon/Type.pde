@@ -30,6 +30,10 @@ static abstract class Type {
   
   static final int FALL_DAMAGE = 20;
   static final int FALL_DAMAGE_DIST = BOARD_GRIDSIZE * 2;
+  
+  static final int[] tutorialCrystalCoord = new int[]{5,15};
+  static final int tutorialCrystalNum = 6;
+  static final PVector tutorialStart = new PVector(800.0, 320.0);
 
   
   //enemy - baisc attributes
