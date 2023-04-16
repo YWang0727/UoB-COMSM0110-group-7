@@ -475,21 +475,23 @@ public class RoomFactory extends Factory{
             }
          }
          
-         if(cnt_crystal < 6){
-           addCrystalToRoom(r, cnt_crystal);
+         int rd = (int)random(4,7);
+         if(cnt_crystal < rd){
+           addCrystalToRoom(r, cnt_crystal, rd);
          }
          
          if(cnt_portal == 0){
             addPortalToRoom(r);
-            //println("add portal");
          }
          
-         if(cnt_spike < 4){
-           addSpikeToRoom(r, cnt_spike);
+         rd = (int)random(1,5);
+         if(cnt_spike < rd){
+           addSpikeToRoom(r, cnt_spike, rd);
          }
          
-         if(cnt_crate < 3){
-           addCrateToRoom(r, cnt_crate);
+         rd = (int)random(1,4);
+         if(cnt_crate < rd){
+           addCrateToRoom(r, cnt_crate, rd);
          }
          
 
@@ -541,9 +543,9 @@ public class RoomFactory extends Factory{
       
     }
     
-    public void addCrystalToRoom(Room r, int cnt){
+    public void addCrystalToRoom(Room r, int cnt, int rd){
        int flag = 0;
-       while(cnt < 6 && flag < 1000){
+       while(cnt < rd && flag < 1000){
           int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
           int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
            if(r.blockType[i][j] == Type.BLOCK_WALL){
@@ -554,9 +556,9 @@ public class RoomFactory extends Factory{
        }
     }
     
-    public void addSpikeToRoom(Room r, int cnt){
+    public void addSpikeToRoom(Room r, int cnt, int rd){
        int flag = 0;
-       while(cnt < 4 && flag < 1000){
+       while(cnt < rd && flag < 1000){
           int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
           int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
            if(r.blockType[i][j] == Type.BLOCK_WALL
@@ -570,9 +572,9 @@ public class RoomFactory extends Factory{
        }
     }
     
-    public void addCrateToRoom(Room r, int cnt){
+    public void addCrateToRoom(Room r, int cnt, int rd){
        int flag = 0;
-       while(cnt < 3 && flag < 1000){
+       while(cnt < rd && flag < 1000){
           int i = (int)random(3, Type.BOARD_MAX_HEIGHT - 3);
           int j = (int)random(3, Type.BOARD_MAX_WIDTH - 3);
            if(r.blockType[i][j] == Type.BLOCK_WALL
