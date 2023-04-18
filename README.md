@@ -203,17 +203,41 @@ Another notable mention is our shooting system. We have used the PVector system 
 
 ### 6.1 Qualitative evaluation：
 
-We gathered around ten players to fully conduct that test. The process was as follows: we gave a brief introduction to the game and its operation, the players started to experience the game and finally filled in two forms, System Usability Scale and NASA TLX, based on their real thoughts.
+We used the Think Aloud evaluation method to conduct qualitative testing of the game. We invited test users to explore the game pages and content freely and without guidance from the developers, while asking them to express their thoughts aloud.
 
-Based on the results of the table and the player testimonials we found that, overall, players do not find our game system complicated, but may need some guidance to learn it. Basically, they think we have a strong gameplay and show that they want to play often. It may be necessary to maintain a tense state of operation while playing to keep the game experience going. Happily, almost all players praised our game's graphics and gameplay. Another point that deserves our attention is that, due to the lack of guidance, it seems difficult for players to realise that the goal of our game is to "mine for more points" (rather than to "stay alive").
+During this test, we identified the following issues for improvement (surely that’s not all): the need for more tutorials (including an introduction to the various items and weapons, basic operations, etc.); the need to improve the operations according to habits, e.g. the 'SPACE' and 'W' keys can both be used to 'jump'; the lack of visibility of entrances and exits on the game screen and the need to add guidance; the difficulty of the game needs to be adjusted, for example, players think the drop damage needs to be reduced.
 
 We also found it interesting to note that, because we did not select our test players, there was a significant difference in the feedback on the experience between players with and without relevant gaming experience. It took some time to learn and accept the keys and attack patterns for the first time, so we needed to give enough guidance at the beginning of the game to enhance the experience (otherwise it would have been a disguised way to make it harder and turn off players).
 
 Based on these results, we have decided to improve the guidelines and create a more user-friendly tutorial. We have also adjusted the props and values to correct the difficulty of the game. And also to emphasise the player's goal: to get more score.
 
-o One quantitative evaluation (of your choice)
+### 6.2 Quantitative evaluation：
 
-o Description of how code was tested.
+We gathered around ten players to fully conduct that test. The process was as follows: we gave a brief introduction to the game and its operation, the players started to experience the game and finally filled in two forms, System Usability Scale and NASA TLX, based on their real thoughts.
+
+In NASA TLX, we did not use weights for the six dimensions. Combining the scoring data reveals a large variation in the perception of the game's tasks between test users, which may be related to players' gaming experience and their own familiarity with the genre. Combining the independent mean scores for each dimension we find that players generally perceive the level of thinking required and effort required to play the game to be high, and that players are satisfied with their performance.
+
+<br></br>
+<p align="center">
+  <img width="90%" src="./ReportMaterials/NASA%20TLS.png">
+</p>
+<br></br>
+
+With players generally giving relatively good usability ratings (satisfactory scores) in SUS, it is fair to say that our game system has a good track record. This includes the fact that players found our system simple and easy to use and the tasks easy to understand. At the same time, some issues were also reflected, such as the fact that players felt they needed some time and some learning to use it. This echoes the issues reported by users during the Think Aloud evaluation in the previous section.
+
+<br></br>
+<p align="center">
+  <img width="90%" src="./ReportMaterials/SUS.png">
+</p>
+<br></br>
+
+### 6.3 How code was tested：
+
+Given that the development is using Processing, we are currently unable to perform further unit testing on the code etc., so we have chosen to focus our testing on user testing.
+
+For user testing, we have used the Think Aloud evaluation, NASA TLX and System Usability Survey (SUS) methods. In the Think Aloud evaluation, we let the testers explore the interface and content of the game without any guidance from the developers and asked them to express their thoughts out loud during the exploration process. We can quantify and analyse the results of the survey to draw conclusions and make the game better and more user-friendly.
+
+Based on the results of the table and the player testimonials we found that, overall, players do not find our game system complicated, but may need some guidance to learn it. Basically, they think we have a strong gameplay and show that they want to play often. It may be necessary to maintain a tense state of operation while playing to keep the game experience going. Happily, almost all players praised our game's graphics and gameplay. Another point that deserves our attention is that, due to the lack of guidance, it seems difficult for players to realise that the goal of our game is to "mine for more points" (rather than to "stay alive").
 
 ## 7. Process (15% ~750 words)
 
