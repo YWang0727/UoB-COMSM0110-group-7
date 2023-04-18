@@ -216,15 +216,13 @@ Based on these results, we have decided to improve the guidelines and create a m
 We gathered around ten players to fully conduct that test. The process was as follows: we gave a brief introduction to the game and its operation, the players started to experience the game and finally filled in two forms, System Usability Scale and NASA TLX, based on their real thoughts.
 
 In NASA TLX, we did not use weights for the six dimensions. Combining the scoring data reveals a large variation in the perception of the game's tasks between test users, which may be related to players' gaming experience and their own familiarity with the genre. Combining the independent mean scores for each dimension we find that players generally perceive the level of thinking required and effort required to play the game to be high, and that players are satisfied with their performance.
-
 <br></br>
 <p align="center">
-  <img width="90%" src="./ReportMaterials/NASA%20TLS.png">
+  <img width="90%" src="./ReportMaterials/NASA%20TLX.png">
 </p>
 <br></br>
 
 With players generally giving relatively good usability ratings (satisfactory scores) in SUS, it is fair to say that our game system has a good track record. This includes the fact that players found our system simple and easy to use and the tasks easy to understand. At the same time, some issues were also reflected, such as the fact that players felt they needed some time and some learning to use it. This echoes the issues reported by users during the Think Aloud evaluation in the previous section.
-
 <br></br>
 <p align="center">
   <img width="90%" src="./ReportMaterials/SUS.png">
