@@ -220,14 +220,12 @@ In NASA TLX, we did not use weights for the six dimensions. Combining the scorin
 <p align="center">
   <img width="90%" src="./ReportMaterials/NASA%20TLX.png">
 </p>
-<br></br>
 
 With players generally giving relatively good usability ratings (satisfactory scores) in SUS, it is fair to say that our game system has a good track record. This includes the fact that players found our system simple and easy to use and the tasks easy to understand. At the same time, some issues were also reflected, such as the fact that players felt they needed some time and some learning to use it. This echoes the issues reported by users during the Think Aloud evaluation in the previous section.
 <br></br>
 <p align="center">
   <img width="90%" src="./ReportMaterials/SUS.png">
 </p>
-<br></br>
 
 ### 6.3 How code was tested：
 
