@@ -89,53 +89,72 @@ Finally, we reached a consensus of which game to develop as we all agreed on a r
 
 ## 4. Design (15% ~750 words)
 
-o Design details (OUTLINE)
-
-Concept and Theme: Start by developing a unique concept or theme for your game. This could be inspired by a specific setting, mythology, or an interesting twist on traditional rogue-like games. The theme will help guide the overall design and create a cohesive experience for the players.
-
-Game Mechanics: Define the core game mechanics, such as turn-based gameplay, combat system, character progression, and inventory management. Consider how these mechanics will interact and create a fun and challenging experience for the players. At this stage, it's important to decide on the level of complexity and depth that you want for your game.
-
-Procedural Generation: One of the key aspects of rogue-like games is procedurally generated levels. Plan the algorithms and techniques that will be used to create diverse and engaging dungeons, ensuring that each playthrough offers a unique experience. Consider how the procedural generation will affect the game's difficulty, pacing, and replayability.
-
-Character Creation and Progression: Design the system for creating and customizing player characters, including attributes, abilities, and appearance options. Decide on the character progression system, including experience points, leveling up, and unlocking new abilities. Consider incorporating permadeath and how it will affect the overall gameplay experience.
-
-Enemy Design: Plan the variety of enemies and bosses that the players will encounter throughout the game. Define their abilities, behaviors, and difficulty levels, ensuring that they provide an engaging and challenging experience for the players.
-
-Items and Equipment: Design a diverse set of items, weapons, and armor that players can discover and use throughout the game. Consider how these items will impact the player's strategy, progression, and overall gameplay experience.
-
-Visual and Audio Design: Develop the visual and audio style for the game, including character and environment art, animations, sound effects, and music. The visual and audio design should complement the game's theme and create an immersive and engaging experience for the players.
-
-User Interface and Controls: Design the user interface and control scheme for the game, ensuring that it's intuitive and accessible for the players. Consider how the interface will adapt to different platforms, such as PC, console, or mobile devices.
-
-Story and Lore: Although not always a focus in rogue-like games, you may want to develop a story or lore that adds depth and context to the game world. This can help create a more immersive experience and encourage players to explore the game world more thoroughly.
-
-Prototyping and Iteration: In the early stage of design, it's important to create prototypes and iterate on the game mechanics, level generation, and other aspects of the game. This allows you to test and refine your ideas, ensuring that the game is fun, balanced, and engaging for the players.
+o SYSTEM ARCHITECTURE
 
 
+In the realm of game development, system architecture design is a critical aspect, as it provides the essential framework and coordination for the game's diverse components. This design facilitates the scalability, maintainability and it ensures the game can be developed efficiently. Here are some key elements we have taken in account during devising the system architecture of this game:
 
-o System architecture (OUTLINE)
+Game Engine: 
 
-System architecture design is a critical aspect of game development, as it provides the structure and organization for the various components of the game. It helps to ensure that the game is scalable, maintainable, and can be developed efficiently. Here are some key elements to consider when designing the system architecture for a game:
+As required by the assignment brief, the game is design with Processing, instead of relying on pre-built game engines, we have efficiently created a custom game engine. It allowed us to take advantage of the full potential of Processing, like rendering capabilities, animation, interface design. Based on it, the game could be developed efficiently, and different components created by all people in our team could be combined and integrated seamless.
 
-Game Engine: The game engine is the core software framework that powers the game. It provides essential features and tools, such as rendering, physics, animation, and artificial intelligence. You can either choose to use a pre-built engine like Unity or Unreal Engine or create a custom engine tailored to your specific needs.
+Game Logic: 
 
-Game Logic: Design the game logic, which includes the rules and mechanics of the game, such as character progression, combat, and level generation. This should be separated from the rendering and engine systems, allowing for easier updates and modifications to the game's core functionality.
+Design the game logic, which includes the rules and mechanics of the game, such as character progression, combat, and level generation. This should be separated from the rendering and engine systems, allowing for easier updates and modifications to the game's core functionality.
 
-Data Management: Design the data management system, which stores and organizes the game's data, such as level layouts, character attributes, and item properties. This may involve creating databases, file formats, or other data storage solutions, ensuring that data can be accessed and modified efficiently.
+1.	Objective and challenges:
 
-Asset Management: Create a system for managing the game's assets, such as textures, models, animations, and sound files. This may involve developing a custom asset pipeline or using existing tools and libraries, ensuring that assets can be imported, organized, and utilized efficiently within the game.
+The game performance is evaluated by player score, which is calculate by the number of enemies killed, the number of ore mined, number of items acquired. There is a score coefficient based on initial difficulty choice and the score already acquired (increase by 1 every 5000 score). Different enemies correspond to different score. Player has 10 HP at the beginning of the game, you will lose 1 HP every time you touch spine or hurt by enemies. When all HP used up, game over, you can input your name and see ranking. The game target is to survive, collect scores as many as possible. 
 
-Networking: If your game includes multiplayer functionality, design the networking architecture, which involves setting up servers, managing connections, and synchronizing game states between players. This may also involve developing systems for matchmaking, leaderboards, and other online features.
+2.	Core gameplay mechanics:
 
-User Interface: Design the user interface (UI) system, which includes the layout, controls, and visual elements that the players interact with. This should be modular and flexible, allowing for easy updates and changes to the UI as needed.
+Player has the command: move left/right, speed down, interact, pick up item, change weapon, change items, jump, jump off, pause, shoot, use items. 
+Crates appears randomly in the room and can be opened with keyboard input “E” and press another time to pick it up, the crate might contain one of the following items: shotgun bullet, split shot bullet, wing (fly 8 seconds), HP diamond (max HP +1) and SPEED diamond (speed up in 5 seconds). 
+The yellow board is trampoline, it increases jump heigh when the player stands on it. 
+The blue board is portal, stand on it and press key “E”, the player could teleport back and forth between portals. 
+Ore is hidden in blocks, use miner gun to attack them and get scores.
+Green and red diamonds are randomly distributed in the room, touch to collect them, the green diamonds bring extra marks, and the red diamonds heal 1 HP.
 
-Input Handling: Create a system for handling player input, such as keyboard, mouse, or controller inputs. This should be adaptable to different platforms and devices, ensuring that the game can be played on a variety of systems.
+3.	Game state and transitions:
 
-Scripting and Event Systems: Design the scripting and event systems, which allow for custom game logic, interactions, and behaviors to be implemented without modifying the core engine code. This may involve creating a custom scripting language or utilizing existing scripting languages like Lua or Python.
+When the game starts up, it enters the default home page, where the player can choose to start, check help page, option page, ranking and quit. And in the game, on the top right corner, there are some buttons: help, music on/off, pause and exit. Game states are defined in Model class, the coordinate of mouse is monitored whether on the button area, when press buttons, it calls controller to change game statues, then the View class render new game picture.
 
-Audio: Design the audio system, which includes managing sound effects, background music, and voiceovers. This may involve integrating middleware like FMOD or Wwise to handle audio playback, mixing, and spatialization.
+4.	Artificial Intelligence (AI):
 
-Performance and Optimization: Design the game's architecture with performance and optimization in mind, ensuring that the game runs smoothly on a variety of hardware configurations. This may involve implementing techniques like level-of-detail, culling, and asset streaming to improve performance.
+All enemy are controlled by AI algorithms, the unbeatable ghost identifies your coordinate and chase you all game after you leave the first room. All the other enemies have their own space, when the player appears in the area, the monster launch attacks in their way, shooting or melee attack.
+
+5.	Game balance and difficulty:
+
+As required in the assignment brief, there are three preset difficulties, it can be change in the option menu and you can see current difficulty in the game. To make the game more intense and thrilling over time, a hidden difficulty coefficient is applied (increase by 1 every 5000 score). The difficulty is tested to make sure it’s appropriate.
+
+6.	Event handling and input management:
+
+Collision detection is running all the time to make sure the player has valid interaction with monsters or the room. The game monitor mouse and keyboard input to receive player input. All error message is recorded so that when it crashes, the developer could figure out the reason and fix it.
+
+Data Management:
+
+The game information is stored locally with array list or csv file. Some data like the map of already explored rooms is reset every time game over and new round start, so that every round the player could explore new map. While some other data like the score and ranking is only initialized when game startup, so that player could see previous game records after several rounds.
+
+Asset Management:
+
+The game's assets, such as textures, models, animations, and sound files are imported when game startup and will be called with game start. The file is placed in folder /Moon/Data/imgs.
+
+Networking:
+
+Multiplayer is not implemented in current game design phase, so networking is not considered.
+
+User Interface:
+
+The user interface is designed with Adobe Photoshop and Adobe Illustrator, all images and buttons are imported at game startup and rendered by View class. Mouse is monitored, when it is released in the button area (judged by coordinates), controller set the corresponding game status and new game picture is rendered by View class. All interfaces are placed in /Moon/Data/imgs/menu, replace the image file with the same name could update the game menu.
+
+Input Handling:
+
+The player input is monitored in main class, the keyboard input is not case sensitive and captured by keyReleased() and transformed to lower case, the mouse is captured by mouseReleased(), they will be passed into controlled to do corresponding operation. 
+ 
+Audio:
+
+The background music featured in the game is sourced from "Neon Abyss". Other sound effects, such as shooting, taking damage, and jumping, are obtained from an online resource library: https://588ku.com/. Playing music is relied on Minim, an audio library that provides easy to use classes for playback, recording, analysis, and synthesis of sound. All the mp3 file is loaded at the startup. There is a Boolean game statue “isMusicPlaying” in Model class, it is true by default and can be changed when setIsMusicPlaying(true) is called. When isMusicPlaying is true, the background music will be played.
+
 
 
 o Class diagrams
