@@ -210,7 +210,7 @@ public class Item extends BasicProp{
       textAlign(CENTER, TOP);
       String s = "";
       if(this.type == 0){
-         s = "HP + 1";
+         s = "MaxHP +1";
       }else if(this.type == 1){
          s = "SPEED UP: 5s";
       }else{

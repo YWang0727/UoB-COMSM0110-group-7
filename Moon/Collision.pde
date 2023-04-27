@@ -261,7 +261,7 @@ public class Collision{
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
             if(r.blockType[i][j] == Type.BLOCK_SPIKE && detect(p, i, j) && !p.isInvincible){
                 stab.play(2);
-                p.attacked(5, null);
+                p.attacked(10, null);
                 p.isKnockBack = true;
                 p.velocity3 = new PVector(p.left ? 5 : -5, -10);
             }

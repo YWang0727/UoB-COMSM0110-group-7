@@ -20,13 +20,13 @@ class Difficulty{
   Difficulty(){
     this.isSet = false;
     this.flyHp = 10;
-    this.gunnerHp = 30;
-    this.spiderHp = 20;
-    this.flyDp = 5;
-    this.gunnerDp = 10;
-    this.spiderDp = 8;
+    this.gunnerHp = 20;
+    this.spiderHp = 15;
+    this.flyDp = 10;
+    this.gunnerDp = 20;
+    this.spiderDp = 10;
     this.bossV = 0.8;
-    this.bossDp = 20;
+    this.bossDp = 40;
     
     this.eInitRatio = 1.0;
     this.eIncRatio = 1.1;
@@ -41,7 +41,7 @@ class Difficulty{
     
      //player bullets status
      this.bSpeed = 2;
-     this.bDp = 2;   
+     this.bDp = 5;   
      this.bNum = 0;
      
      //enemy status
@@ -65,7 +65,7 @@ class Difficulty{
     
      //player bullets status
      this.bSpeed = 1;
-     this.bDp = 1;   
+     this.bDp = 2;   
      this.bNum = 0;
      
      //enemy status
