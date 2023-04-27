@@ -16,14 +16,14 @@ public class View{
   protected Model model;
   Moon_MVC mvc; 
   Player p;
-  //PImage help;
+  PImage danger;
   
   public View(Moon_MVC mvc, Model model, Player p){
      this.model = model;
      this.mvc = mvc;
      this.p = p;
-     //help = loadImage("imgs/menu/help.png");
-     //help.resize(width, height/2);
+     danger = loadImage("imgs/menu/danger.png");
+     danger.resize(225, 50);
   }
   
   /**
@@ -119,10 +119,7 @@ public class View{
       textSize(32); 
       textAlign(RIGHT, TOP);
       text("Room Num: " + this.model.roomFactory.id, Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
-      //if( (this.model.roomFactory.id + 1) == 3){
-      //   text("Danger is comming!!" , Type.BOARD_GRIDSIZE * (Type.BOARD_MAX_WIDTH - 1) + Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
-      //}
-      
+
   
   }
   
@@ -139,10 +136,11 @@ public class View{
         image(hard, 170, 60, 64, 30);
       }
         
-      fill(125, 255, 255);
-      textSize(32); 
+      fill(60, 255, 255);
+      textSize(21); 
       textAlign(LEFT, TOP);
-      text("Difficulty Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE * 5/2); 
+      image(danger, Type.BOARD_GRIDSIZE/2-10, Type.BOARD_GRIDSIZE * 5/2);
+      text("Danger Level: " + dif.lastLevel, Type.BOARD_GRIDSIZE/2+50, Type.BOARD_GRIDSIZE * 5/2 + 10); 
       
   }
 

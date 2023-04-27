@@ -247,21 +247,15 @@ public class Player extends ActionProp{
   
    public void drawScore(){
       noTint();
-      stroke(0); 
-      strokeWeight(1); 
-      fill(50, 255,255);
-      textSize(28); 
+      fill(125, 255,255);
+      textSize(25); 
       textAlign(LEFT, TOP);
-      image(score, Type.BOARD_GRIDSIZE/2-10, 50);
-      //text("Score: " + this.value, Type.BOARD_GRIDSIZE/2, Type.BOARD_GRIDSIZE *3/2); 
-      text(this.value, Type.BOARD_GRIDSIZE/2+50, Type.BOARD_GRIDSIZE *3/2-5); 
+      image(score, Type.BOARD_GRIDSIZE/2-10, 49);
+      text(this.value, Type.BOARD_GRIDSIZE/2+50, Type.BOARD_GRIDSIZE *3/2 - 2); 
   }
   
   public void drawPlayerAndWeapon(){
     drawGif();
-    //Item w = weapons[currentWeaponIndex];
-    // w.display(this);
-
   }
   
   public float getAngle() {

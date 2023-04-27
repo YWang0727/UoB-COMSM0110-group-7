@@ -16,7 +16,6 @@ public class RoomFactory extends Factory{
     public Tutorial tutorial;
    
     public RoomFactory(BlockFactory b){
-      //this.enemyFactory = e;
       this.blockFactory = b;
       for(int i=0; i<14; i++){
         sectionIndex.add(i);
@@ -47,7 +46,6 @@ public class RoomFactory extends Factory{
     }
     
     public void optimizeRoom(Room r){
-       //println("optimizeRoom");
        // 2 block path
        for(int i = 0; i < Type.BOARD_MAX_HEIGHT; i++){
          for(int j = 0; j < Type.BOARD_MAX_WIDTH; j++){
@@ -493,12 +491,6 @@ public class RoomFactory extends Factory{
          if(cnt_crate < rd){
            addCrateToRoom(r, cnt_crate, rd);
          }
-         
-
-         
-
-         
-         
          
     }
     
