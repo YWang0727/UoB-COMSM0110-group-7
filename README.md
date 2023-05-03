@@ -37,6 +37,7 @@
 
 
 <br>
+
 ## 1. Team
 
 <p align="center">
@@ -75,6 +76,7 @@
 </table>
 
 <br>
+
 ## 2. Introduction
 
 Our game is based on the classic roguelike adventure game Spelunky. In the original game, each level is randomly generated, and the player must descend through a series of caves, fighting enemies and collecting treasure.  We decided to take this concept and adapt it to an arcade style game set in space. In keeping with the original our game features randomly generated levels and item drops, but as a twist we added in an unkillable alien ghost who pursues the player throughout every level. Players are dropped onto an alien planet, and they must control a space marine on a quest to collect energy crystals for their dying home world. This planet is rich in resources but full of danger, and the marine must survive against impossible odds for as long as they can, using weapons, teleportation, and super jumps to evade and eliminate their enemies and mine crystals before the ghost catches up…
@@ -356,6 +358,7 @@ Here are some screenshots for how we collaborated as a team.
       <br>Screenshot of helping to fix bug
         <br></br>
 </p>
+
 ### 7.2 Software
 
 We used various software introduced from the lecture.
@@ -377,6 +380,7 @@ We used various software introduced from the lecture.
 
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
 <br>
+
 ### 7.3 Team roles
 
 We divided the game into 5 parts at beginning of the project, so everyone can focus on his or her own part. Please find below table as how we assign the team role and also our individual contribution.
