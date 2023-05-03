@@ -42,7 +42,6 @@
 <p align="center">
   <img width="60%" src="./ReportMaterials/group7-w1.jpg">
 </p>
-<!-- 
 
 | Name             | Email                 |
 | ---------------- | --------------------- |
@@ -50,7 +49,7 @@
 | Yue Wang         | pe22209@bristol.ac.uk |
 | Arlo SUN         | xa22653@bristol.ac.uk |
 | Ed Satterthwaite | es16268@bristol.ac.uk |
-| Cedric Chen      | ud22762@bristol.ac.uk | -->
+| Cedric Chen      | ud22762@bristol.ac.uk | 
 
 <table align="center">
   <thead>
