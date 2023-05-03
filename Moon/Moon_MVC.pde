@@ -329,7 +329,7 @@ public void keyReleased(){
   
    key = Character.toLowerCase(key);
 
-   if(key == 'p'){
+   if(key == 'p' && controller.getGameStart()){
       controller.setGamePause(controller.getGamePause() ? false : true);
     }
   
