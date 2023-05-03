@@ -14,11 +14,11 @@ boolean inputFieldCreated = false;
 
 public class View{
   protected Model model;
-  Moon_MVC mvc; 
+  JupiterX mvc; 
   Player p;
   PImage danger;
   
-  public View(Moon_MVC mvc, Model model, Player p){
+  public View(JupiterX mvc, Model model, Player p){
      this.model = model;
      this.mvc = mvc;
      this.p = p;
