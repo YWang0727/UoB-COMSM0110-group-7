@@ -43,6 +43,7 @@
 <p align="center">
   <img width="60%" src="./ReportMaterials/group7-w1.jpg">
 </p>
+<br>
 
 <table align="center">
   <thead>
@@ -235,6 +236,7 @@ The background music featured in the game is sourced from "Neon Abyss". Other so
 <p align="center">
   <img width="60%" src="./ReportMaterials/CommunicationDiagram.png">
 </p>
+<br>
 Behavioural diagrams are kept in folder 'ReportMaterials' in gitub mainpage for your reference.
 
 https://github.com/UoB-COMSM0110/2023-group-7/tree/main/ReportMaterials
@@ -258,8 +260,6 @@ Our goal with the random generation of rooms, was for every level to look and fe
 Our solution was to use a pseudo-randomly generated approach. The board size is set to 1160 by 800 pixels and is divided into a grid of 29 by 20 blocks. Each room has a border of 1 block with 6 exits, and the remaining space is then divided into 6 sections, each of 9*9 blocks (see figure x). The sections are stored in CSV files, and dictate the placement of normal blocks, jump pads and portals. We carefully designed a large number of different sections and carried out user testing to ensure that they fit together in any combination without obstructing the players movement. 
 
 When each room is generated, 6 sections are chosen at random and used to build the room. The logic for this generation is designed in such a way that no room can contain two identical sections. Next, we optimise the room, adding in some additional special platforms to make gameplay more dynamic. We then scan the room to find suitable locations for elements such as enemies and items. These elements are then added to randomly selected locations. 
-
-
 <p align="center">
   <img width="90%" src="./ReportMaterials/Map%20diagram.jpg">
 </p>
@@ -379,19 +379,17 @@ We used various software introduced from the lecture.
 <br>Also please follow below link if you want to check how we collaborate in Jira.</br>
 
 https://uob-group7.atlassian.net/jira/software/projects/GP/boards/1
-<br>
-
 ### 7.3 Team roles
 
 We divided the game into 5 parts at beginning of the project, so everyone can focus on his or her own part. Please find below table as how we assign the team role and also our individual contribution.
 
 | Task                                | To do by | Individual Weight|
 | ----------------------------------- | -------- | -------------|
-| Rooms & Room Factory                | Ed       |1.00          |
-| Menu & Setting & BGM                | Arlo     |1.00          |
-| Player, Basic props, Collision etc… | Xiao     |1.00          |
-| Items & Items Factory               | Yue      |1.00          |
-| Enemy & Enemy Factory               | Cedric   |1.00          |
+| Rooms & Room Factory                | Ed       |?          |
+| Menu & Setting & BGM                | Arlo     |?          |
+| Player, Basic props, Collision etc… | Xiao     |?          |
+| Items & Items Factory               | Yue      |?          |
+| Enemy & Enemy Factory               | Cedric   |?          |
 
 Meanwhile, apart from the game, there are some works have been done by different team members:
 
