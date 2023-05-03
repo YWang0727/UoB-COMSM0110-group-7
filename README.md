@@ -1,39 +1,44 @@
-# COMSM0110 - Group 7 (2023)
+<div align="center">
+   <h1> University  of  Bristol <br/>
+   COMSM0110 - Group 7 (2023) <br/></h1>
+   <h2>JUPITER X Resource War</h2>
+   <!-- video link to be added -->
+   <!-- <h3 align=center><a href="" target="">Click the YouTuBe link to view our video</a></h3> -->
+</div>
 
-## Contents
-- [COMSM0110 - Group 7 (2023)](#comsm0110---group-7-2023)
-  - [Contents](#contents)
-  - [1. Team](#1-team)
-  - [2. Introduction](#2-introduction)
-  - [3. Requirements](#3-requirements)
-    - [3.1 Use case diagrams](#31-use-case-diagrams)
-    - [3.2 User stories](#32-user-stories)
-    - [3.3 Early stages design and ideation process](#33-early-stages-design-and-ideation-process)
-  - [4. Design](#4-design)
-    - [4.1 System architecture](#41-system-architecture)
-      - [4.1.1 Game Engine](#411-game-engine)
-      - [4.1.2 Game Logic](#412-game-logic)
-      - [4.1.3 Data Management](#413-data-management)
-      - [4.1.4 Asset Management](#414-asset-management)
-      - [4.1.5 Networking](#415-networking)
-      - [4.1.6 User Interface](#416-user-interface)
-      - [4.1.7 Input Handling](#417-input-handling)
-      - [4.1.8 Audio](#418-audio)
-    - [4.2 Class diagrams](#42-class-diagrams)
-    - [4.3 Behavioural diagrams](#43-behavioural-diagrams)
-  - [5. Implementation](#5-implementation)
-    - [5.1 Randomly generated map and elements](#51-randomly-generated-map-and-elements)
-    - [5.2 Collision detection](#52-collision-detection)
-    - [5.3 Performance effects](#53-performance-effects)
-  - [6. Evaluation](#6-evaluation)
-    - [6.1 Qualitative evaluation](#61-qualitative-evaluation)
-    - [6.2 Quantitative evaluation](#62-quantitative-evaluation)
-    - [6.3 How code was tested](#63-how-code-was-tested)
-  - [7. Process](#7-process)
-    - [7.1 Teamwork](#71-teamwork)
-    - [7.2 Software](#72-software)
-    - [7.3 Team roles](#73-team-roles)
-  - [8. Conclusion](#8-conclusion)
+
+### Contents
+- [1. Team](#1-team)
+- [2. Introduction](#2-introduction)
+- [3. Requirements](#3-requirements)
+  - [3.1 Use case diagrams](#31-use-case-diagrams)
+  - [3.2 User stories](#32-user-stories)
+  - [3.3 Early stages design and ideation process](#33-early-stages-design-and-ideation-process)
+- [4. Design](#4-design)
+  - [4.1 System architecture](#41-system-architecture)
+    - [4.1.1 Game Engine](#411-game-engine)
+    - [4.1.2 Game Logic](#412-game-logic)
+    - [4.1.3 Data Management](#413-data-management)
+    - [4.1.4 Asset Management](#414-asset-management)
+    - [4.1.5 Networking](#415-networking)
+    - [4.1.6 User Interface](#416-user-interface)
+    - [4.1.7 Input Handling](#417-input-handling)
+    - [4.1.8 Audio](#418-audio)
+  - [4.2 Class diagrams](#42-class-diagrams)
+  - [4.3 Behavioural diagrams](#43-behavioural-diagrams)
+- [5. Implementation](#5-implementation)
+  - [5.1 Randomly generated map and elements](#51-randomly-generated-map-and-elements)
+  - [5.2 Collision detection](#52-collision-detection)
+  - [5.3 Performance effects](#53-performance-effects)
+- [6. Evaluation](#6-evaluation)
+  - [6.1 Qualitative evaluation](#61-qualitative-evaluation)
+  - [6.2 Quantitative evaluation](#62-quantitative-evaluation)
+  - [6.3 How code was tested](#63-how-code-was-tested)
+- [7. Process](#7-process)
+  - [7.1 Teamwork](#71-teamwork)
+  - [7.2 Software](#72-software)
+  - [7.3 Team roles](#73-team-roles)
+- [8. Conclusion](#8-conclusion)
 
 
 <br>
@@ -385,11 +390,11 @@ We divided the game into 5 parts at beginning of the project, so everyone can fo
 
 | Task                                | To do by | Individual Weight|
 | ----------------------------------- | -------- | -------------|
-| Rooms & Room Factory                | Ed       |?          |
-| Menu & Setting & BGM                | Arlo     |?          |
-| Player, Basic props, Collision etc… | Xiao     |?          |
-| Items & Items Factory               | Yue      |?          |
-| Enemy & Enemy Factory               | Cedric   |?          |
+| Rooms & Room Factory                | Ed       |1.00          |
+| Menu & Setting & BGM                | Arlo     |1.00          |
+| Player, Basic props, Collision etc… | Xiao     |1.00          |
+| Items & Items Factory               | Yue      |1.00          |
+| Enemy & Enemy Factory               | Cedric   |1.00          |
 
 Meanwhile, apart from the game, there are some works have been done by different team members:
 
