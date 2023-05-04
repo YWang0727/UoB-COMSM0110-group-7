@@ -403,7 +403,7 @@ We divided the game into 5 parts at beginning of the project, so everyone can fo
 | ----------------------------------- | -------- | -------------|
 | Rooms & Room Factory                | Ed       |1.00          |
 | Menu & Setting & BGM                | Arlo     |1.00          |
-| Game framefork, Player, Basic props, Collision etc… | Xiao     |1.00          |
+| Game framework, Player, Basic props, Collision etc… | Xiao     |1.00          |
 | Items & Items Factory               | Yue      |1.00          |
 | Enemy & Enemy Factory               | Cedric   |1.00          |
 
