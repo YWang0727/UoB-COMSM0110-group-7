@@ -87,6 +87,11 @@
 
 Our game is based on the classic roguelike adventure game Spelunky. In the original game, each level is randomly generated, and the player must descend through a series of caves, fighting enemies and collecting treasure.  We decided to take this concept and adapt it to an arcade style game set in space. In keeping with the original our game features randomly generated levels and item drops, but as a twist we added in an unkillable alien ghost who pursues the player throughout every level. Players are dropped onto an alien planet, and they must control a space marine on a quest to collect energy crystals for their dying home world. This planet is rich in resources but full of danger, and the marine must survive against impossible odds for as long as they can, using weapons, teleportation, and super jumps to evade and eliminate their enemies and mine crystals before the ghost catches up…
 
+<p align="center">
+  <img width="70%" src="./ReportMaterials/gameplay.gif">
+</p>
+<br>
+
 ## 3. Requirements
 
 
@@ -268,7 +273,13 @@ When each room is generated, 6 sections are chosen at random and used to build t
 <p align="center">
   <img width="90%" src="./ReportMaterials/Map%20diagram.jpg">
 </p>
+<p align="center">Image showing how level sections are laid out in each room</p>
 <br>
+
+<p align="center">
+  <img width="60%" src="./ReportMaterials/room-generation.gif">
+</p>
+<p align="center"> Gif showing how a player can move seemlessly between randomly generated rooms. </p>
 
 ### 5.2 Collision detection
 
