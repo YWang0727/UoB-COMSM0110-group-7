@@ -30,7 +30,7 @@ public class Player extends ActionProp{
     this.location = new PVector(width/2, height/2);
     this.w = 24;
     this.h = 34;
-    this.hp = 100;
+    this.hp = 30;
     this.maxHp = hp;
     this.bSpeed = dif.bSpeed;
     this.bDp = dif.bDp;
