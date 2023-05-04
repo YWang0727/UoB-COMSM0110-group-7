@@ -2,8 +2,7 @@
    <h1> University  of  Bristol <br/>
    COMSM0110 - Group 7 (2023) <br/></h1>
    <h2>JUPITER X Resource War</h2>
-   <!-- video link to be added -->
-   <!-- <h3 align=center><a href="" target="">Click the YouTuBe link to view our video</a></h3> -->
+   <h3 align=center><a href="https://www.youtube.com/watch?v=2QUO_ZLdlsE" target="">Click the here to view Game video</a></h3>
 </div>
 
 
